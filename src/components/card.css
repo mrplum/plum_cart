@@ -1,9 +1,3 @@
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
 
 .img {
   width: 70%;
@@ -13,7 +7,7 @@
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 0.2);
   border: 10%;
   margin: 5%;
   text-align: center;
@@ -23,25 +17,28 @@
 }
 
 .buttons{
-  margin-right: 10px;
-  margin-left: 60px;
-  margin-bottom: auto;
-  padding-bottom: 10%;
-  height: 80%;
-  width: 80%;
+  text-align: right;
+  margin-right: 5%;
+  padding-bottom: 5%;
+
 }
 
 .title {
   color: dimgray;
-  width: 50%;
-  height: 50%;
-  margin: 5%;
-  padding: 20%;
+  width: 80%;
+  height: 80%;
+  margin-top: 15%;
+  margin-left: 5%;
+  float: left;
   font-size: large;
 }
 
 .price {
   text-align: center;
-  padding-bottom: 70px;
+  float: left;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 80%;
+  padding-bottom: 10%;
   font-size: xx-large;
 }
