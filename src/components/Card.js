@@ -8,18 +8,20 @@ import image from '../image-not-found.png';
 /**
  * Primary UI component for user interaction
  */
-export const Card = ({ backgroundColor, img, ...props }) => {
+export const Card = ({ backgroundColor,title,price, img, ...props }) => {
   return (
-    <div className="center">
-      <div>
-        <img src={img} alt={''} />
-      </div>
-      <div>
+    <div className="card">
+        <img className='img' src={img} alt={''} />
+        <h2 className='title'> {title} </h2>
+        <h1 className="price">${price}</h1>
+      <div className='buttons'>
         <Button primary={false} 
                 backgroundColor={'transparent'}
+                size = {'small'}
                 label={"DETAILS"}/>
         <Button primary={true} 
                 backgroundColor={'transparent'}
+                size = {'small'}
                 label={"ADD MORE"}/>
       </div>
     </div>
@@ -34,12 +36,20 @@ Card.propTypes = {
   /**
    * image to show
    */
-
+  /*
+  * image's title
+  */
+  title: PropTypes.string.isRequired,
+  /*
+  * price
+  */
+  price: PropTypes.number.isRequired
 };
 
 Card.defaultProps = {
   backgroundColor: null,
-  size: 'medium',
+  title: 'imagen no encontrada ',
   img: image,
+  price: 0.0
 };
 
