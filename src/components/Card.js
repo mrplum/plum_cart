@@ -8,18 +8,20 @@ import image from '../image-not-found.png';
 /**
  * Primary UI component for user interaction
  */
-export const Card = ({ backgroundColor,title,price, img, ...props }) => {
+export const Card = ({ dark,title,price, img, ...props }) => {
+  const mode = dark ? "-dark" : "";
   return (
-    <div className="card">
+    <div className={[`card${mode}`]}>
         <img className='img' src={img} alt={''} />
-        <h2 className='title'> {title} </h2>
-        <h1 className="price">${price}</h1>
+        <h2 className={[`title${mode}`]}> {title} </h2>
+        <h1 className={[`price${mode}`]}>${price}</h1>
       <div className='buttons'>
-        <Button primary={false} 
+        <Button primary={false}
                 backgroundColor={'transparent'}
                 size = {'small'}
                 label={"DETAILS"}/>
         <Button primary={true} 
+                dark={dark}
                 backgroundColor={'transparent'}
                 size = {'small'}
                 label={"ADD MORE"}/>
@@ -30,12 +32,13 @@ export const Card = ({ backgroundColor,title,price, img, ...props }) => {
 
 Card.propTypes = {
   /**
-   * What background color to use
+   * Dark mode
    */
-  backgroundColor: PropTypes.string,
+  dark: PropTypes.bool,
   /**
    * image to show
    */
+  //help :(
   /*
   * image's title
   */
@@ -47,7 +50,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  backgroundColor: null,
+  dark: false,
   title: 'imagen no encontrada ',
   img: image,
   price: 0.0

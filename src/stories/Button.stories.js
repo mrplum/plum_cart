@@ -23,6 +23,14 @@ Secondary.args = {
   label: 'Button',
 };
 
+export const DarkPrimary = Template.bind({});
+DarkPrimary.args = {
+  primary: true,
+  dark:true,
+  label: 'Button',
+};
+
+
 export const Large = Template.bind({});
 Large.args = {
   size: 'large',

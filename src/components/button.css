@@ -16,6 +16,12 @@
   background-color: transparent;
   border: 0;
 }
+.storybook-button--primary-dark {
+  color:  rgba(194, 190, 190, 0.904);
+  background-color: rgba(156, 154, 154, 0.904);
+  border: 20;
+  border-color: rgba(109, 106, 106, 0.904);
+}
 .storybook-button--small {
   font-size: 12px;
   padding: 10px 16px;

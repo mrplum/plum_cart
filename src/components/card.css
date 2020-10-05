@@ -16,6 +16,17 @@
   height: 20%;
 }
 
+.card-dark{
+  box-shadow: 4px 4px 8px 8px rgba(75, 73, 73, 0.61);
+  border: 10%;
+  margin: 5%;
+  text-align: center;
+  background-color: rgba(15, 15, 15, 0.74);
+  /*font-family: arial;*/
+  width: 30%;
+  height: 20%;
+}
+
 .buttons{
   text-align: right;
   margin-right: 5%;
@@ -33,7 +44,28 @@
   font-size: large;
 }
 
+.title-dark {
+  color: white;
+  width: 80%;
+  height: 80%;
+  margin-top: 15%;
+  margin-left: 5%;
+  float: left;
+  font-size: large;
+}
+
 .price {
+  text-align: center;
+  float: left;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 80%;
+  padding-bottom: 10%;
+  font-size: xx-large;
+}
+
+.price-dark {
+  color: white;
   text-align: center;
   float: left;
   margin-top: 5%;
