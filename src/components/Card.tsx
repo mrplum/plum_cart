@@ -3,18 +3,34 @@ import PropTypes from 'prop-types';
 import {Button} from './Button';
 import './card.css';
 import image from '../image-not-found.png';
-
+import { classicNameResolver } from 'typescript';
+import classNames from 'classnames';
 
 /**
  * Primary UI component for user interaction
  */
-export const Card = ({ dark,title,price, img, ...props }) => {
+const Card = ({
+  dark,
+  title,
+  price,
+  img
+}: {
+  dark: boolean;
+  title: string;
+  price: number;
+  img?: string;
+}) : JSX.Element => {
   const mode = dark ? "-dark" : "";
   return (
-    <div className={[`card${mode}`]}>
+    <div className={classNames({"card-dark": mode})}>
       <div>
         <img className='img' src={img} alt={''} />
-        <h2 className={[`title${mode}`]}> {title} </h2>
+        
+        <h2 className={classNames({
+          'title': !mode,
+          'title-dark': mode
+        }
+        )}> {title} </h2>
         <h1 className={[`price${mode}`]}>${price}</h1>
         </div>
       <div className='buttons'>
@@ -47,10 +63,11 @@ Card.propTypes = {
   price: PropTypes.number.isRequired
 };
 
-Card.defaultProps = {
-  dark: false,
-  title: 'Image not Found',
-  img: image,
-  price: 0.0
-};
+// Card.defaultProps = {
+//   dark: false,
+//   title: 'Image not Found',
+//   img: image,
+//   price: 0.0
+// };
 
+export default Card;
