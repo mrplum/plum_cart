@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './Button';
-//import from './card.css';
+import Button from '../Button';
+import './card.css';
 import image from '../image-not-found.png';
 import { classicNameResolver } from 'typescript';
 import classNames from 'classnames';
