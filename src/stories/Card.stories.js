@@ -22,7 +22,7 @@ NotFound.args = {
 export const NormalMode = Template.bind({});
 NormalMode.args = {
   dark: false,
-  title: 'Camiseta Boca Juniors - 2020',
+  title: 'Camiseta Boca Juniors',
   img: boca,
   price: 3252.99
 };
@@ -30,7 +30,7 @@ NormalMode.args = {
 export const DarkMode = Template.bind({});
 DarkMode.args = {
   dark: true,
-  title: 'Camiseta  baby yoda',
+  title: 'Camiseta baby yoda',
   img: yoda,
   price: 1022.99
 };

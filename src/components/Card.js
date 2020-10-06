@@ -12,9 +12,11 @@ export const Card = ({ dark,title,price, img, ...props }) => {
   const mode = dark ? "-dark" : "";
   return (
     <div className={[`card${mode}`]}>
+      <div>
         <img className='img' src={img} alt={''} />
         <h2 className={[`title${mode}`]}> {title} </h2>
         <h1 className={[`price${mode}`]}>${price}</h1>
+        </div>
       <div className='buttons'>
         <Button primary={false}
                 backgroundColor={'transparent'}
@@ -35,10 +37,6 @@ Card.propTypes = {
    * Dark mode
    */
   dark: PropTypes.bool,
-  /**
-   * image to show
-   */
-  //help :(
   /*
   * image's title
   */
@@ -51,7 +49,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   dark: false,
-  title: 'imagen no encontrada ',
+  title: 'Image not Found',
   img: image,
   price: 0.0
 };
