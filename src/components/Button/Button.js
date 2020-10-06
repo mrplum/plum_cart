@@ -5,7 +5,7 @@ import './button.css';
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({ primary, dark, backgroundColor, size, label, ...props }) => {
+const Button = ({ primary, dark, backgroundColor, size, label, ...props }) => {
   const darkMode = primary&&dark ? '-dark' : '';
   const mode = primary ? `storybook-button--primary${darkMode}` : `storybook-button--secondary${darkMode}`;
   return (
@@ -54,3 +54,5 @@ Button.defaultProps = {
   size: 'medium',
   onClick: undefined,
 };
+
+export default Button;

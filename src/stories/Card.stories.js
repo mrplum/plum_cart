@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card } from '../components/Card';
+import Card from '../components/Card';
 import boca from '../camBoca.PNG';
 import yoda from '../yoda.jpg';
 
