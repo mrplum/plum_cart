@@ -1,5 +1,6 @@
 import React from 'react';
 import './button.css';
+import classNames from 'classnames';
 
 /**
  * Primary UI component for user interaction
@@ -7,14 +8,12 @@ import './button.css';
 const Button = ({ 
   primary, 
   dark, 
-  backgroundColor, 
-  size, 
+  large, 
   label
 } :{
     primary: boolean; 
     dark: boolean;
-    backgroundColor: string;
-    size: number; 
+    large: boolean; 
     label: string;
   }): JSX.Element => {
   const darkMode = primary&&dark ? '-dark' : '';
@@ -22,9 +21,13 @@ const Button = ({
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={backgroundColor && { backgroundColor }}
-    >
+      className={classNames('button', 
+                {'buttonPrimary' : primary,
+                'buttonSecundary' : !primary,
+                'buttonDark' : dark,
+                'buttonLarge' : large,
+                'buttonSmall' : !large}
+                 )}>
       {label}
     </button>
   );

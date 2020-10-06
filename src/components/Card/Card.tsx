@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button';
+//import styles from './card.css';
 import './card.css';
 //import image from '../../image-not-found.png';
 import classNames from 'classnames';
@@ -18,28 +19,24 @@ const Card = ({
   price: number;
   img?: string;
 }) : JSX.Element => {
-  const mode = dark ? "-dark" : "";
   return (
-    <div className={classNames({"card-dark": mode})}>
+    <div className={classNames('card',{"cardDark": dark})}>
       <div>
         <img className='img' src={img} alt={''} />
         
-        <h2 className={classNames({
-          'title': !mode,
-          'title-dark': mode
-        }
+        <h2 className={classNames('title', 
+        {'titleDark': dark}
         )}> {title} </h2>
-        <h1 className={[`price${mode}`]}>${price}</h1>
+        <h1 className={classNames('price', {"priceDark" : dark})}>${price}</h1>
         </div>
       <div className='buttons'>
         <Button primary={false}
-                backgroundColor={'transparent'}
-                size = {'small'}
+                dark={false}
+                large={false}
                 label={"DETAILS"}/>
         <Button primary={true} 
                 dark={dark}
-                backgroundColor={'transparent'}
-                size = {'small'}
+                large={false}
                 label={"ADD MORE"}/>
       </div>
     </div>

@@ -6,7 +6,6 @@ export default {
   title: 'components/Button',
   component: Button,
   argTypes: {
-    backgroundColor: { control: 'color' },
   },
 };
 
@@ -16,10 +15,13 @@ export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
   label: 'Button',
+  dark:false,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
+  primary:false,
+  dark:false,
   label: 'Button',
 };
 
@@ -30,15 +32,14 @@ DarkPrimary.args = {
   label: 'Button',
 };
 
-
 export const Large = Template.bind({});
 Large.args = {
-  size: 'large',
+  large: true,
   label: 'Button',
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  size: 'small',
+  large: false,
   label: 'Button',
 };
