@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from '../Button';
 import './card.css';
 //import image from '../../image-not-found.png';
-import { classicNameResolver } from 'typescript';
 import classNames from 'classnames';
 
 /**
@@ -48,26 +46,5 @@ const Card = ({
   );
 };
 
-Card.propTypes = {
-  /**
-   * Dark mode
-   */
-  dark: PropTypes.bool,
-  /*
-  * image's title
-  */
-  title: PropTypes.string.isRequired,
-  /*
-  * price
-  */
-  price: PropTypes.number.isRequired
-};
-
-// Card.defaultProps = {
-//   dark: false,
-//   title: 'Image not Found',
-//   img: image,
-//   price: 0.0
-// };
 
 export default Card;

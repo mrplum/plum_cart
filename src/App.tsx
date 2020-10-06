@@ -4,7 +4,7 @@ import './App.css';
 
 import Card from "./components/Card";
 
-function App() {
+function App() : JSX.Element {
   return (
     <div className="App">
       <header className="App-header">
