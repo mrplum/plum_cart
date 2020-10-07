@@ -1,10 +1,18 @@
 import React from 'react';
 import Button from '../Button';
 import styles from './card.css';
-//import image from '../../image-not-found.png';
+import defaultImage from '../../public/images/yoda.jpg';
 import classNames from 'classnames';
 
 const cx = classNames.bind(styles);
+
+
+const ProductImage = ({ img } : { img: string }) : JSX.Element => {
+  if(img) {
+    return <img className={cx({img:true})} src={img} alt={''} />;
+  }
+  return <img className={cx({img:true})} src={defaultImage} alt='' />;
+}
 
 /**
  * Primary UI component for user interaction
@@ -24,8 +32,8 @@ const Card = ({
     <div className={cx({card: true,
                         cardDark: dark})}>
       <div>
-        <img className={cx({img:true})} src={img} alt={''} />  {/*same here */}
-        
+        <ProductImage img={img} />
+
         <h2 className={cx({title: true, 
                           titleDark: dark})}>
            {title} 
@@ -40,7 +48,7 @@ const Card = ({
                 dark={false}
                 large={false}
                 label={"DETAILS"}/>
-        <Button primary={true} 
+        <Button primary
                 dark={dark}
                 large={false}
                 label={"ADD MORE"}/>

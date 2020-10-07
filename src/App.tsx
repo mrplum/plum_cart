@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import bocaShirt from './public/images/camBoca.png';
 import './App.css';
 
 import Card from "./components/Card";
@@ -8,15 +8,21 @@ function App() : JSX.Element {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <Card 
           dark={true}
+          img={bocaShirt}
           title="Yani y Eri"
           price={1000}
-          img="hoal"
+        />
+
+        <Card 
+          dark={true}
+          title="Yani y Eri"
+          price={1000}
         />
       </header>
     </div>
