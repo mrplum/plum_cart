@@ -1,31 +1,64 @@
 import React from 'react';
-import bocaShirt from './public/images/camBoca.png';
-import './App.css';
+//import './App.css';
+import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+//import StarBorderIcon from '@material-ui/icons/StarBorder';
+import data from './data.json';
 
-import Card from "./components/Card";
+
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+      backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+      width: 500,
+      height: 450,
+      // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+      transform: 'translateZ(0)',
+    },
+    titleBar: {
+      background:
+        'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+        'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    },
+    icon: {
+      color: 'white',
+    },
+  }),
+);
 
 function App() : JSX.Element {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Card 
-          dark={true}
-          img={bocaShirt}
-          title="Yani y Eri"
-          price={1000}
-        />
-
-        <Card 
-          dark={true}
-          title="Yani y Eri"
-          price={1000}
-        />
-      </header>
-    </div>
+<div className={classes.root}>
+<GridList cellHeight={200} spacing={1} className={classes.gridList}>
+  {data.map((shirt) => (
+    <GridListTile key={shirt.title} cols={shirt.featured ? 2 : 1} rows={shirt.featured ? 2 : 1}>
+      <img src={shirt.img} alt={shirt.title} />
+      <GridListTileBar 
+        title={shirt.title}
+        titlePosition="top" 
+        actionIcon={
+          <IconButton aria-label={`star ${shirt.title}`} className={classes.icon}>
+          {/*  <StarBorderIcon />*/}
+          </IconButton>
+        }
+        actionPosition="left"
+        className={classes.titleBar}
+      />
+    </GridListTile>
+  ))}
+</GridList>
+</div>
   );
 }
 

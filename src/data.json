@@ -1,0 +1,20 @@
+[
+  {
+    "img": "src/public/images/dog.png",
+    "title":"angry dog",
+    "price": 950.00,
+    "featured": false
+  },
+  {
+    "img": "src/public/images/dog2.jpeg",
+    "title":"cool dog",
+    "price": 1350.00,
+    "featured": true
+  },
+  {
+    "img": "src/public/images/rayas.jpg",
+    "title":"striped t-shirt",
+    "price": 650.00,
+    "featured": false
+  }
+]
