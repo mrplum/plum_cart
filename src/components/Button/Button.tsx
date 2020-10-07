@@ -22,6 +22,8 @@ const Button = ({
       type="button"
       className={classNames(styles.button, { 
          [styles.buttonPrimary]: primary,
+         [styles.buttonSecondary] : !primary,
+         [styles.buttonDark] : dark,
          [styles.buttonLarge]: large,
          [styles.buttonSmall]: !large})}>
       {label}
