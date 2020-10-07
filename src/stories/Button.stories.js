@@ -5,8 +5,6 @@ import Button from '../components/Button';
 export default {
   title: 'components/Button',
   component: Button,
-  argTypes: {
-  },
 };
 
 const Template = (args) => <Button {...args} />;
@@ -25,8 +23,8 @@ Secondary.args = {
   label: 'Button',
 };
 
-export const DarkPrimary = Template.bind({});
-DarkPrimary.args = {
+export const Dark = Template.bind({});
+Dark.args = {
   primary: true,
   dark:true,
   label: 'Button',
