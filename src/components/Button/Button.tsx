@@ -1,8 +1,7 @@
 import React from 'react';
-import styles from './button.css';
+import styles from './Button.module.css';
 import classNames from 'classnames';
 
-const cx = classNames.bind(styles);
 
 /**
  * Primary UI component for user interaction
@@ -21,14 +20,10 @@ const Button = ({
   return (
     <button
       type="button"
-      className={cx({ 
-                button : true, 
-                buttonPrimary : primary,
-                buttonSecondary : !primary,
-                buttonDark : dark,
-                buttonLarge : large,
-                buttonSmall : !large}
-                 )}>
+      className={classNames(styles.button, { 
+         [styles.buttonPrimary]: primary,
+         [styles.buttonLarge]: large,
+         [styles.buttonSmall]: !large})}>
       {label}
     </button>
   );
