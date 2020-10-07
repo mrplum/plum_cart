@@ -1,10 +1,10 @@
 import React from 'react';
 import Button from '../Button';
-import styles from './card.css';
+import styles from './Card.module.css';
+
 //import image from '../../image-not-found.png';
 import classNames from 'classnames';
 
-const cx = classNames.bind(styles);
 
 /**
  * Primary UI component for user interaction
@@ -21,26 +21,26 @@ const Card = ({
   img?: string;
 }) : JSX.Element => {
   return (
-    <div className={cx({card: true,
-                        cardDark: dark})}>
+    <div className={classNames(styles.card,{
+                     [styles.cardDark]: dark})}>
       <div>
-        <img className={cx({img:true})} src={img} alt={''} />  {/*same here */}
+        <img className={classNames(styles.img)} src={img} alt={''} /> 
         
-        <h2 className={cx({title: true, 
-                          titleDark: dark})}>
+        <h2 className={classNames(styles.title,{ 
+                          [styles.titleDark]: dark})}>
            {title} 
         </h2>
-        <h1 className={cx({price: true,
-                           priceDark : dark})}>
+        <h1 className={classNames(styles.price,{
+                           [styles.priceDark] : dark})}>
             ${price}
         </h1>
       </div>
-      <div className={cx({buttons:true})}> {/* it doesn't work with className={styles.buttons} :( */}
+      <div className={classNames(styles.buttons)}> 
         <Button primary={false}
                 dark={false}
                 large={false}
                 label={"DETAILS"}/>
-        <Button primary={true} 
+        <Button primary 
                 dark={dark}
                 large={false}
                 label={"ADD MORE"}/>
