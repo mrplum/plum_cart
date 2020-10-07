@@ -47,6 +47,17 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(svg|png|jpg|jpeg|gif)$/,
+        include: /\/src\/public\/images\//,
+        use: {
+            loader: 'file-loader',
+            options: {
+                name: '[path][name].[ext]',
+                outputPath: './dist/public/images'
+            }
+        }
+      }
     ],
   },
   plugins: [

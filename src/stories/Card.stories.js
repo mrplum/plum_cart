@@ -1,8 +1,8 @@
 import React from 'react';
 
 import Card from '../components/Card';
-import boca from '../camBoca.PNG';
-import yoda from '../yoda.jpg';
+import boca from '../public/images/camBoca.png';
+import yoda from '../public/images/yoda.jpg';
 
 export default {
   title: 'components/Card',
@@ -15,8 +15,7 @@ export default {
 const Template = (args) => <Card {...args} />;
 
 export const NotFound = Template.bind({});
-NotFound.args = {
-  
+NotFound.args = { 
 };
 
 export const NormalMode = Template.bind({});
