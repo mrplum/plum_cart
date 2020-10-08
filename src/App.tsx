@@ -9,14 +9,15 @@ import IconButton from '@material-ui/core/IconButton';
 import data from './data.json';
 import Card from './components/Card';
 import Button from './components/Button';
+import classNames from 'classnames';
 
 
-import './App.module.css';
+import style from './App.module.css';
 
 function App() : JSX.Element {
   return (
-    <div className={'root'}>
-      <GridList cellHeight={400} spacing={1} className={'gridList'}>
+    <div className={style.root}>
+      <GridList cellHeight={400} spacing={1} className={style.gridList}>
         {data.map((shirt) => (
           <GridListTile key={shirt.title} cols={shirt.featured ? 2 : 1} rows={shirt.featured ? 2 : 1}>
             <img src={shirt.img} />
@@ -24,12 +25,12 @@ function App() : JSX.Element {
               title={shirt.title}
               titlePosition="top" 
               actionIcon={
-                <IconButton aria-label={`star ${shirt.title}`} className={'icon'}>
+                <IconButton aria-label={`star ${shirt.title}`} className={style.icon}>
                     <AddShoppingCartIcon />
                 </IconButton>
               }
               actionPosition="left"
-              className={'titleBar'}
+              className={style.titleBar}
             />
           </GridListTile>
         ))}
