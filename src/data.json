@@ -9,7 +9,7 @@
     "img": "src/public/images/dog2.jpeg",
     "title":"cool dog",
     "price": 1350.00,
-    "featured": true
+    "featured": false
   },
   {
     "img": "src/public/images/rayas.jpg",
