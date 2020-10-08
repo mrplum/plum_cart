@@ -17,6 +17,9 @@ import style from './App.module.css';
 function App() : JSX.Element {
   return (
     <div className={style.root}>
+      <div className={style.title}> 
+        <h1>The Shirt Store</h1>
+      </div>
       <GridList cellHeight={400} spacing={1} className={style.gridList}>
         {data.map((shirt) => (
           <GridListTile key={shirt.title} cols={shirt.featured ? 2 : 1} rows={shirt.featured ? 2 : 1}>
