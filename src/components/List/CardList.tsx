@@ -10,18 +10,15 @@ const CardList = ({
     data: any;
   }) : JSX.Element => {
   return (
-    <div className={style.root}>
-      <div className={style.title}> 
-        <h1>The Shirt Store</h1>
-      </div>
-      <GridList cols={4} cellHeight={"auto"} spacing={1} className={style.gridList}>
-        {data.map((shirt) => (
-          <GridListTile key={shirt.title} >
+    <GridList cols={4} cellHeight={"auto"} spacing={1} className={style.gridList}>
+      {data.map((shirt) => (
+        <GridListTile key={shirt.title} >
+          <div className={style.cardContainer}>
             <Card dark={true} img={shirt.img} title={shirt.title} price={shirt.price}/>
-          </GridListTile>
-        ))}
-      </GridList>
-    </div>
+          </div>
+        </GridListTile>
+      ))}
+    </GridList>
   );
 }
 

@@ -5,13 +5,11 @@ import data from './data.json';
 import Switch, { SwitchClassKey, SwitchProps } from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { purple } from '@material-ui/core/colors';
-
+import style from './App.module.css';
 /*pasar data con props */
 /*sombra a card cuando cursor */
 
-interface IProps {
-}
+interface IProps {}
 
 interface IState {
   card : boolean;
@@ -28,13 +26,20 @@ class App extends React.Component<IProps,IState>{
 
   render (): JSX.Element {
   return (
-    <div >
+    <div className={style.root}>
+      <div className={style.title}> 
+        <h1>The Shirt Store</h1>
+      </div>
       <FormGroup>
-      <FormControlLabel
-        control={<Switch checked={this.state.card} onChange={() =>{this.setState ({card : !this.state.card});}} />}
-        label="Card"
-      />
-    </FormGroup>
+        <FormControlLabel
+          control={<Switch checked={this.state.card} onChange={() =>{this.setState ({card : !this.state.card});}} />}
+          label="Card"
+        />
+      </FormGroup>
+      {this.state.card ? 
+          <CardList data={data} /> : 
+          <ImageList data={data} />}
+    
     </div>
   );
 }

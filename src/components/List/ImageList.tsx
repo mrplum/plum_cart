@@ -13,31 +13,26 @@ const ImageList  = ({
 }) : JSX.Element => {
 
 return (
-    <div className={style.root}>
-      <div className={style.title}> 
-        <h1>The Shirt Store</h1>
-      </div>
-      <GridList cols={3} cellHeight={"auto"} spacing={4} className={style.gridList}>
-        {data.map((shirt) => (
-          <GridListTile key={shirt.title} >
-            <div className={style.container}>
-                <img src={shirt.img} className={style.img}/> 
-            </div>
-            <GridListTileBar 
-              title={shirt.title}
-              titlePosition="top" 
-              actionIcon={
-                <IconButton   aria-label={`shop ${shirt.title}`} color={"primary"} className={style.icon}>
-                    <AddShoppingCartIcon />
-                </IconButton>
-              }
-              actionPosition="left"
-              classes={style.titleBar}
-            />
-          </GridListTile>
-        ))}
-      </GridList>
-    </div>
+    <GridList cols={3} cellHeight={"auto"} spacing={4} className={style.gridList}>
+      {data.map((shirt) => (
+        <GridListTile key={shirt.title} >
+          <div className={style.container}>
+              <img src={shirt.img} className={style.img}/> 
+          </div>
+          <GridListTileBar 
+            title={shirt.title}
+            titlePosition="top" 
+            actionIcon={
+              <IconButton   aria-label={`shop ${shirt.title}`} color={"primary"} className={style.icon}>
+                  <AddShoppingCartIcon />
+              </IconButton>
+            }
+            actionPosition="left"
+            classes={style.titleBar}
+          />
+        </GridListTile>
+      ))}
+    </GridList>
   );
 }
 

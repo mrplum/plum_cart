@@ -1,13 +1,4 @@
-.root {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  overflow: hidden;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 10px;
-  background-color: rgb(131, 155, 167);/*theme.palette.background.paper*/
-}
+
 .gridList {
   width: 100%;
   background-size: cover;
@@ -26,11 +17,6 @@
   color: white;
 }
 
-.title {
-  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-  text-shadow: 2px 2px rgb(94, 95, 100);
-  font-size: xx-large;
-}
 
 .img {
   width: 300px;
@@ -46,5 +32,12 @@
 }
 
 .container:hover .img{
+  opacity: 0.5;
+}
+
+.cardContainer {
+  cursor:pointer;
+}
+.cardContainer:hover{
   opacity: 0.5;
 }
