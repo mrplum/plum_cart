@@ -3,7 +3,8 @@ import Button from '../Button';
 import styles from './Card.module.css';
 import defaultImage from '../../public/images/image-not-found.png';
 import classNames from 'classnames';
-
+import IconButton from '@material-ui/core/IconButton';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 const ProductImage = ({ img } : { img: string }) : JSX.Element => {
   if(img) {
@@ -45,10 +46,10 @@ const Card = ({
                 dark={false}
                 large={false}
                 label={"DETAILS"}/>
-        <Button primary 
-                dark={dark}
-                large={false}
-                label={"ADD MORE"}/>
+        <IconButton   aria-label={`star ${title}`} color={"primary"} classes={styles.icon}>
+                    <AddShoppingCartIcon />
+                    <p>Add</p>
+        </IconButton>
       </div>
     </div>
   );

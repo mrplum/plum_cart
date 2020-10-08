@@ -1,5 +1,4 @@
 .root {
- 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -11,8 +10,10 @@
 }
 .gridList {
   width: 100%;
+  background-size: cover;
   height: 100%;
   transform: translateZ(0);
+  text-align: center;
 }
 .titleBar {
   background:
@@ -28,3 +29,4 @@
   text-shadow: 2px 2px rgb(94, 95, 100);
   font-size: xx-large;
 }
+

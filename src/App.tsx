@@ -20,21 +20,10 @@ function App() : JSX.Element {
       <div className={style.title}> 
         <h1>The Shirt Store</h1>
       </div>
-      <GridList cellHeight={400} spacing={1} className={style.gridList}>
+      <GridList cols={4} cellHeight={"auto"} spacing={1} className={style.gridList}>
         {data.map((shirt) => (
-          <GridListTile key={shirt.title} cols={shirt.featured ? 2 : 1} rows={shirt.featured ? 2 : 1}>
-            <img src={shirt.img} />
-            <GridListTileBar 
-              title={shirt.title}
-              titlePosition="top" 
-              actionIcon={
-                <IconButton aria-label={`star ${shirt.title}`} className={style.icon}>
-                    <AddShoppingCartIcon />
-                </IconButton>
-              }
-              actionPosition="left"
-              className={style.titleBar}
-            />
+          <GridListTile key={shirt.title} >
+            <Card dark={true} img={shirt.img} title={shirt.title} price={shirt.price}/>
           </GridListTile>
         ))}
       </GridList>
