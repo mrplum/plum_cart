@@ -9,18 +9,33 @@ import data from './data.json';
 import Card from './components/Card';
 import Button from './components/Button';
 import classNames from 'classnames';
+
+
 import style from './App.module.css';
 
-function App() : JSX.Element {
+function App2() : JSX.Element {
   return (
     <div className={style.root}>
       <div className={style.title}> 
         <h1>The Shirt Store</h1>
       </div>
-      <GridList cols={4} cellHeight={"auto"} spacing={1} className={style.gridList}>
+      <GridList cols={3} cellHeight={"auto"} spacing={4} className={style.gridList}>
         {data.map((shirt) => (
           <GridListTile key={shirt.title} >
-            <Card dark={true} img={shirt.img} title={shirt.title} price={shirt.price}/>
+            <div className={style.container}>
+                <img src={shirt.img} className={style.img}/> 
+            </div>
+            <GridListTileBar 
+              title={shirt.title}
+              titlePosition="top" 
+              actionIcon={
+                <IconButton   aria-label={`shop ${shirt.title}`} color={"primary"} className={style.icon}>
+                    <AddShoppingCartIcon />
+                </IconButton>
+              }
+              actionPosition="left"
+              classes={style.titleBar}
+            />
           </GridListTile>
         ))}
       </GridList>
@@ -28,4 +43,4 @@ function App() : JSX.Element {
   );
 }
 
-export default App;
+export default App2;
