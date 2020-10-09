@@ -19,13 +19,13 @@
   },
   {
     "img": "src/public/images/camBoca.png",
-    "title":"Striped t-shirt",
-    "price": 650.00,
+    "title":"Shirt Boca",
+    "price": 6450.00,
     "featured": false
   },
   {
-    "img": "src/public/images/dog.png",
-    "title":"Angry dog",
+    "img": "src/public/images/yoda.jpg",
+    "title":"Baby yoda",
     "price": 950.00,
     "featured": true
   },
@@ -43,8 +43,8 @@
   },
   {
     "img": "src/public/images/camBoca.png",
-    "title":"Striped t-shirt",
-    "price": 650.00,
+    "title":"Shirt Boca",
+    "price": 6450.00,
     "featured": false
   }
 ]

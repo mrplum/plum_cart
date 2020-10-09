@@ -35,9 +35,6 @@
   opacity: 0.5;
 }
 
-.cardContainer {
-  cursor:pointer;
-}
 .cardContainer:hover{
-  opacity: 0.5;
+  transform: scale(1.1);
 }

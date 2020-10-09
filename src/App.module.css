@@ -13,4 +13,10 @@
   font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
   text-shadow: 2px 2px rgb(94, 95, 100);
   font-size: xx-large;
+  text-align: center;
+  padding-left: 250px;
+}
+
+.switch{
+  padding-top: 60px;
 }
