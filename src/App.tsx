@@ -9,7 +9,10 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import style from './App.module.css';
 
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+
 interface IDataJson {
+  id: string;
   img: string;
   title: string;
   price: number;
@@ -53,10 +56,13 @@ class App extends React.Component<IProps,IState>{
 
   render (): JSX.Element {
     return (
-      <Main 
+      <Router>
+        <Main 
         status={this.state.card}
         toggleViewHandler={this.toggleViewHandler}
-        data={data} />  
+        data={data} />
+        <Route exact path="/products/:id" render={withRouter(({location}) => <div>`{location.state.data['title']}`</div>)} />
+      </Router>
     );
   }
 }

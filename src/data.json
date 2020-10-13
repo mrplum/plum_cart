@@ -1,47 +1,55 @@
 [
   {
+    "id": "1",
     "img": "src/public/images/dog.png",
     "title":"Angry dog",
     "price": 950.00,
     "featured": false
   },
   {
+    "id": "2",
     "img": "src/public/images/dog2.jpeg",
     "title":"Cool dog",
     "price": 1350.00,
     "featured": false
   },
   {
+    "id": "3",
     "img": "src/public/images/rayas.jpg",
     "title":"Striped t-shirt",
     "price": 650.00,
     "featured": false
   },
   {
+    "id": "4",
     "img": "src/public/images/camBoca.png",
     "title":"Shirt Boca",
     "price": 6450.00,
     "featured": false
   },
   {
+    "id": "5",
     "img": "src/public/images/yoda.jpg",
     "title":"Baby yoda",
     "price": 950.00,
     "featured": true
   },
   {
+    "id": "6",
     "img": "src/public/images/dog2.jpeg",
     "title":"Cool dog",
     "price": 1350.00,
     "featured": false
   },
   {
+    "id": "7",
     "img": "src/public/images/rayas.jpg",
     "title":"Striped t-shirt",
     "price": 650.00,
     "featured": false
   },
   {
+    "id": "8",
     "img": "src/public/images/camBoca.png",
     "title":"Shirt Boca",
     "price": 6450.00,
