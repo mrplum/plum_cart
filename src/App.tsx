@@ -9,6 +9,13 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import style from './App.module.css';
 
+interface IDataJson {
+  img: string;
+  title: string;
+  price: number;
+  featured: boolean;
+}
+
 interface IProps {}
 
 interface IState {
@@ -30,7 +37,6 @@ const BlueSwitch = withStyles({
 })(Switch);
 
 class App extends React.Component<IProps,IState>{
-
   constructor(props: IProps){
     super(props);
     this.state = {
@@ -38,26 +44,57 @@ class App extends React.Component<IProps,IState>{
     };
   }
 
+  toggleViewHandler = (ev: React.ChangeEvent<HTMLInputElement>) : void => {
+    ev.preventDefault();
+    this.setState(state => ({
+      card: !state.card
+    }))
+  };
+
   render (): JSX.Element {
-  return (
-    <div className={style.root}>
-      <div className={style.title}> 
-        <h1>The Shirt Store</h1>
-      </div>
-      <FormGroup>
-        <FormControlLabel 
-          className={style.switch}
-          control={<BlueSwitch className={style.switch2}  checked={this.state.card} onChange={() =>{this.setState ({card : !this.state.card});}} />}
-          label="Card"
-        />
-      </FormGroup>
-      {this.state.card ? 
-          <CardList data={data} /> : 
-          <ImageList data={data} />}
-    
-    </div>
-  );
-}
+    return (
+      <Main 
+        status={this.state.card}
+        toggleViewHandler={this.toggleViewHandler}
+        data={data} />  
+    );
+  }
 }
 
+interface IMainProps {
+  status: boolean;
+  toggleViewHandler: () => void;
+  data: IDataJson;
+}
+
+const Main = IMainProps => (
+  <div className={style.root}>
+    <div className={style.title}> 
+      <h1>The Shirt Store</h1>
+    </div>
+
+    <SwitchView
+      status={IMainProps.status}
+      handler={IMainProps.toggleViewHandler} />
+
+    {IMainProps.status ?
+      <CardList data={data} /> :
+      <ImageList data={data} />}
+  </div>
+);
+
+
+interface ISwitchView {
+  status: boolean;
+  handler: () => void;
+}
+
+const SwitchView = ISwitchView => (
+  <FormGroup>
+    <FormControlLabel   
+      control={<BlueSwitch checked={ISwitchView.status} onChange={ISwitchView.handler} />}
+      label="Card"
+    />
+  </FormGroup>
+ )
 export default App;
