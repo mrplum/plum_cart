@@ -3,17 +3,18 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Card from '../Card';
 import style from './List.module.css';
+import IDataJson from '../DataJson';
 import { Link } from 'react-router-dom';
 
 const CardList = ({
     data
   }: {
-    data: any;
+    data: Array<IDataJson>;
   }) : JSX.Element => {
   return (
     <GridList cols={4} cellHeight={"auto"} spacing={1} className={style.gridList}>
       {data.map((shirt) => (
-        <GridListTile key={shirt.title} >
+        <GridListTile key={shirt.id} >
           <div className={style.cardContainer}>
             <Link to={{
               pathname: `/products/${shirt.id}`,

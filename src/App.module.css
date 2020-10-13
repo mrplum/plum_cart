@@ -1,22 +1,2 @@
-.root {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  overflow: hidden;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 10px;
-  background-color: rgb(131, 155, 167);/*theme.palette.background.paper*/
-}
 
-.title {
-  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-  text-shadow: 2px 2px rgb(94, 95, 100);
-  font-size: xx-large;
-  text-align: center;
-  padding-left: 250px;
-}
 
-.switch{
-  padding-top: 60px;
-}
