@@ -1,7 +1,7 @@
 import React from 'react';
 import Main from './components/Main';
 import data from './data.json';
-
+import Product from './components/Product';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 
 interface IProps {}
@@ -28,14 +28,18 @@ class App extends React.Component<IProps,IState>{
   render (): JSX.Element {
     return (
       <Router>
-        <Main 
-        status={this.state.card}
-        toggleViewHandler={this.toggleViewHandler}
-        data={data} />
-        <Route exact path="/products/:id" render={withRouter(({location}) => <div>`{location.state.data['title']}`</div>)} />
+        <Route exact path="/">
+          <Main 
+          status={this.state.card}
+          toggleViewHandler={this.toggleViewHandler}
+          data={data} />
+        </Route>
+        {/*<Route exact path="/products/:id" render={withRouter(({location}) => <div>`{location.state.data['title']}`</div>)} />*/}
+        <Route exact path="/products/:id" component={Product}/>
       </Router>
     );
   }
 }
+
 
 export default App;
