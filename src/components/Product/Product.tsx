@@ -16,9 +16,14 @@ import { Select } from '@material-ui/core';
   }
     return(
     <div className={style.root}>
-        <h1 className={style.title}>{data.title} </h1>
-        <div className={style.container}>
-              <img src={`/${data.img}`} alt={''} className={style.img}></img>
+        <div className={style.left}>
+          <div className={style.centered}>
+            <h1 className={style.title}>{data.title} </h1>
+            <img src={`/${data.img}`} alt={''} className={style.img}></img>
+          </div>      
+        </div>
+        <div className={style.right}>
+          <div className={style.centered}>
               <h2 className={style.description}>{data.description}</h2>
               <p className={style.price}>${data.price}</p>
               <div className={style.containerButton}>
@@ -28,6 +33,7 @@ import { Select } from '@material-ui/core';
                 </IconButton>
                 <SelectButton name="Quantity" values={values}/>
               </div>
+            </div>
         </div>
     </div>
   );

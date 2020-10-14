@@ -1,5 +1,13 @@
 
+.root{
+  
+  
+
+}
+
+
 .title {
+  display: block;
     font-family:OCR A Std;
     color: black;
     text-shadow: cadetblue 2px 2px;
@@ -9,26 +17,42 @@
     text-align: center;
     font-size: xx-large;
   }
+  
+  .centered{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+  }
 
   .img {
+    
     width: 350px;
     height: 380px;
   }
 
   .container {
-    padding-left: 100px;
-    padding-top: 100px;
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    padding-top: 20px;
+    top:0;
+    z-index: 1;
   }
 
   .description {
+    display: block;
       font-style: italic;
-      color: cadetblue;
+      color: rgb(89, 97, 97);
       float: right;
       width: 450px ;
       height: 100px;
   }
 
   .price {
+    display: block;
       float: right;
       width: 100px;
       height: 100px;
@@ -38,7 +62,34 @@
   }
 
 .containerButton{
+  display: flex;
   float: right;
-  padding-left: 100px;
+  width: 200px;
+  height: 100px;
+}
+
+
+.right{
+  background-color: rgb(131, 155, 167);/*theme.palette.background.paper*/
+  right: 0;
+  width: 50%;
+  height: 100%;
+  position: fixed;
+  overflow: hidden;
+  padding-top: 20px;
+  top:0;
+  z-index: 1;
+}
+
+.left{
+  background-color: rgb(131, 155, 167);/*theme.palette.background.paper*/
+  left: 0;
+  width: 50%;
+  height: 100%;
+  position: fixed;
+  overflow: hidden;
+  padding-top: 20px;
+  top:0;
+  z-index: 1;
 }
 
