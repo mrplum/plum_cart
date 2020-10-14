@@ -1,3 +1,4 @@
+
 .title {
     font-family:OCR A Std;
     color: black;
@@ -35,3 +36,9 @@
       padding-left: 30px;
       text-align: center;
   }
+
+.containerButton{
+  float: right;
+  padding-left: 100px;
+}
+
