@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '../Button';
 import styles from './Card.module.css';
 import defaultImage from '../../public/images/image-not-found.png';
 import classNames from 'classnames';

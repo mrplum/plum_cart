@@ -13,17 +13,15 @@ export default {
 
 const Template = (args) => <Product {...args} />;
 
-export const NotFound = Template.bind({});
-NotFound.args = { 
-};
-
 export const NormalMode = Template.bind({});
 NormalMode.args = {
-    id: "4",
-    img: boca,
-    title:"Shirt Boca",
-    description:"Material: 60% Polyester: +40% cotton. MACHINE WASH",
-    price: 6450.00,
-    stock: 13,
-    featured: false
+    data:{
+      id: '4',
+      img: boca,
+      title:'Shirt Boca',
+      price: 6450.00,
+      description:'Material: 60% Polyester: +40% cotton. MACHINE WASH',
+      stock: 5,
+      featured: false
+    }
 };

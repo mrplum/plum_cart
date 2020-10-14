@@ -1,16 +1,15 @@
 import React from 'react';
-// import IDataJson from '../DataJson';
+ import IDataJson from '../DataJson';
 import SelectButton from '../SelectButton';
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import style from './Product.module.css';
-import {withRouter} from 'react-router-dom';
-import { Select } from '@material-ui/core';
 
-{/*const Product = (data: IDataJson): JSX.Element =>  (*/}
-  const Product = ({location}): JSX.Element =>  {
-    const data= location.state.data;
+
+  const Product = ({data}:{data:IDataJson}): JSX.Element =>  {
+    //const data= location.state.data;
     const values=[];
+    console.log(data);
     for (let i = 1; i <= data.stock ; i++) {
       values.push(i+'');
   }
@@ -39,4 +38,4 @@ import { Select } from '@material-ui/core';
   );
 }
 
-export default withRouter(Product);
+export default Product;

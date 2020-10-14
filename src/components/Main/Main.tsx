@@ -4,7 +4,7 @@ import IDataJson from '../DataJson';
 import ImageList from '../List/ImageList';
 import CardList from '../List/CardList';
 import style from './Main.module.css';
-import { ProgressPlugin } from 'webpack';
+
 
 interface IMainProps {
   status: boolean;
