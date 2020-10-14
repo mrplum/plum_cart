@@ -18,6 +18,26 @@ import style from './Product.module.css';
       });
     };
 
+    const addProduct = (event: React.ChangeEvent) => {
+      event.preventDefault();
+      const old = JSON.parse(localStorage.getItem('shoppingcart'));
+      const aux={
+        product: data,
+        qty: state.qty
+      };
+      if(old === null){
+        const array=[];
+        array.push(aux);
+        localStorage.setItem('shoppingcart', JSON.stringify(array));
+      }
+      else{
+        old.push(aux);
+        localStorage.setItem('shoppingcart', JSON.stringify(old));
+      }
+      
+      alert('product added');
+    }
+
     const values=[];
     for (let i = 1; i <= data.stock ; i++) {
       values.push(i);
@@ -36,7 +56,7 @@ import style from './Product.module.css';
               <h2 className={style.description}>{data.description}</h2>
                <p className={style.price}>${data.price*state.qty}</p>
               <div className={style.containerButton}>
-                <IconButton   aria-label={`star ${data.title}`} color={"primary"} >
+                <IconButton   aria-label={`star ${data.title}`} color={"primary"} onClick={addProduct} >
                       <AddShoppingCartIcon />
                       <p>Add</p>
                 </IconButton>

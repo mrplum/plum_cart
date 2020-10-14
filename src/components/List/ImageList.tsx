@@ -6,6 +6,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import IDataJson from '../DataJson';
 import style from './List.module.css';
+import { Link } from 'react-router-dom';
 
 const ImageList  = ({
   data
@@ -18,7 +19,12 @@ return (
       {data.map((shirt) => (
         <GridListTile key={shirt.id} >
           <div className={style.container}>
-              <img src={shirt.img} className={style.img}/> 
+            <Link to={{
+                pathname: `/products/${shirt.id}`,
+                state: {data: shirt}
+              }} >
+                <img src={shirt.img} className={style.img}/> 
+            </Link>
           </div>
           <GridListTileBar 
             title={shirt.title}
