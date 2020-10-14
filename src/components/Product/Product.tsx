@@ -9,7 +9,7 @@ import {withRouter} from 'react-router-dom';
     <div className={style.root}>
         <h1 className={style.title}>{location.state.data.title} </h1>
         <div className={style.container}>
-              <img src={location.state.data.img} alt={''} className={style.img}></img>
+              <img src={`/${location.state.data.img}`} alt={''} className={style.img}></img>
               <h2 className={style.description}>{location.state.data.description}</h2>
               <p className={style.price}>${location.state.data.price}</p>
         </div>
