@@ -3,6 +3,7 @@ import Main from './components/Main';
 import data from './data.json';
 import Product from './components/Product';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 interface IProps {}
 
@@ -35,6 +36,9 @@ class App extends React.Component<IProps,IState>{
           data={data} />
         </Route>
         <Route exact path="/products/:id"  render={withRouter(({location}) => <Product data={location.state.data}/>)} />
+        <Route exact path="/shoppingcart/">
+            <ShoppingCart/>
+        </Route>
       </Router>
     );
   }

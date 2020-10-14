@@ -22,7 +22,10 @@ import style from './Product.module.css';
       event.preventDefault();
       const old = JSON.parse(localStorage.getItem('shoppingcart'));
       const aux={
-        product: data,
+        id: data.id,
+        img: data.img,
+        title: data.title,
+        price: data.price * state.qty,
         qty: state.qty
       };
       if(old === null){
