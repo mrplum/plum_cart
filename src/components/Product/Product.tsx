@@ -7,12 +7,22 @@ import style from './Product.module.css';
 
 
   const Product = ({data}:{data:IDataJson}): JSX.Element =>  {
-    //const data= location.state.data;
+    const [state, setState] = React.useState<{ qty: number}>({
+      qty: 1,
+    });
+  
+    const handleChange = (event: React.ChangeEvent<{value: number }>) => {
+      setState({
+        ...state,
+        qty: event.target.value,
+      });
+    };
+
     const values=[];
-    console.log(data);
     for (let i = 1; i <= data.stock ; i++) {
-      values.push(i+'');
-  }
+      values.push(i);
+    }
+    console.log(state.qty);
     return(
     <div className={style.root}>
         <div className={style.left}>
@@ -24,13 +34,13 @@ import style from './Product.module.css';
         <div className={style.right}>
           <div className={style.centered}>
               <h2 className={style.description}>{data.description}</h2>
-              <p className={style.price}>${data.price}</p>
+               <p className={style.price}>${data.price*state.qty}</p>
               <div className={style.containerButton}>
                 <IconButton   aria-label={`star ${data.title}`} color={"primary"} >
                       <AddShoppingCartIcon />
                       <p>Add</p>
                 </IconButton>
-                <SelectButton name="Quantity" values={values}/>
+                <SelectButton name="Quantity" values={values} handle={handleChange}/>
               </div>
             </div>
         </div>

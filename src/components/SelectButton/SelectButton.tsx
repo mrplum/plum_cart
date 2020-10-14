@@ -18,22 +18,27 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const SelectButton = ({
     name, 
-    values 
+    values,
+    handle 
   }: {
     name: string;
-    values: Array<string>;
+    values: Array<number>;
+    handle: (event: React.ChangeEvent<{value: number }>) => void;
   }): JSX.Element => {
   const classes = useStyles();
-  const [state, setState] = React.useState<{ value: string; name: string }>({
-    value: '',
+  const [state, setState] = React.useState<{ value:number; name: string }>({
+    value: 1,
     name: name,
   });
 
-  const handleChange = (event: React.ChangeEvent<{value: string }>) => {
+  const handleChange = (event: React.ChangeEvent<{value: number }>) => {
+    event.preventDefault();
+    console.log(event);
     setState({
       ...state,
       value: event.target.value,
     });
+    handle(event);
   };
 
   return (
