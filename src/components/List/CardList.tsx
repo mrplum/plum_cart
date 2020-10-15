@@ -5,11 +5,14 @@ import Card from '../Card';
 import style from './List.module.css';
 import IDataJson from '../DataJson';
 import { Link } from 'react-router-dom';
+import IProductShoppingCart from '../IProductShoppingCart';
 
 const CardList = ({
-    data
+    data,
+    addP
   }: {
     data: Array<IDataJson>;
+    addP: (product: IProductShoppingCart) => void;
   }) : JSX.Element => {
   return (
     <GridList cols={4} cellHeight={"auto"} spacing={1} className={style.gridList}>
@@ -20,7 +23,7 @@ const CardList = ({
               pathname: `/products/${shirt.id}`,
               state: {data: shirt}
             }} >
-              <Card dark={true} img={shirt.img} title={shirt.title} price={shirt.price}/>
+              <Card id={shirt.id} dark={true} img={shirt.img} title={shirt.title} price={shirt.price} addP={addP}/>
             </Link>
           </div>
           
