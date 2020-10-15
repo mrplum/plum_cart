@@ -4,9 +4,15 @@ import SelectButton from '../SelectButton';
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import style from './Product.module.css';
+import IProductShoppingCart from '../IProductShoppingCart';
 
-
-  const Product = ({data}:{data:IDataJson}): JSX.Element =>  {
+  const Product = ({
+    data,
+    addP
+  }:{
+    data:IDataJson;
+    addP: (product: IProductShoppingCart) => void;
+  }): JSX.Element =>  {
     const [state, setState] = React.useState<{ qty: number}>({
       qty: 1,
     });
@@ -20,7 +26,6 @@ import style from './Product.module.css';
 
     const addProduct = (event: React.ChangeEvent) => {
       event.preventDefault();
-      const old = JSON.parse(localStorage.getItem('shoppingcart'));
       const aux={
         id: data.id,
         img: data.img,
@@ -28,25 +33,7 @@ import style from './Product.module.css';
         price: data.price * state.qty,
         qty: state.qty
       };
-      if(old === null){
-        const array=[];
-        array.push(aux);
-        localStorage.setItem('shoppingcart', JSON.stringify(array));
-      }
-      else{
-        const element= old.find(p => p.id === aux.id);
-        if(element){
-          const newList= old.filter(p=> p.id !== aux.id);
-          aux.qty= aux.qty + parseInt(element.qty,10);
-          newList.push(aux);
-          localStorage.setItem('shoppingcart', JSON.stringify(newList));
-        }
-        else{
-          old.push(aux);
-          localStorage.setItem('shoppingcart', JSON.stringify(old));
-        }
-      }
-      alert('product added');
+      addP(aux);
     }
 
     const values=[];

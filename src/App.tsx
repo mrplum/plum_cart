@@ -37,7 +37,7 @@ class App extends React.Component<IProps,IState>{
           toggleViewHandler={this.toggleViewHandler}
           data={data} />
         </Route>
-        <Route exact path="/products/:id"  render={withRouter(({location}) => <Product data={location.state.data}/>)} />
+        <Route exact path="/products/:id"  render={withRouter(({location}) => <Product data={location.state.data} addP={location.state.addP}/>)} />
         <Route exact path="/shoppingcart/">
             <ShoppingCart/>
         </Route>

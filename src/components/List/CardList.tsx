@@ -21,7 +21,7 @@ const CardList = ({
           <div className={style.cardContainer}>
             <Link to={{
               pathname: `/products/${shirt.id}`,
-              state: {data: shirt}
+              state: {data: shirt, addP:addP}
             }} >
               <Card id={shirt.id} dark={true} img={shirt.img} title={shirt.title} price={shirt.price} addP={addP}/>
             </Link>
