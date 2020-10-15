@@ -4,6 +4,7 @@ import data from './data.json';
 import Product from './components/Product';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
+import Header from './components/Header/Header';
 
 interface IProps {}
 
@@ -29,6 +30,7 @@ class App extends React.Component<IProps,IState>{
   render (): JSX.Element {
     return (
       <Router>
+        <Header/>
         <Route exact path="/">
           <Main 
           status={this.state.card}

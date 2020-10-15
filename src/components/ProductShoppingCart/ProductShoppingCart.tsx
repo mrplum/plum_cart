@@ -7,7 +7,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,18 +25,32 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const ProductShoppingCart = ({
+    id,  
     img,
     title,
     price,
-    quantity
+    quantity,
 }: {
+    id: string;
     img: string;
     title: string;
     price: number;
     quantity: number;
 
 }): JSX.Element => {
+
+    const deleteProduct = (e) => {
+        console.log(id);
+        const list = localStorage.getItem('shoppingcart');
+        let aux = JSON.parse(list);
+        let aux2= aux.filter(p => p.id !== id);
+       //aux.filter(p => p.id !== id);
+        console.log(aux2);
+        localStorage.setItem('shoppingcart', JSON.stringify(aux2));
+    } ;
+
     const classes = useStyles();
+    console.log(id);
     return (
     <ListItem alignItems="flex-start">
         <ListItemAvatar>
@@ -57,6 +73,11 @@ const ProductShoppingCart = ({
             </React.Fragment>
           }
         />
+        <ListItemSecondaryAction>
+                    <IconButton edge="end" aria-label="delete"  onClick={deleteProduct}>
+                      <DeleteIcon />
+                    </IconButton>
+        </ListItemSecondaryAction>
     </ListItem>
     );
 }

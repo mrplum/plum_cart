@@ -3,6 +3,7 @@ import ShoppingCartList from '../List/ShoppingCartList';
 
 const ShoppingCart = () => {
   const data= localStorage.getItem('shoppingcart');
+  console.log(data);
   return(
     <div>
       {data? <ShoppingCartList data={JSON.parse(data)} /> 

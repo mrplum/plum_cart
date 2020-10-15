@@ -13,6 +13,7 @@ const ShoppingCartList = ({
       {data.map((product) => (
         <ProductShoppingCart 
               key={product.id}
+              id={product.id}
               img={product.img} 
               title={product.title}
               price={product.price}
