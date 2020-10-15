@@ -4,9 +4,11 @@ import ProductShoppingCart from '../ProductShoppingCart';
 import IProductShoppingCart from '../IProductShoppingCart';
 
 const ShoppingCartList = ({
-    data
+    data,
+    deleteP
 }:{
     data: Array<IProductShoppingCart>;
+    deleteP: (idd: string) => void;
 }): JSX.Element => {
   return (
     <List>
@@ -17,7 +19,8 @@ const ShoppingCartList = ({
               img={product.img} 
               title={product.title}
               price={product.price}
-              quantity={product.qty} />
+              quantity={product.qty}
+              deleteP={deleteP} />
       ))}
     </List>
   );

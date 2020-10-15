@@ -59,7 +59,7 @@ import style from './Product.module.css';
               <h2 className={style.description}>{data.description}</h2>
                <p className={style.price}>${data.price*state.qty}</p>
               <div className={style.containerButton}>
-                <IconButton   aria-label={`star ${data.title}`} color={"primary"} onClick={addProduct} >
+                <IconButton   aria-label={`star ${data.title}`} color={"primary"}  onClick={addProduct} >
                       <AddShoppingCartIcon />
                       <p>Add</p>
                 </IconButton>

@@ -1,8 +1,6 @@
 import React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
@@ -30,24 +28,22 @@ const ProductShoppingCart = ({
     title,
     price,
     quantity,
+    deleteP
 }: {
     id: string;
     img: string;
     title: string;
     price: number;
     quantity: number;
+    deleteP: (idd: string ) => void;
 
 }): JSX.Element => {
 
-    const deleteProduct = (e) => {
-        console.log(id);
-        const list = localStorage.getItem('shoppingcart');
-        let aux = JSON.parse(list);
-        let aux2= aux.filter(p => p.id !== id);
-       //aux.filter(p => p.id !== id);
-        console.log(aux2);
-        localStorage.setItem('shoppingcart', JSON.stringify(aux2));
-    } ;
+
+  const deleteProductAux = (e) => {
+    
+    deleteP(id);
+  }
 
     const classes = useStyles();
     console.log(id);
@@ -74,7 +70,7 @@ const ProductShoppingCart = ({
           }
         />
         <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete"  onClick={deleteProduct}>
+                    <IconButton edge="end" aria-label="delete" idd={id}  onClick={deleteProductAux}>
                       <DeleteIcon />
                     </IconButton>
         </ListItemSecondaryAction>
