@@ -42,7 +42,7 @@ const Card = ({
       </div>
       <div className={classNames(styles.buttons)}> 
 
-        <IconButton   aria-label={`star ${title}`} color={"primary"} classes={styles.icon}>
+        <IconButton   aria-label={`star ${title}`} color={"primary"}>
                     <AddShoppingCartIcon />
                     <p>Add</p>
         </IconButton>

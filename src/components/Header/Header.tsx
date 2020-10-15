@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import {Link} from 'react-router-dom';
 import style from './Header.module.css'
 
-const Header = () => {
+const Header = () : JSX.Element => {
     return (
         <div className={style.root}>
             <Link to={{

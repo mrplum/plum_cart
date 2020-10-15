@@ -2,29 +2,31 @@ import React from 'react';
 import ShoppingCartList from '../List/ShoppingCartList';
 import IProductShoppingCart from '../IProductShoppingCart';
 
-const ShoppingCart = () => {
-  const data= localStorage.getItem('shoppingcart');
+const ShoppingCart = () : JSX.Element => {
+  const data= JSON.parse(localStorage.getItem('shoppingcart'));
   const [state, setState]  = React.useState<{ list: Array<IProductShoppingCart> }>({
-    list: JSON.parse(data),
+    list: data,
   });
 
-  const deleteProduct = (idd:string ) => {
-    console.log("aqui");
-
-    const list = localStorage.getItem('shoppingcart');
-    const aux = JSON.parse(list);
-    const aux2= aux.filter(p => p.id !== idd);
+  const deleteProduct = (e: React.ChangeEvent<{id: string}>) => {
+    const arrayList= state.list;
+    const newList= arrayList.filter(p => p.id !== e.currentTarget.id);
     setState({
       ...state,
-      list:aux2,
+      list:newList,
     });
-    localStorage.setItem('shoppingcart', JSON.stringify(aux2));
+    localStorage.setItem('shoppingcart', JSON.stringify(newList));
   } ;
 
-  console.log(data);
+  let empty= !data;
+  if(!empty){
+    if(data.length === 0){
+      empty=true;
+    }
+  }
   return(
     <div>
-      {(data) ? <ShoppingCartList data={JSON.parse(data)} deleteP={deleteProduct} /> 
+      {(!empty) ? <ShoppingCartList data={data} deleteP={deleteProduct} /> 
       :
       <p>Your shopping cart is empty!</p>}
     </div>

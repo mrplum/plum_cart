@@ -35,18 +35,10 @@ const ProductShoppingCart = ({
     title: string;
     price: number;
     quantity: number;
-    deleteP: (idd: string ) => void;
+    deleteP: (e: React.ChangeEvent<{id: string}>) => void;
 
 }): JSX.Element => {
-
-
-  const deleteProductAux = (e) => {
-    
-    deleteP(id);
-  }
-
     const classes = useStyles();
-    console.log(id);
     return (
     <ListItem alignItems="flex-start">
         <ListItemAvatar>
@@ -70,7 +62,7 @@ const ProductShoppingCart = ({
           }
         />
         <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete" idd={id}  onClick={deleteProductAux}>
+                    <IconButton edge="end" aria-label="delete" id={id}  onClick={deleteP}>
                       <DeleteIcon />
                     </IconButton>
         </ListItemSecondaryAction>

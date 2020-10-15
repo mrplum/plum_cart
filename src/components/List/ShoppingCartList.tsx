@@ -8,7 +8,7 @@ const ShoppingCartList = ({
     deleteP
 }:{
     data: Array<IProductShoppingCart>;
-    deleteP: (idd: string) => void;
+    deleteP: (e: React.ChangeEvent<{id: string}>) => void;
 }): JSX.Element => {
   return (
     <List>
