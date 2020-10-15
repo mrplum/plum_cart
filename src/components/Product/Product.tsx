@@ -14,7 +14,7 @@ import style from './Product.module.css';
     const handleChange = (event: React.ChangeEvent<{value: number }>) => {
       setState({
         ...state,
-        qty: event.target.value,
+        qty: parseInt(event.target.value,10),
       });
     };
 
@@ -34,10 +34,18 @@ import style from './Product.module.css';
         localStorage.setItem('shoppingcart', JSON.stringify(array));
       }
       else{
-        old.push(aux);
-        localStorage.setItem('shoppingcart', JSON.stringify(old));
+        const element= old.find(p => p.id === aux.id);
+        if(element){
+          const newList= old.filter(p=> p.id !== aux.id);
+          aux.qty= aux.qty + parseInt(element.qty,10);
+          newList.push(aux);
+          localStorage.setItem('shoppingcart', JSON.stringify(newList));
+        }
+        else{
+          old.push(aux);
+          localStorage.setItem('shoppingcart', JSON.stringify(old));
+        }
       }
-      
       alert('product added');
     }
 
@@ -45,7 +53,6 @@ import style from './Product.module.css';
     for (let i = 1; i <= data.stock ; i++) {
       values.push(i);
     }
-    console.log(state.qty);
     return(
     <div className={style.root}>
         <div className={style.left}>

@@ -19,14 +19,22 @@ const ShoppingCart = () : JSX.Element => {
   } ;
 
   let empty= !data;
+  let total=0;
   if(!empty){
     if(data.length === 0){
       empty=true;
     }
+    for(let i=0;i<state.list.length;i++){
+        total+=state.list[i].price;
+    }
   }
   return(
     <div>
-      {(!empty) ? <ShoppingCartList data={data} deleteP={deleteProduct} /> 
+      {(!empty) ? 
+      <div>
+        <ShoppingCartList data={data} deleteP={deleteProduct} /> 
+        <p>TOTAL= ${total}</p>
+        </div>
       :
       <p>Your shopping cart is empty!</p>}
     </div>

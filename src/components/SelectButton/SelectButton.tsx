@@ -33,14 +33,12 @@ const SelectButton = ({
 
   const handleChange = (event: React.ChangeEvent<{value: number }>) => {
     event.preventDefault();
-    console.log(event);
     setState({
       ...state,
       value: event.target.value,
     });
     handle(event);
   };
-
   return (
     <div>
 
@@ -56,10 +54,10 @@ const SelectButton = ({
             id: 'outlined-select',
           }}
         >
-          <option aria-label="None" value="" />
-          {values.map((value,i) => (
-            <option key={i} value={value}> 
-              {value}
+          <option aria-label="None"  />
+          {values.map((v,i) => (
+            <option key={i} value={v}> 
+              {v}
             </option>
           ))}
         </Select>

@@ -30,8 +30,17 @@ const Main = (props: IMainProps): JSX.Element => {
       localStorage.setItem('shoppingcart', JSON.stringify(array));
     }
     else{
-      old.push(aux);
-      localStorage.setItem('shoppingcart', JSON.stringify(old));
+      const element= old.find(p => p.id === aux.id);
+      if(element){
+        const newList= old.filter(p=> p.id !== aux.id);
+        aux.qty=aux.qty + element.qty;
+        newList.push(aux);
+        localStorage.setItem('shoppingcart', JSON.stringify(newList));
+      }
+      else{
+        old.push(aux);
+        localStorage.setItem('shoppingcart', JSON.stringify(old));
+      }
     }
     
     alert('product added');
