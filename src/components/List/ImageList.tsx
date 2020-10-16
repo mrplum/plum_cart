@@ -5,14 +5,31 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import IDataJson from '../DataJson';
+import IProductShoppingCart from '../IProductShoppingCart';
 import style from './List.module.css';
 import { Link } from 'react-router-dom';
 
 const ImageList  = ({
-  data
+  data,
+  addP
 }: {
   data: Array<IDataJson>;
+  addP: (product: IProductShoppingCart) => void;
 }) : JSX.Element => {
+
+const addProduct = (e) => {
+  console.log(e.currentTarget);
+  const shirt = JSON.parse(e.currentTarget.value);
+  const product = {
+    id: shirt.id,
+    img: shirt.img,
+    title : shirt.title,
+    price: shirt.price,
+    qty: 1
+  };
+  addP(product);
+};
+
 
 return (
     <GridList cols={3} cellHeight={"auto"} spacing={4} className={style.gridList}>
@@ -30,7 +47,12 @@ return (
             title={shirt.title}
             titlePosition="top" 
             actionIcon={
-              <IconButton   aria-label={`shop ${shirt.title}`} color={"primary"} className={style.icon}>
+              <IconButton   
+                aria-label={`shop ${shirt.title}`} 
+                color={"primary"} 
+                className={style.icon} 
+                value={JSON.stringify(shirt)}
+                onClick={addProduct}>
                   <AddShoppingCartIcon />
               </IconButton>
             }

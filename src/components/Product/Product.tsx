@@ -38,6 +38,7 @@ import style from './Product.module.css';
         if(element){
           const newList= old.filter(p=> p.id !== aux.id);
           aux.qty= aux.qty + parseInt(element.qty,10);
+          aux.price= aux.price + parseInt(element.price,10);
           newList.push(aux);
           localStorage.setItem('shoppingcart', JSON.stringify(newList));
         }

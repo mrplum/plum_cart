@@ -16,6 +16,7 @@ interface IMainProps {
 const Main = (props: IMainProps): JSX.Element => {
 
   const addProduct = (product: IProductShoppingCart) => {
+    console.log(product);
     const old = JSON.parse(localStorage.getItem('shoppingcart'));
     const aux={
       id: product.id,
@@ -31,9 +32,11 @@ const Main = (props: IMainProps): JSX.Element => {
     }
     else{
       const element= old.find(p => p.id === aux.id);
+      console.log(element);
       if(element){
         const newList= old.filter(p=> p.id !== aux.id);
-        aux.qty=aux.qty + element.qty;
+        aux.qty= aux.qty + parseInt(element.qty,10);
+        aux.price= aux.price + parseInt(element.price,10);
         newList.push(aux);
         localStorage.setItem('shoppingcart', JSON.stringify(newList));
       }
@@ -57,7 +60,7 @@ const Main = (props: IMainProps): JSX.Element => {
 
       {props.status ?
         <CardList data={props.data} addP={addProduct} /> :
-        <ImageList data={props.data} />}
+        <ImageList data={props.data} addP={addProduct} />}
     </div>
   );
 }
