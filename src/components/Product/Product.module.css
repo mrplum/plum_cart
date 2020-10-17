@@ -77,7 +77,6 @@
   position: fixed;
   overflow: hidden;
   padding-top: 20px;
-  top:0;
   z-index: 1;
 }
 
@@ -89,7 +88,6 @@
   position: fixed;
   overflow: hidden;
   padding-top: 20px;
-  top:0;
   z-index: 1;
 }
 
