@@ -57,22 +57,22 @@ import style from './Product.module.css';
     return(
     <div className={style.root}>
         <div className={style.left}>
-          <div className={style.centered}>
+          <div className={style.centeredLeft}>
             <h1 className={style.title}>{data.title} </h1>
             <img src={`/${data.img}`} alt={''} className={style.img}></img>
           </div>      
         </div>
         <div className={style.right}>
-          <div className={style.centered}>
+          <div className={style.centeredRight}>
               <h2 className={style.description}>{data.description}</h2>
-               <p className={style.price}>${data.price*state.qty}</p>
               <div className={style.containerButton}>
-                <IconButton   aria-label={`star ${data.title}`} color={"primary"}  onClick={addProduct} >
+                <IconButton   aria-label={`star ${data.title}`} color={"default"}  onClick={addProduct} >
                       <AddShoppingCartIcon />
                       <p>Add</p>
                 </IconButton>
                 <SelectButton name="Quantity" values={values} handle={handleChange}/>
               </div>
+              <p className={style.price}>${data.price*state.qty}</p>
             </div>
         </div>
     </div>

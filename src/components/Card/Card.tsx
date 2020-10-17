@@ -58,7 +58,7 @@ const Card = ({
       </div>
       <div className={classNames(styles.buttons)}> 
 
-        <IconButton aria-label={`star ${title}`} color={"primary"}  onClick={addProduct}>
+        <IconButton aria-label={`star ${title}`} color={"default"}  onClick={addProduct}>
                     <AddShoppingCartIcon />
                     <p>Add</p>
         </IconButton>

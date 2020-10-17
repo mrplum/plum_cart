@@ -7,14 +7,15 @@
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 10px;
-  background-color: rgb(131, 155, 167);/*theme.palette.background.paper*/
+  background-color: #a0c1b8;
 }
 
 
 .title {
   font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-  text-shadow: 2px 2px rgb(94, 95, 100);
+  
   font-size: xx-large;
   text-align: center;
+  color: #59405c; /* #776d8a; */
   padding-left: 250px;
 }

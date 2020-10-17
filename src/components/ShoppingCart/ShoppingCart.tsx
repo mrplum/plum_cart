@@ -1,6 +1,7 @@
 import React from 'react';
 import ShoppingCartList from '../List/ShoppingCartList';
 import IProductShoppingCart from '../IProductShoppingCart';
+import style from './ShoppingCart.module.css';
 
 const ShoppingCart = () : JSX.Element => {
   const data= JSON.parse(localStorage.getItem('shoppingcart'));
@@ -29,12 +30,12 @@ const ShoppingCart = () : JSX.Element => {
     }
   }
   return(
-    <div>
+    <div className={style.root}>
       {(!empty) ? 
       <div>
         <ShoppingCartList data={data} deleteP={deleteProduct} /> 
         <p>TOTAL= ${total}</p>
-        </div>
+      </div>
       :
       <p>Your shopping cart is empty!</p>}
     </div>
