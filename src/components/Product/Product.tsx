@@ -20,14 +20,7 @@ import addProduct from '../../utils/Products';
 
     const addProductAux = (event: React.ChangeEvent) => {
       event.preventDefault();
-      const aux={
-        id: data.id,
-        img: data.img,
-        title: data.title,
-        price: data.price * state.qty,
-        qty: state.qty
-      };
-      addProduct(aux);
+      addProduct(data.id, data.price * state.qty, state.qty);
     }
 
     const values=[];

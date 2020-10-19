@@ -4,7 +4,6 @@ import defaultImage from '../../public/images/image-not-found.png';
 import classNames from 'classnames';
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import IProductShoppingCart from '../IProductShoppingCart';
 
 const ProductImage = ({ img } : { img: string }) : JSX.Element => {
   if(img) {
@@ -29,18 +28,11 @@ const Card = ({
   title: string;
   price: number;
   img?: string;
-  addP: (product: IProductShoppingCart) => void;
+  addP: (id:string, price:number, qty:number) => void;
 }) : JSX.Element => {
-  const product = {
-    id: id,
-    img: img,
-    title : title,
-    price: price,
-    qty: 1
-  };
   const addProduct = (e) => {
     e.preventDefault();
-    addP(product);
+    addP(id,price,1);
   };
   return (
     <div className={classNames(styles.card,{

@@ -5,7 +5,6 @@ import Card from '../Card';
 import style from './List.module.css';
 import IDataJson from '../DataJson';
 import { Link } from 'react-router-dom';
-import IProductShoppingCart from '../IProductShoppingCart';
 import addProduct from '../../utils/Products';
 
 const CardList = ({

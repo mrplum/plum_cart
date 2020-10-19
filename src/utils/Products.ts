@@ -1,13 +1,9 @@
-import IProductShoppingCart from '../components/IProductShoppingCart';
-
-export const addProduct = (product: IProductShoppingCart) : void => {
+export const addProduct = (id:string, price:number, qty:number) : void => {
   const old = JSON.parse(localStorage.getItem('shoppingcart'));
   const aux={
-    id: product.id,
-    img: product.img,
-    title: product.title,
-    price: product.price * product.qty,
-    qty:product.qty
+    id: id,
+    price: price * qty,
+    qty:qty
   };
   if(old === null){
     const array=[];
@@ -16,7 +12,6 @@ export const addProduct = (product: IProductShoppingCart) : void => {
   }
   else{
     const element= old.find(p => p.id === aux.id);
-    console.log(element);
     if(element){
       const newList= old.filter(p=> p.id !== aux.id);
       aux.qty= aux.qty + parseInt(element.qty,10);

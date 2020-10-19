@@ -16,16 +16,8 @@ const ImageList  = ({
 }) : JSX.Element => {
 
 const addProductAux = (e) => {
-  console.log(e.currentTarget);
   const shirt = JSON.parse(e.currentTarget.value);
-  const product = {
-    id: shirt.id,
-    img: shirt.img,
-    title : shirt.title,
-    price: shirt.price,
-    qty: 1
-  };
-  addProduct(product);
+  addProduct(shirt.id, shirt.price, 1);
 };
 
 
@@ -55,7 +47,6 @@ return (
               </IconButton>
             }
             actionPosition="left"
-            classes={style.titleBar}
           />
         </GridListTile>
       ))}

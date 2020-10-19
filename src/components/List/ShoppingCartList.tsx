@@ -1,13 +1,13 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import ProductShoppingCart from '../ProductShoppingCart';
-import IProductShoppingCart from '../IProductShoppingCart';
+import datajson from '../../data.json';
 
 const ShoppingCartList = ({
     data,
     deleteP
 }:{
-    data: Array<IProductShoppingCart>;
+    data: Array<any>;
     deleteP: (e: React.ChangeEvent<{id: string}>) => void;
 }): JSX.Element => {
   return (
@@ -16,8 +16,8 @@ const ShoppingCartList = ({
         <ProductShoppingCart 
               key={product.id}
               id={product.id}
-              img={product.img} 
-              title={product.title}
+              img={datajson.find(e=> e.id === product.id).img} 
+              title={datajson.find(e => e.id === product.id).title}
               price={product.price}
               quantity={product.qty}
               deleteP={deleteP} />
