@@ -4,6 +4,8 @@ export const addProduct = (product: IProductShoppingCart) : void => {
   const old = JSON.parse(localStorage.getItem('shoppingcart'));
   const aux={
     id: product.id,
+    img: product.img,
+    title: product.title,
     price: product.price * product.qty,
     qty:product.qty
   };
