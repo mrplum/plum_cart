@@ -4,14 +4,15 @@ import SelectButton from '../SelectButton';
 import IconButton from '@material-ui/core/IconButton';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import style from './Product.module.css';
-import IProductShoppingCart from '../IProductShoppingCart';
+
+
+import { addProduct as addP } from '../../utils/Products';
 
   const Product = ({
     data,
-    addP
   }:{
     data:IDataJson;
-    addP: (product: IProductShoppingCart) => void;
+    
   }): JSX.Element =>  {
     const [state, setState] = React.useState<{ qty: number}>({
       qty: 1,

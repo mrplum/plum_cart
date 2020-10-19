@@ -4,8 +4,8 @@ import IDataJson from '../DataJson';
 import ImageList from '../List/ImageList';
 import CardList from '../List/CardList';
 import style from './Main.module.css';
-import IProductShoppingCart from '../IProductShoppingCart';
 
+import addProduct from '../../utils/Products';
 
 interface IMainProps {
   status: boolean;
@@ -14,37 +14,6 @@ interface IMainProps {
 }
 
 const Main = (props: IMainProps): JSX.Element => {
-
-  const addProduct = (product: IProductShoppingCart) => {
-    const old = JSON.parse(localStorage.getItem('shoppingcart'));
-    const aux={
-      id: product.id,
-      img: product.img,
-      title: product.title,
-      price: product.price * product.qty,
-      qty:product.qty
-    };
-    if(old === null){
-      const array=[];
-      array.push(aux);
-      localStorage.setItem('shoppingcart', JSON.stringify(array));
-    }
-    else{
-      const element= old.find(p => p.id === aux.id);
-      if(element){
-        const newList= old.filter(p=> p.id !== aux.id);
-        aux.qty=aux.qty + element.qty;
-        newList.push(aux);
-        localStorage.setItem('shoppingcart', JSON.stringify(newList));
-      }
-      else{
-        old.push(aux);
-        localStorage.setItem('shoppingcart', JSON.stringify(old));
-      }
-    }
-    
-    alert('product added');
-  };
   return (
     <div className={style.root}>
       <div className={style.title}> 
@@ -56,7 +25,7 @@ const Main = (props: IMainProps): JSX.Element => {
         handler={props.toggleViewHandler} />
 
       {props.status ?
-        <CardList data={props.data} addP={addProduct} /> :
+        <CardList data={props.data} /> :
         <ImageList data={props.data} />}
     </div>
   );
