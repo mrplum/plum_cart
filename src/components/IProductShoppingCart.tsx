@@ -1,7 +1,5 @@
 interface IProductShoppingCart {
-  id: string,
-  img: string;
-  title: string;
+  id: string;
   price: number;
   qty: number;
 }

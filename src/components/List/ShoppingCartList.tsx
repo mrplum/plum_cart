@@ -2,12 +2,13 @@ import React from 'react';
 import List from '@material-ui/core/List';
 import ProductShoppingCart from '../ProductShoppingCart';
 import datajson from '../../data.json';
+import IProductShoppingCart from '../IProductShoppingCart';
 
 const ShoppingCartList = ({
     data,
     deleteP
 }:{
-    data: Array<any>;
+    data: Array<IProductShoppingCart>;
     deleteP: (e: React.ChangeEvent<{id: string}>) => void;
 }): JSX.Element => {
   return (
