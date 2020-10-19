@@ -50,7 +50,7 @@ const SelectButton = ({
           onChange={handleChange}
           label= {name}
           inputProps={{
-            name: {name},
+            name: name,
             id: 'outlined-select',
           }}
         >
