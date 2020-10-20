@@ -1,10 +1,9 @@
-import React from 'react';
-import SwitchView from '../SwitchView';
-import IDataJson from '../DataJson';
-import ImageList from '../List/ImageList';
-import CardList from '../List/CardList';
-import style from './Main.module.css';
-
+import React from "react";
+import SwitchView from "../SwitchView";
+import IDataJson from "../DataJson";
+import ImageList from "../List/ImageList";
+import CardList from "../List/CardList";
+import style from "./Main.module.css";
 
 interface IMainProps {
   status: boolean;
@@ -15,18 +14,18 @@ interface IMainProps {
 const Main = (props: IMainProps): JSX.Element => {
   return (
     <div className={style.root}>
-      <div className={style.title}> 
+      <div className={style.title}>
         <h1>The Shirt Store</h1>
       </div>
 
-      <SwitchView
-        status={props.status}
-        handler={props.toggleViewHandler} />
+      <SwitchView status={props.status} handler={props.toggleViewHandler} />
 
-      {props.status ?
-        <CardList data={props.data}  /> :
-        <ImageList data={props.data}  />}
+      {props.status ? (
+        <CardList data={props.data} />
+      ) : (
+        <ImageList data={props.data} />
+      )}
     </div>
   );
-}
+};
 export default Main;

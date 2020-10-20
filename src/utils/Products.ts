@@ -1,31 +1,29 @@
-export const addProduct = (id:string, price:number, qty:number) : void => {
-  const old = JSON.parse(localStorage.getItem('shoppingcart'));
-  const aux={
+export const addProduct = (id: string, price: number, qty: number): void => {
+  const old = JSON.parse(localStorage.getItem("shoppingcart"));
+  const aux = {
     id: id,
     price: price * qty,
-    qty:qty
+    qty: qty,
   };
-  if(old === null){
-    const array=[];
+  if (old === null) {
+    const array = [];
     array.push(aux);
-    localStorage.setItem('shoppingcart', JSON.stringify(array));
-  }
-  else{
-    const element= old.find(p => p.id === aux.id);
-    if(element){
-      const newList= old.filter(p=> p.id !== aux.id);
-      aux.qty= aux.qty + parseInt(element.qty,10);
-      aux.price= aux.price + parseInt(element.price,10);
+    localStorage.setItem("shoppingcart", JSON.stringify(array));
+  } else {
+    const element = old.find((p) => p.id === aux.id);
+    if (element) {
+      const newList = old.filter((p) => p.id !== aux.id);
+      aux.qty = aux.qty + parseInt(element.qty, 10);
+      aux.price = aux.price + parseInt(element.price, 10);
       newList.push(aux);
-      localStorage.setItem('shoppingcart', JSON.stringify(newList));
-    }
-    else{
+      localStorage.setItem("shoppingcart", JSON.stringify(newList));
+    } else {
       old.push(aux);
-      localStorage.setItem('shoppingcart', JSON.stringify(old));
+      localStorage.setItem("shoppingcart", JSON.stringify(old));
     }
   }
-  
-  alert('product added');
+
+  alert("product added");
 };
 
 export default addProduct;

@@ -1,1 +1,1 @@
-export {default} from './SwitchView.tsx'; 
+export { default } from "./SwitchView.tsx";

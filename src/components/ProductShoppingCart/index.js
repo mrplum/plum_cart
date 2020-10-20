@@ -1,1 +1,1 @@
-export {default} from './ProductShoppingCart.tsx';
+export { default } from "./ProductShoppingCart.tsx";
