@@ -4,6 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import style from "./Header.module.css";
+import { FormattedMessage } from "react-intl";
 
 const Header = (): JSX.Element => {
   return (
@@ -15,7 +16,9 @@ const Header = (): JSX.Element => {
       >
         <IconButton color={"default"}>
           <AddShoppingCartIcon />
-          <p>View</p>
+          <p>
+            <FormattedMessage id="viewCart" />
+          </p>
         </IconButton>
       </Link>
       <Link
@@ -25,7 +28,9 @@ const Header = (): JSX.Element => {
       >
         <IconButton color={"default"}>
           <HomeIcon />
-          <p>Home</p>
+          <p>
+            <FormattedMessage id="homeButton" />
+          </p>
         </IconButton>
       </Link>
     </div>
