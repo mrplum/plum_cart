@@ -4,6 +4,7 @@ import defaultImage from "../../public/images/image-not-found.png";
 import classNames from "classnames";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { FormattedMessage } from "react-intl";
 
 const ProductImage = ({ img }: { img: string }): JSX.Element => {
   if (img) {
@@ -64,7 +65,9 @@ const Card = ({
           onClick={addProduct}
         >
           <AddShoppingCartIcon />
-          <p>Add</p>
+          <p>
+            <FormattedMessage id="buttonAdd" />
+          </p>
         </IconButton>
       </div>
     </div>

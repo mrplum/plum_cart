@@ -2,6 +2,7 @@ import React from "react";
 import ShoppingCartList from "../List/ShoppingCartList";
 import IProductShoppingCart from "../IProductShoppingCart";
 import style from "./ShoppingCart.module.css";
+import { FormattedMessage } from "react-intl";
 
 const ShoppingCart = (): JSX.Element => {
   const data = JSON.parse(localStorage.getItem("shoppingcart"));
@@ -39,7 +40,9 @@ const ShoppingCart = (): JSX.Element => {
           <p>TOTAL= ${total}</p>
         </div>
       ) : (
-        <p>Your shopping cart is empty!</p>
+        <p>
+          <FormattedMessage id="emptyCart" />
+        </p>
       )}
     </div>
   );

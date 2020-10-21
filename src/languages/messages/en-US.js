@@ -5,5 +5,9 @@ export default {
     title: "The Shirt Store",
     homeButton: "Home",
     viewCart: "View",
+    buttonAdd: "Add",
+    quantity: "Quantity",
+    emptyCart: "Your shopping cart is empty!",
+    prodAdded: "Product added",
   },
 };

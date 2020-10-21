@@ -5,6 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import style from "./Product.module.css";
 import addProduct from "../../utils/Products";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const Product = ({ data }: { data: IDataJson }): JSX.Element => {
   const [state, setState] = React.useState<{ qty: number }>({
@@ -45,10 +46,12 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
               onClick={addProductAux}
             >
               <AddShoppingCartIcon />
-              <p>Add</p>
+              <p>
+                <FormattedMessage id="buttonAdd" />
+              </p>
             </IconButton>
             <SelectButton
-              name="Quantity"
+              name={useIntl().formatMessage({ id: "quantity" })}
               values={values}
               handle={handleChange}
             />
