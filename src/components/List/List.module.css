@@ -1,0 +1,40 @@
+
+.gridList {
+  width: 100%;
+  background-size: cover;
+  height: 100%;
+  transform: translateZ(0);
+  text-align: center;
+}
+.titleBar {
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,  
+    rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%);
+    font-family:OCR A Std;
+    color: red;
+}
+.icon {
+  color: white;
+}
+
+
+.img {
+  width: 300px;
+  height: 350px;
+}
+
+.container {
+  cursor:pointer;
+  background-color: white;
+}
+.container:hover{
+  opacity: 0.5;
+}
+
+.container:hover .img{
+  opacity: 0.5;
+}
+
+.cardContainer:hover{
+  transform: scale(1.1);
+}
