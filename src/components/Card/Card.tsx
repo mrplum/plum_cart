@@ -4,7 +4,7 @@ import defaultImage from "../../public/images/image-not-found.png";
 import classNames from "classnames";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const ProductImage = ({ img }: { img: string }): JSX.Element => {
   if (img) {
@@ -29,11 +29,12 @@ const Card = ({
   title: string;
   price: number;
   img?: string;
-  addP: (id: string, price: number, qty: number) => void;
+  addP: (id: string, price: number, qty: number, message: string) => void;
 }): JSX.Element => {
+  const message = useIntl().formatMessage({ id: "prodAdded" });
   const addProduct = (e) => {
     e.preventDefault();
-    addP(id, price, 1);
+    addP(id, price, 1, message);
   };
   return (
     <div

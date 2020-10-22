@@ -1,4 +1,9 @@
-export const addProduct = (id: string, price: number, qty: number): void => {
+const addProduct = (
+  id: string,
+  price: number,
+  qty: number,
+  message: string
+): void => {
   const old = JSON.parse(localStorage.getItem("shoppingcart"));
   const aux = {
     id: id,
@@ -23,7 +28,7 @@ export const addProduct = (id: string, price: number, qty: number): void => {
     }
   }
 
-  alert("product added");
+  alert(message);
 };
 
 export default addProduct;

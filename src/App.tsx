@@ -31,9 +31,14 @@ class App extends React.Component<IProps, IState> {
   };
 
   render(): JSX.Element {
-    const locale = navigator.language;
+    const lang = navigator.language;
+    const locale = lang.startsWith("es", 0) ? "es-AR" : "en-US";
     return (
-      <IntlProvider locale={locale} messages={messages[locale]}>
+      <IntlProvider
+        locale={locale}
+        messages={messages[locale]}
+        defaultLocale={LOCALES.ENGLISH}
+      >
         <Router>
           <Header />
           <Route exact path="/">

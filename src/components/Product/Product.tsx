@@ -12,6 +12,7 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
     qty: 1,
   });
 
+  const message = useIntl().formatMessage({ id: "prodAdded" });
   const handleChange = (event: React.ChangeEvent<{ value: number }>) => {
     setState({
       ...state,
@@ -21,7 +22,7 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
 
   const addProductAux = (event: React.ChangeEvent) => {
     event.preventDefault();
-    addProduct(data.id, data.price * state.qty, state.qty);
+    addProduct(data.id, data.price * state.qty, state.qty, message);
   };
 
   const values = [];
