@@ -5,10 +5,12 @@ const AppContext = createContext();
 const AppContextProvider = (props) => {
   const [state, setState] = React.useState({
     locale: navigator.language.startsWith("es", 0) ? "es-AR" : "en-US",
-    toggleLocale: () => {
-      this.setState(({ locale }) => ({
-        locale: locale === "en-US" ? "es-AR" : "en-US",
-      }));
+    toggleLocale: (l) => {
+      console.log(l);
+      setState({
+        ...state,
+        locale: l,
+      });
     },
   });
 

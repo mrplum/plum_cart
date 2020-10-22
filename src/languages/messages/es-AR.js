@@ -9,5 +9,8 @@ export default {
     quantity: "Cantidad",
     emptyCart: "Tu carrito esta vacio!",
     prodAdded: "Producto añadido",
+    language: "Lenguaje",
+    english: "Ingles",
+    spanish: "Español",
   },
 };

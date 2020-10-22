@@ -13,10 +13,10 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
   });
 
   const message = useIntl().formatMessage({ id: "prodAdded" });
-  const handleChange = (event: React.ChangeEvent<{ value: number }>) => {
+  const handleChange = (value: string) => {
     setState({
       ...state,
-      qty: parseInt(event.target.value, 10),
+      qty: parseInt(value),
     });
   };
 
@@ -54,7 +54,9 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
             <SelectButton
               name={useIntl().formatMessage({ id: "quantity" })}
               values={values}
+              valuesName={values}
               handle={handleChange}
+              defaultValue="1"
             />
           </div>
           <p className={style.price}>${data.price * state.qty}</p>
