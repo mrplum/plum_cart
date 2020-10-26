@@ -10,7 +10,6 @@ export default {
     emptyCart: "Your shopping cart is empty!",
     prodAdded: "Product added",
     language: "Language",
-    english: "English",
-    spanish: "Spanish",
+    languages: '["English", "Spanish"]',
   },
 };

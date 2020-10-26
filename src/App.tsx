@@ -10,12 +10,6 @@ import messages from "./languages/messages";
 import { LOCALES } from "./languages/locales";
 import { AppContext } from "./context/index";
 
-interface IProps {}
-
-interface IState {
-  card: boolean;
-}
-
 const App = (): JSX.Element => {
   const [state, setState] = React.useState<{ card: boolean }>({
     card: true,
