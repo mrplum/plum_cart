@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import IDataJson from "../DataJson";
 import SelectButton from "../SelectButton";
 import IconButton from "@material-ui/core/IconButton";
@@ -8,11 +8,12 @@ import addProduct from "../../utils/Products";
 import { FormattedMessage, useIntl } from "react-intl";
 
 const Product = ({ data }: { data: IDataJson }): JSX.Element => {
-  const [state, setState] = React.useState<{ qty: number }>({
+  const [state, setState] = useState<{ qty: number }>({
     qty: 1,
   });
 
-  const message = useIntl().formatMessage({ id: "prodAdded" });
+  const intl = useIntl();
+  const message = intl.formatMessage({ id: "prodAdded" });
   const handleChange = (value: string) => {
     setState({
       ...state,
@@ -52,7 +53,7 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
               </p>
             </IconButton>
             <SelectButton
-              name={useIntl().formatMessage({ id: "quantity" })}
+              name={intl.formatMessage({ id: "quantity" }, { qty: "" })}
               values={values}
               valuesName={values}
               handle={handleChange}

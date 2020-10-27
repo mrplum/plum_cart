@@ -6,7 +6,7 @@ export default {
     homeButton: "Home",
     viewCart: "View",
     buttonAdd: "Add",
-    quantity: "Quantity",
+    quantity: "Quantity : {qty}",
     emptyCart: "Your shopping cart is empty!",
     prodAdded: "Product added",
     language: "Language",

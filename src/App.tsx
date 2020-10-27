@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Main from "./components/Main";
 import data from "./data.json";
 import Product from "./components/Product";
@@ -11,7 +11,7 @@ import { LOCALES } from "./languages/locales";
 import { AppContext } from "./context/index";
 
 const App = (): JSX.Element => {
-  const [state, setState] = React.useState<{ card: boolean }>({
+  const [state, setState] = useState<{ card: boolean }>({
     card: true,
   });
 

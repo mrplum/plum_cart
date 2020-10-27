@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ShoppingCartList from "../List/ShoppingCartList";
 import IProductShoppingCart from "../IProductShoppingCart";
 import style from "./ShoppingCart.module.css";
@@ -6,7 +6,7 @@ import { FormattedMessage } from "react-intl";
 
 const ShoppingCart = (): JSX.Element => {
   const data = JSON.parse(localStorage.getItem("shoppingcart"));
-  const [state, setState] = React.useState<{
+  const [state, setState] = useState<{
     list: Array<IProductShoppingCart>;
   }>({
     list: data,

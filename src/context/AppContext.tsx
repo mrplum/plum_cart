@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import defaultValue from "./defaultValue.tsx";
 
 const AppContext = createContext(defaultValue);
@@ -8,14 +8,16 @@ const AppContextProvider = ({
 }: {
   children: JSX.Element;
 }): JSX.Element => {
+  const getLanguages = () =>
+    navigator.language.startsWith("es", 0) ? "es-AR" : "en-US";
   const languages = ["en-US", "es-AR"];
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     languages: languages,
-    locale: navigator.language.startsWith("es", 0) ? "es-AR" : "en-US",
-    toggleLocale: (l: string) => {
+    locale: getLanguages(),
+    toggleLocale: (locale: string) => {
       setState({
         ...state,
-        locale: l,
+        locale: locale,
       });
     },
   });

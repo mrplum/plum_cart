@@ -57,9 +57,7 @@ const ProductShoppingCart = ({
               ${price}
               <br />
             </Typography>
-            <FormattedMessage id="quantity">
-              {(txt) => txt + `:  ${quantity}`}
-            </FormattedMessage>
+            <FormattedMessage id="quantity" values={{ qty: quantity }} />
           </React.Fragment>
         }
       />

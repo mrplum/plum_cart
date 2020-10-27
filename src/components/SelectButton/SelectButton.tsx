@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -30,7 +30,7 @@ const SelectButton = ({
   defaultValue: string;
 }): JSX.Element => {
   const classes = useStyles();
-  const [state, setState] = React.useState<{ value: string; name: string }>({
+  const [state, setState] = useState<{ value: string; name: string }>({
     value: defaultValue,
     name: name,
   });

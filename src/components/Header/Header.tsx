@@ -10,7 +10,8 @@ import { AppContext } from "../../context";
 
 const Header = (): JSX.Element => {
   const { toggleLocale, locale, languages } = useContext(AppContext);
-  const valuesNames = JSON.parse(useIntl().formatMessage({ id: "languages" }));
+  const intl = useIntl();
+  const languagesNames = JSON.parse(intl.formatMessage({ id: "languages" }));
   return (
     <div className={style.root}>
       <Link
@@ -39,9 +40,9 @@ const Header = (): JSX.Element => {
       </Link>
       <div className={style.language}>
         <SelectButton
-          name={useIntl().formatMessage({ id: "language" })}
+          name={intl.formatMessage({ id: "language" })}
           values={languages}
-          valuesName={valuesNames}
+          valuesName={languagesNames}
           handle={toggleLocale}
           defaultValue={locale}
         />
