@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import style from "./Header.module.css";
+import { FormattedMessage, useIntl } from "react-intl";
+import SelectButton from "../SelectButton";
+import { AppContext } from "../../context";
 
 const Header = (): JSX.Element => {
+  const { toggleLocale, locale, languages } = useContext(AppContext);
+  const intl = useIntl();
+  const languagesNames = JSON.parse(intl.formatMessage({ id: "languages" }));
   return (
     <div className={style.root}>
       <Link
@@ -15,7 +21,9 @@ const Header = (): JSX.Element => {
       >
         <IconButton color={"default"}>
           <AddShoppingCartIcon />
-          <p>View</p>
+          <p>
+            <FormattedMessage id="viewCart" />
+          </p>
         </IconButton>
       </Link>
       <Link
@@ -25,9 +33,20 @@ const Header = (): JSX.Element => {
       >
         <IconButton color={"default"}>
           <HomeIcon />
-          <p>Home</p>
+          <p>
+            <FormattedMessage id="homeButton" />
+          </p>
         </IconButton>
       </Link>
+      <div className={style.language}>
+        <SelectButton
+          name={intl.formatMessage({ id: "language" })}
+          values={languages}
+          valuesName={languagesNames}
+          handle={toggleLocale}
+          defaultValue={locale}
+        />
+      </div>
     </div>
   );
 };

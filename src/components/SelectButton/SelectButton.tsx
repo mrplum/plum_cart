@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -19,25 +19,29 @@ const useStyles = makeStyles((theme: Theme) =>
 const SelectButton = ({
   name,
   values,
+  valuesName,
   handle,
+  defaultValue,
 }: {
   name: string;
-  values: Array<number>;
-  handle: (event: React.ChangeEvent<{ value: number }>) => void;
+  values: Array<string>;
+  valuesName: Array<string>;
+  handle: (value: string) => void;
+  defaultValue: string;
 }): JSX.Element => {
   const classes = useStyles();
-  const [state, setState] = React.useState<{ value: number; name: string }>({
-    value: 1,
+  const [state, setState] = useState<{ value: string; name: string }>({
+    value: defaultValue,
     name: name,
   });
 
-  const handleChange = (event: React.ChangeEvent<{ value: number }>) => {
+  const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
     event.preventDefault();
     setState({
       ...state,
       value: event.target.value,
     });
-    handle(event);
+    handle(event.target.value);
   };
   return (
     <div>
@@ -53,10 +57,9 @@ const SelectButton = ({
             id: "outlined-select",
           }}
         >
-          <option aria-label="None" />
           {values.map((v, i) => (
             <option key={i} value={v}>
-              {v}
+              {valuesName[i]}
             </option>
           ))}
         </Select>

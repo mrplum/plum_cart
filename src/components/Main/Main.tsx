@@ -4,6 +4,7 @@ import IDataJson from "../DataJson";
 import ImageList from "../List/ImageList";
 import CardList from "../List/CardList";
 import style from "./Main.module.css";
+import { FormattedMessage } from "react-intl";
 
 interface IMainProps {
   status: boolean;
@@ -15,9 +16,10 @@ const Main = (props: IMainProps): JSX.Element => {
   return (
     <div className={style.root}>
       <div className={style.title}>
-        <h1>The Shirt Store</h1>
+        <h1>
+          <FormattedMessage id="title" />
+        </h1>
       </div>
-
       <SwitchView status={props.status} handler={props.toggleViewHandler} />
 
       {props.status ? (

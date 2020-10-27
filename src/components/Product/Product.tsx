@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import IDataJson from "../DataJson";
 import SelectButton from "../SelectButton";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import style from "./Product.module.css";
 import addProduct from "../../utils/Products";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const Product = ({ data }: { data: IDataJson }): JSX.Element => {
-  const [state, setState] = React.useState<{ qty: number }>({
+  const [state, setState] = useState<{ qty: number }>({
     qty: 1,
   });
 
-  const handleChange = (event: React.ChangeEvent<{ value: number }>) => {
+  const intl = useIntl();
+  const message = intl.formatMessage({ id: "prodAdded" });
+  const handleChange = (value: string) => {
     setState({
       ...state,
-      qty: parseInt(event.target.value, 10),
+      qty: parseInt(value),
     });
   };
 
   const addProductAux = (event: React.ChangeEvent) => {
     event.preventDefault();
-    addProduct(data.id, data.price * state.qty, state.qty);
+    addProduct(data.id, data.price * state.qty, state.qty, message);
   };
 
   const values = [];
@@ -45,12 +48,16 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
               onClick={addProductAux}
             >
               <AddShoppingCartIcon />
-              <p>Add</p>
+              <p>
+                <FormattedMessage id="buttonAdd" />
+              </p>
             </IconButton>
             <SelectButton
-              name="Quantity"
+              name={intl.formatMessage({ id: "quantity" }, { qty: "" })}
               values={values}
+              valuesName={values}
               handle={handleChange}
+              defaultValue="1"
             />
           </div>
           <p className={style.price}>${data.price * state.qty}</p>

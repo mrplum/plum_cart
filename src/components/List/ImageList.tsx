@@ -8,11 +8,13 @@ import IDataJson from "../DataJson";
 import style from "./List.module.css";
 import { Link } from "react-router-dom";
 import addProduct from "../../utils/Products";
+import { useIntl } from "react-intl";
 
 const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
+  const message = useIntl().formatMessage({ id: "prodAdded" });
   const addProductAux = (e) => {
     const shirt = JSON.parse(e.currentTarget.value);
-    addProduct(shirt.id, shirt.price, 1);
+    addProduct(shirt.id, shirt.price, 1, message);
   };
 
   return (

@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
+import { FormattedMessage } from "react-intl";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,7 +57,7 @@ const ProductShoppingCart = ({
               ${price}
               <br />
             </Typography>
-            {`Quantity: ${quantity}`}
+            <FormattedMessage id="quantity" values={{ qty: quantity }} />
           </React.Fragment>
         }
       />
