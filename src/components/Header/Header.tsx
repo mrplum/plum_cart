@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
@@ -7,6 +6,8 @@ import style from "./Header.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import SelectButton from "../SelectButton";
 import { AppContext } from "../../context";
+import ShoppingCart from "../ShoppingCart";
+import Sidebar from "../Sidebar";
 
 const Header = (): JSX.Element => {
   const { toggleLocale, locale, languages } = useContext(AppContext);
@@ -14,18 +15,9 @@ const Header = (): JSX.Element => {
   const languagesNames = JSON.parse(intl.formatMessage({ id: "languages" }));
   return (
     <div className={style.root}>
-      <Link
-        to={{
-          pathname: "/shoppingcart",
-        }}
-      >
-        <IconButton color={"default"}>
-          <AddShoppingCartIcon />
-          <p>
-            <FormattedMessage id="viewCart" />
-          </p>
-        </IconButton>
-      </Link>
+      <Sidebar width={250} height={200}>
+        <ShoppingCart />
+      </Sidebar>
       <Link
         to={{
           pathname: "/",

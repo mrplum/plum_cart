@@ -30,6 +30,7 @@ const App = (): JSX.Element => {
     >
       <Router>
         <Header />
+
         <Route exact path="/">
           <Main
             status={state.card}
