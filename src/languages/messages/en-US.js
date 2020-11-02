@@ -10,5 +10,6 @@ export default {
     prodAdded: "Product added",
     language: "Language",
     languages: '["English", "Spanish"]',
+    viewCart: "View Cart",
   },
 };

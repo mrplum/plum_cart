@@ -6,8 +6,6 @@ import style from "./Header.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import SelectButton from "../SelectButton";
 import { AppContext } from "../../context";
-import ShoppingCart from "../ShoppingCart";
-import Sidebar from "../Sidebar";
 
 const Header = (): JSX.Element => {
   const { toggleLocale, locale, languages } = useContext(AppContext);
@@ -15,9 +13,6 @@ const Header = (): JSX.Element => {
   const languagesNames = JSON.parse(intl.formatMessage({ id: "languages" }));
   return (
     <div className={style.root}>
-      <Sidebar width={250} height={200}>
-        <ShoppingCart />
-      </Sidebar>
       <Link
         to={{
           pathname: "/",

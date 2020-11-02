@@ -10,5 +10,6 @@ export default {
     prodAdded: "Producto añadido",
     language: "Lenguaje",
     languages: '["Ingles", "Español"]',
+    viewCart: "Ver Carrito",
   },
 };

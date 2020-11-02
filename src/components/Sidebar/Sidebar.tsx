@@ -3,6 +3,10 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import style from "./Sidebar.module.css";
 import { withStyles } from "@material-ui/core/styles";
+import Button from "../Button";
+import ShoppingCart from "../ShoppingCart";
+import { Link } from "react-router-dom";
+import { useIntl } from "react-intl";
 
 const CartButton = withStyles({
   root: {
@@ -15,22 +19,14 @@ const CartButton = withStyles({
   },
 })(IconButton);
 
-const Sidebar = ({
-  width,
-  height,
-  children,
-}: {
-  width: number;
-  height: number;
-  children: JSX.Element;
-}): JSX.Element => {
-  const [xPosition, setX] = React.useState(-width);
+const Sidebar = (): JSX.Element => {
+  const [xPosition, setX] = React.useState(0);
 
   const toggleMenu = () => {
     if (xPosition < 0) {
       setX(0);
     } else {
-      setX(-width);
+      setX(-250);
     }
   };
   React.useEffect(() => {
@@ -43,20 +39,32 @@ const Sidebar = ({
         className={style.sideBar}
         style={{
           transform: `translatex(${xPosition}px)`,
-          width: width,
-          minHeight: height,
+          width: 250,
+          minHeight: 350,
         }}
       >
         <CartButton
           color={"default"}
           onClick={toggleMenu}
           style={{
-            transform: `translate(${width}px, 20vh)`,
+            transform: `translate(${250}px, 20vh)`,
           }}
         >
           <AddShoppingCartIcon />
         </CartButton>
-        <div>{children}</div>
+        <div className={style.children}>
+          <div className={style.cart}>
+            <ShoppingCart />
+          </div>
+          <div className={style.button}>
+            <Link to={{ pathname: "/shoppingcart" }}>
+              <Button
+                label={useIntl().formatMessage({ id: "viewCart" })}
+                primary={true}
+              />
+            </Link>
+          </div>
+        </div>
       </div>
     </React.Fragment>
   );
