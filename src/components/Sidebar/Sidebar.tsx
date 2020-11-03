@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import style from "./Sidebar.module.css";
@@ -20,7 +20,8 @@ const CartButton = withStyles({
 })(IconButton);
 
 const Sidebar = (): JSX.Element => {
-  const [xPosition, setX] = React.useState(0);
+  const [xPosition, setX] = useState(-250);
+  const ref = React.useRef(null);
 
   const toggleMenu = () => {
     if (xPosition < 0) {
@@ -29,18 +30,27 @@ const Sidebar = (): JSX.Element => {
       setX(-250);
     }
   };
-  React.useEffect(() => {
-    setX(0);
-  }, []);
 
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setX(-250);
+    }
+  };
+  React.useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <React.Fragment>
       <div
+        ref={ref}
         className={style.sideBar}
         style={{
           transform: `translatex(${xPosition}px)`,
           width: 250,
-          minHeight: 350,
+          minHeight: "100vh",
         }}
       >
         <CartButton
