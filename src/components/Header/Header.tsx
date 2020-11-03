@@ -6,19 +6,33 @@ import style from "./Header.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import SelectButton from "../SelectButton";
 import { AppContext } from "../../context";
+import Sidebar from "../Sidebar";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+  home: {
+    width: 100,
+    height: 70,
+    float: "none",
+    position: "absolute",
+    right: "50%",
+  },
+}));
 
 const Header = (): JSX.Element => {
+  const classes = useStyles();
   const { toggleLocale, locale, languages } = useContext(AppContext);
   const intl = useIntl();
   const languagesNames = JSON.parse(intl.formatMessage({ id: "languages" }));
   return (
     <div className={style.root}>
+      <Sidebar />
       <Link
         to={{
           pathname: "/",
         }}
       >
-        <IconButton color={"default"}>
+        <IconButton className={classes.home} color={"default"}>
           <HomeIcon />
           <p>
             <FormattedMessage id="homeButton" />

@@ -9,7 +9,6 @@ import { IntlProvider } from "react-intl";
 import messages from "./languages/messages";
 import { LOCALES } from "./languages/locales";
 import { AppContext } from "./context/index";
-import Sidebar from "./components/Sidebar";
 
 const App = (): JSX.Element => {
   const [state, setState] = useState<{ card: boolean }>({
@@ -31,7 +30,7 @@ const App = (): JSX.Element => {
     >
       <Router>
         <Header />
-        <Sidebar />
+
         <Route exact path="/">
           <Main
             status={state.card}

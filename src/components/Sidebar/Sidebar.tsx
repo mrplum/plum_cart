@@ -20,20 +20,21 @@ const CartButton = withStyles({
 })(IconButton);
 
 const Sidebar = (): JSX.Element => {
-  const [xPosition, setX] = useState(-250);
+  const width = 250;
+  const [xPosition, setX] = useState(-width);
   const ref = React.useRef(null);
 
   const toggleMenu = () => {
     if (xPosition < 0) {
       setX(0);
     } else {
-      setX(-250);
+      setX(-width);
     }
   };
 
   const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
-      setX(-250);
+      setX(-width);
     }
   };
   React.useEffect(() => {
@@ -49,15 +50,15 @@ const Sidebar = (): JSX.Element => {
         className={style.sideBar}
         style={{
           transform: `translatex(${xPosition}px)`,
-          width: 250,
-          minHeight: "100vh",
+          width: width,
+          minHeight: "0vh",
         }}
       >
         <CartButton
           color={"default"}
           onClick={toggleMenu}
           style={{
-            transform: `translate(${250}px, 20vh)`,
+            transform: `translate(${xPosition === -250 ? 255 : 205}px, -10vh)`,
           }}
         >
           <AddShoppingCartIcon />
