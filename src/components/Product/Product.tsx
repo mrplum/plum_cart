@@ -35,7 +35,7 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
       <div className={style.left}>
         <div className={style.centeredLeft}>
           <h1 className={style.title}>{data.title} </h1>
-          <img src={`/${data.img}`} alt={""} className={style.img}></img>
+          <img src={data.img} alt={""} className={style.img}></img>
         </div>
       </div>
       <div className={style.right}>

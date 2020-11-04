@@ -4,7 +4,7 @@ import ProductShoppingCart from "../ProductShoppingCart";
 import datajson from "../../data.json";
 import { FormattedMessage } from "react-intl";
 import { CartContext } from "../../context";
-
+import style from "./List.module.css";
 const ShoppingCartList = (): JSX.Element => {
   const { list, deleteProduct } = useContext(CartContext);
   let empty = !list;
@@ -18,7 +18,7 @@ const ShoppingCartList = (): JSX.Element => {
     }
   }
   return (
-    <div>
+    <div className={style.cart}>
       {!empty ? (
         <div>
           <List>
@@ -37,7 +37,7 @@ const ShoppingCartList = (): JSX.Element => {
           <p>TOTAL= ${total}</p>
         </div>
       ) : (
-        <p>
+        <p className={style.message}>
           <FormattedMessage id="emptyCart" />
         </p>
       )}

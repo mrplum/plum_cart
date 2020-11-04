@@ -9,7 +9,9 @@ const CartContextProvider = ({
   children: JSX.Element;
 }): JSX.Element => {
   const deleteProduct = (id: string): void => {
-    const newList = state.list.filter((p) => p.id !== id);
+    const newList = JSON.parse(localStorage.getItem("shoppingcart")).filter(
+      (p) => p.id !== id
+    );
     setState({
       ...state,
       list: newList,
@@ -61,7 +63,5 @@ const CartContextProvider = ({
 
   return <CartContext.Provider value={state}>{children}</CartContext.Provider>;
 };
-
-//const CartContextConsumer = CartContext.Consumer;
 
 export { CartContext, CartContextProvider };
