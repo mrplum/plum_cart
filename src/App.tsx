@@ -8,7 +8,7 @@ import Header from "./components/Header/Header";
 import { IntlProvider } from "react-intl";
 import messages from "./languages/messages";
 import { LOCALES } from "./languages/locales";
-import { LanguageContext } from "./context/index";
+import { LanguageContext } from "./context";
 
 const App = (): JSX.Element => {
   const [state, setState] = useState<{ card: boolean }>({

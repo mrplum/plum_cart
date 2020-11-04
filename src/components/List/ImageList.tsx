@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -7,11 +7,12 @@ import IconButton from "@material-ui/core/IconButton";
 import IDataJson from "../DataJson";
 import style from "./List.module.css";
 import { Link } from "react-router-dom";
-import addProduct from "../../utils/Products";
+import { CartContext } from "../../context";
 import { useIntl } from "react-intl";
 
 const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
   const message = useIntl().formatMessage({ id: "prodAdded" });
+  const { addProduct } = useContext(CartContext);
   const addProductAux = (e) => {
     const shirt = JSON.parse(e.currentTarget.value);
     addProduct(shirt.id, shirt.price, 1, message);

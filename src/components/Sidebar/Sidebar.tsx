@@ -4,9 +4,9 @@ import IconButton from "@material-ui/core/IconButton";
 import style from "./Sidebar.module.css";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "../Button";
-import ShoppingCart from "../ShoppingCart";
 import { Link } from "react-router-dom";
 import { useIntl } from "react-intl";
+import ShoppingCartList from "../List/ShoppingCartList";
 
 const CartButton = withStyles({
   root: {
@@ -65,7 +65,7 @@ const Sidebar = (): JSX.Element => {
         </CartButton>
         <div className={style.children}>
           <div className={style.cart}>
-            <ShoppingCart />
+            <ShoppingCartList />
           </div>
           <div className={style.button}>
             <Link to={{ pathname: "/shoppingcart" }}>

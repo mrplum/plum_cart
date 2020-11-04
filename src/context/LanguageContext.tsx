@@ -29,6 +29,6 @@ const LanguageContextProvider = ({
   );
 };
 
-const LanguageContextConsumer = LanguageContext.Consumer;
+//const LanguageContextConsumer = LanguageContext.Consumer;
 
-export { LanguageContext, LanguageContextProvider, LanguageContextConsumer };
+export { LanguageContext, LanguageContextProvider };

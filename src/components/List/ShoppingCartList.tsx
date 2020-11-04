@@ -1,25 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import List from "@material-ui/core/List";
 import ProductShoppingCart from "../ProductShoppingCart";
 import datajson from "../../data.json";
-import IProductShoppingCart from "../IProductShoppingCart";
 import { FormattedMessage } from "react-intl";
+import { CartContext } from "../../context";
 
-const ShoppingCartList = ({
-  data,
-  deleteP,
-}: {
-  data: Array<IProductShoppingCart>;
-  deleteP: (e: React.ChangeEvent<{ id: string }>) => void;
-}): JSX.Element => {
-  let empty = !data;
+const ShoppingCartList = (): JSX.Element => {
+  const { list, deleteProduct } = useContext(CartContext);
+  let empty = !list;
   let total = 0;
   if (!empty) {
-    if (data.length === 0) {
+    if (list.length === 0) {
       empty = true;
     }
-    for (let i = 0; i < data.length; i++) {
-      total += data[i].price;
+    for (let i = 0; i < list.length; i++) {
+      total += list[i].price;
     }
   }
   return (
@@ -27,7 +22,7 @@ const ShoppingCartList = ({
       {!empty ? (
         <div>
           <List>
-            {data.map((product) => (
+            {list.map((product) => (
               <ProductShoppingCart
                 key={product.id}
                 id={product.id}
@@ -35,7 +30,7 @@ const ShoppingCartList = ({
                 title={datajson.find((e) => e.id === product.id).title}
                 price={product.price}
                 quantity={product.qty}
-                deleteP={deleteP}
+                deleteP={deleteProduct}
               />
             ))}
           </List>
