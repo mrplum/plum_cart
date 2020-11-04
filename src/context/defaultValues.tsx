@@ -6,4 +6,8 @@ const defaultLanguageValue = {
   },
 };
 
-export { defaultLanguageValue };
+const defaultCartValue = {
+  list: [],
+};
+
+export { defaultLanguageValue, defaultCartValue };
