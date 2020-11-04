@@ -1,5 +1,5 @@
 export {
-  AppContext,
-  AppContextProvider,
-  AppContextConsumer,
-} from "./AppContext.tsx";
+  LanguageContext,
+  LanguageContextProvider,
+  LanguageContextConsumer,
+} from "./LanguageContext.tsx";

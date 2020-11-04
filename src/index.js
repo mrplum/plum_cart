@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { AppContextProvider } from "./context/index";
+import { LanguageContextProvider } from "./context/index";
 
 ReactDOM.render(
-  <AppContextProvider>
+  <LanguageContextProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </AppContextProvider>,
+  </LanguageContextProvider>,
   document.getElementById("root")
 );
 

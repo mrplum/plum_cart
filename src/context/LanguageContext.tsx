@@ -1,9 +1,9 @@
 import React, { createContext, useState } from "react";
-import defaultValue from "./defaultValue.tsx";
+import { defaultLanguageValue } from "./defaultValues.tsx";
 
-const AppContext = createContext(defaultValue);
+const LanguageContext = createContext(defaultLanguageValue);
 
-const AppContextProvider = ({
+const LanguageContextProvider = ({
   children,
 }: {
   children: JSX.Element;
@@ -22,9 +22,13 @@ const AppContextProvider = ({
     },
   });
 
-  return <AppContext.Provider value={state}>{children}</AppContext.Provider>;
+  return (
+    <LanguageContext.Provider value={state}>
+      {children}
+    </LanguageContext.Provider>
+  );
 };
 
-const AppContextConsumer = AppContext.Consumer;
+const LanguageContextConsumer = LanguageContext.Consumer;
 
-export { AppContext, AppContextProvider, AppContextConsumer };
+export { LanguageContext, LanguageContextProvider, LanguageContextConsumer };

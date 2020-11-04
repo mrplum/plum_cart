@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import style from "./Header.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import SelectButton from "../SelectButton";
-import { AppContext } from "../../context";
+import { LanguageContext } from "../../context";
 import Sidebar from "../Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
 
 const Header = (): JSX.Element => {
   const classes = useStyles();
-  const { toggleLocale, locale, languages } = useContext(AppContext);
+  const { toggleLocale, locale, languages } = useContext(LanguageContext);
   const intl = useIntl();
   const languagesNames = JSON.parse(intl.formatMessage({ id: "languages" }));
   return (

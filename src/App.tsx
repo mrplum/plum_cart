@@ -8,7 +8,7 @@ import Header from "./components/Header/Header";
 import { IntlProvider } from "react-intl";
 import messages from "./languages/messages";
 import { LOCALES } from "./languages/locales";
-import { AppContext } from "./context/index";
+import { LanguageContext } from "./context/index";
 
 const App = (): JSX.Element => {
   const [state, setState] = useState<{ card: boolean }>({
@@ -21,7 +21,7 @@ const App = (): JSX.Element => {
       card: !state.card,
     });
   };
-  const { locale } = useContext(AppContext);
+  const { locale } = useContext(LanguageContext);
   return (
     <IntlProvider
       locale={locale}
