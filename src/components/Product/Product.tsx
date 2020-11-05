@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import IDataJson from "../DataJson";
 import SelectButton from "../SelectButton";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import style from "./Product.module.css";
-import addProduct from "../../utils/Products";
 import { FormattedMessage, useIntl } from "react-intl";
+import { CartContext } from "../../context";
 
 const Product = ({ data }: { data: IDataJson }): JSX.Element => {
   const [state, setState] = useState<{ qty: number }>({
     qty: 1,
   });
-
+  const { addProduct } = useContext(CartContext);
   const intl = useIntl();
   const message = intl.formatMessage({ id: "prodAdded" });
   const handleChange = (value: string) => {
@@ -35,7 +35,7 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
       <div className={style.left}>
         <div className={style.centeredLeft}>
           <h1 className={style.title}>{data.title} </h1>
-          <img src={`/${data.img}`} alt={""} className={style.img}></img>
+          <img src={data.img} alt={""} className={style.img}></img>
         </div>
       </div>
       <div className={style.right}>

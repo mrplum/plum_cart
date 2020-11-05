@@ -1,5 +1,6 @@
 export {
-  AppContext,
-  AppContextProvider,
-  AppContextConsumer,
-} from "./AppContext.tsx";
+  LanguageContext,
+  LanguageContextProvider,
+} from "./LanguageContext.tsx";
+
+export { CartContext, CartContextProvider } from "./CartContext.tsx";

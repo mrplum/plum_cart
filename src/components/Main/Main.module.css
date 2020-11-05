@@ -1,19 +1,19 @@
-
 .root {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  overflow: hidden;
+  position: fixed;
+  overflow: scroll;
   padding-left: 50px;
+  max-height: 90%;
   padding-right: 50px;
   padding-bottom: 10px;
   background-color: #a0c1b8;
 }
 
-
 .title {
   font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-  
+
   font-size: xx-large;
   text-align: center;
   color: #59405c; /* #776d8a; */
