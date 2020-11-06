@@ -5,7 +5,9 @@ import style from "./ShoppingCart.module.css";
 const ShoppingCart = (): JSX.Element => {
   return (
     <div className={style.root}>
-      <ShoppingCartList />
+      <div className={style.list}>
+        <ShoppingCartList />
+      </div>
     </div>
   );
 };

@@ -19,40 +19,40 @@ const ShoppingCartList = (): JSX.Element => {
       total += list[i].price;
     }
   }
-  return (
-    <div className={style.cart}>
-      {!empty ? (
-        <div>
-          <List>
-            {list.map((product) => (
-              <ProductShoppingCart
-                key={product.id}
-                id={product.id}
-                img={datajson.find((e) => e.id === product.id).img}
-                title={datajson.find((e) => e.id === product.id).title}
-                price={product.price}
-                quantity={product.qty}
-                deleteP={deleteProduct}
-              />
-            ))}
-          </List>
-          <p>
-            TOTAL=
-            <NumberFormat
-              value={total}
-              displayType={"text"}
-              thousandSeparator={true}
-              prefix={"$"}
+  if (empty) {
+    return (
+      <p className={style.message}>
+        <FormattedMessage id="emptyCart" />
+      </p>
+    );
+  } else {
+    return (
+      <div className={style.cart}>
+        <List>
+          {list.map((product) => (
+            <ProductShoppingCart
+              key={product.id}
+              id={product.id}
+              img={datajson.find((e) => e.id === product.id).img}
+              title={datajson.find((e) => e.id === product.id).title}
+              price={product.price}
+              quantity={product.qty}
+              deleteP={deleteProduct}
             />
-          </p>
-        </div>
-      ) : (
-        <p className={style.message}>
-          <FormattedMessage id="emptyCart" />
+          ))}
+        </List>
+        <p>
+          TOTAL=
+          <NumberFormat
+            value={total}
+            displayType={"text"}
+            thousandSeparator={true}
+            prefix={"$"}
+          />
         </p>
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
 };
 
 export default ShoppingCartList;

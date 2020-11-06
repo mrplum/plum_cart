@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     height: 70,
     float: "none",
     position: "absolute",
-    right: "50%",
+    right: "47%",
   },
 }));
 
