@@ -41,6 +41,7 @@ const Sidebar = (): JSX.Element => {
   useEffect(() => {
     setX(0);
   }, [list]);
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     setX(-width);
