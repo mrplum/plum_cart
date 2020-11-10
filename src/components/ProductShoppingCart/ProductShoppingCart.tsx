@@ -40,7 +40,6 @@ const ProductShoppingCart = ({
 }): JSX.Element => {
   const classes = useStyles();
   const deleteProduct = () => {
-    console.log("llamo a delete con ", id);
     deleteP(id);
   };
   return (

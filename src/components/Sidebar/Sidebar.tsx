@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import style from "./Sidebar.module.css";
@@ -7,6 +7,7 @@ import Button from "../Button";
 import { Link } from "react-router-dom";
 import { useIntl } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
+import { CartContext } from "../../context";
 
 const CartButton = withStyles({
   root: {
@@ -23,6 +24,11 @@ const Sidebar = (): JSX.Element => {
   const width = 250;
   const [xPosition, setX] = useState(-width);
   const ref = React.useRef(null);
+  const { list } = useContext(CartContext);
+  let qty = 0;
+  list.forEach((e) => {
+    qty += e.qty;
+  });
 
   const toggleMenu = () => {
     if (xPosition < 0) {
@@ -62,6 +68,7 @@ const Sidebar = (): JSX.Element => {
           }}
         >
           <AddShoppingCartIcon />
+          <div className={style.number}>{qty !== 0 ? qty : ""}</div>
         </CartButton>
         <div className={style.children}>
           <div className={style.cart}>
