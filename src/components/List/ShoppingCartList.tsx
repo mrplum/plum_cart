@@ -5,6 +5,8 @@ import datajson from "../../data.json";
 import { FormattedMessage } from "react-intl";
 import { CartContext } from "../../context";
 import style from "./List.module.css";
+import NumberFormat from "react-number-format";
+
 const ShoppingCartList = (): JSX.Element => {
   const { list, deleteProduct } = useContext(CartContext);
   let empty = !list;
@@ -34,7 +36,15 @@ const ShoppingCartList = (): JSX.Element => {
               />
             ))}
           </List>
-          <p>TOTAL= ${total}</p>
+          <p>
+            TOTAL=
+            <NumberFormat
+              value={total}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix={"$"}
+            />
+          </p>
         </div>
       ) : (
         <p className={style.message}>
