@@ -9,6 +9,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import { FormattedMessage } from "react-intl";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,38 +45,41 @@ const ProductShoppingCart = ({
     deleteP(id);
   };
   return (
-    <ListItem alignItems="flex-start">
-      <ListItemAvatar>
-        <Avatar alt="" src={img} />
-      </ListItemAvatar>
-      <ListItemText
-        primary={title}
-        secondary={
-          <React.Fragment>
-            <Typography
-              component="span"
-              variant="body2"
-              className={classes.inline}
-              color="textPrimary"
-            >
-              ${price}
-              <br />
-            </Typography>
-            <FormattedMessage id="quantity" values={{ qty: quantity }} />
-          </React.Fragment>
-        }
-      />
-      <ListItemSecondaryAction>
-        <IconButton
-          edge="end"
-          aria-label="delete"
-          id={id}
-          onClick={deleteProduct}
-        >
-          <DeleteIcon />
-        </IconButton>
-      </ListItemSecondaryAction>
-    </ListItem>
+    <div>
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt="" src={img} />
+        </ListItemAvatar>
+        <ListItemText
+          primary={title}
+          secondary={
+            <React.Fragment>
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+                ${price}
+                <br />
+              </Typography>
+              <FormattedMessage id="quantity" values={{ qty: quantity }} />
+            </React.Fragment>
+          }
+        />
+        <ListItemSecondaryAction>
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            id={id}
+            onClick={deleteProduct}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </ListItemSecondaryAction>
+      </ListItem>
+      <Divider variant="middle" component="li" />
+    </div>
   );
 };
 
