@@ -5,6 +5,7 @@ import classNames from "classnames";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { FormattedMessage, useIntl } from "react-intl";
+import NumberFormat from "react-number-format";
 
 const ProductImage = ({ img }: { img: string }): JSX.Element => {
   if (img) {
@@ -56,7 +57,12 @@ const Card = ({
             [styles.priceDark]: dark,
           })}
         >
-          ${price}
+          <NumberFormat
+            value={price}
+            displayType={"text"}
+            thousandSeparator={true}
+            prefix={"$"}
+          />
         </h1>
       </div>
       <div className={classNames(styles.buttons)}>

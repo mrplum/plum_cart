@@ -10,6 +10,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import { FormattedMessage } from "react-intl";
 import Divider from "@material-ui/core/Divider";
+import NumberFormat from "react-number-format";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -60,7 +61,12 @@ const ProductShoppingCart = ({
                 className={classes.inline}
                 color="textPrimary"
               >
-                ${price}
+                <NumberFormat
+                  value={price}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"$"}
+                />
                 <br />
               </Typography>
               <FormattedMessage id="quantity" values={{ qty: quantity }} />
