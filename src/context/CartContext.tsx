@@ -19,12 +19,7 @@ const CartContextProvider = ({
     localStorage.setItem("shoppingcart", JSON.stringify(newList));
   };
 
-  const addProduct = (
-    id: string,
-    price: number,
-    qty: number,
-    message: string
-  ): void => {
+  const addProduct = (id: string, price: number, qty: number): void => {
     const old = JSON.parse(localStorage.getItem("shoppingcart"));
     const newP = {
       id: id,
@@ -51,7 +46,6 @@ const CartContextProvider = ({
       list: newList,
     });
     localStorage.setItem("shoppingcart", JSON.stringify(newList));
-    alert(message);
   };
 
   const list = JSON.parse(localStorage.getItem("shoppingcart"));
