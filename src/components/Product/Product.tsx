@@ -6,6 +6,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import style from "./Product.module.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import { CartContext } from "../../context";
+import NumberFormat from "react-number-format";
 
 const Product = ({ data }: { data: IDataJson }): JSX.Element => {
   const [state, setState] = useState<{ qty: number }>({
@@ -60,7 +61,14 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
               defaultValue="1"
             />
           </div>
-          <p className={style.price}>${data.price * state.qty}</p>
+          <p className={style.price}>
+            <NumberFormat
+              value={data.price * state.qty}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix={"$"}
+            />
+          </p>
         </div>
       </div>
     </div>
