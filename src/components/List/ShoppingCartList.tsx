@@ -27,7 +27,7 @@ const ShoppingCartList = (): JSX.Element => {
     );
   } else {
     return (
-      <div className={style.cart}>
+      <div>
         <List>
           {list.map((product) => (
             <ProductShoppingCart
