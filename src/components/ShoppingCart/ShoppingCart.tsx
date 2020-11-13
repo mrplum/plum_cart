@@ -16,10 +16,7 @@ const ShoppingCart = (): JSX.Element => {
             pathname: "/shipping",
           }}
         >
-          <Button
-            label={intl.formatMessage({ id: "shippingForm" })}
-            primary={true}
-          />
+          <Button label={intl.formatMessage({ id: "buy" })} primary={true} />
         </Link>
       </div>
     </div>
