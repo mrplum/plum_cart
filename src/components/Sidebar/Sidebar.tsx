@@ -24,11 +24,7 @@ const Sidebar = (): JSX.Element => {
   const width = 250;
   const [xPosition, setX] = useState(-width);
   const ref = React.useRef(null);
-  const { list } = useContext(CartContext);
-  let qty = 0;
-  list.forEach((e) => {
-    qty += e.qty;
-  });
+  const { quantity } = useContext(CartContext);
 
   const toggleMenu = () => {
     if (xPosition < 0) {
@@ -68,7 +64,7 @@ const Sidebar = (): JSX.Element => {
           }}
         >
           <AddShoppingCartIcon />
-          <div className={style.number}>{qty !== 0 ? qty : ""}</div>
+          <div className={style.number}>{quantity !== 0 ? quantity : ""}</div>
         </CartButton>
         <div className={style.children}>
           <div className={style.cart}>

@@ -8,6 +8,7 @@ const defaultLanguageValue = {
 
 const defaultCartValue = {
   list: [],
+  quantity: 0,
   addProduct: (
     id: string,
     price: number,
