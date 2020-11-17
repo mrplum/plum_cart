@@ -9,13 +9,14 @@ const CartContextProvider = ({
   children: JSX.Element;
 }): JSX.Element => {
   const deleteProduct = (id: string): void => {
-    const newList = JSON.parse(localStorage.getItem("shoppingcart")).filter(
-      (p) => p.id !== id
-    );
-    setState({
+    const list = JSON.parse(localStorage.getItem("shoppingcart"));
+    const newList = list.filter((p) => p.id !== id);
+    const deleted = list.find((p) => p.id === id);
+    setState((prevState) => ({
       ...state,
+      quantity: prevState.quantity - deleted.qty,
       list: newList,
-    });
+    }));
     localStorage.setItem("shoppingcart", JSON.stringify(newList));
   };
 
@@ -41,16 +42,22 @@ const CartContextProvider = ({
         newList.push(newP);
       }
     }
-    setState({
+    setState((prevState) => ({
       ...state,
+      quantity: prevState.quantity + qty,
       list: newList,
-    });
+    }));
     localStorage.setItem("shoppingcart", JSON.stringify(newList));
   };
 
   const list = JSON.parse(localStorage.getItem("shoppingcart"));
+  const quantity =
+    list.length !== 0
+      ? list.map((item) => item.qty).reduce((prev, next) => prev + next)
+      : 0;
   const [state, setState] = useState({
     list: list,
+    quantity: quantity,
     deleteProduct: deleteProduct,
     addProduct: addProduct,
   });

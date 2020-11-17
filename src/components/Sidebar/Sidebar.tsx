@@ -7,7 +7,7 @@ import Button from "../Button";
 import { Link } from "react-router-dom";
 import { useIntl } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../context";
 
 const CartButton = withStyles({
   root: {
@@ -24,7 +24,8 @@ const Sidebar = (): JSX.Element => {
   const width = 250;
   const [xPosition, setX] = useState(-width);
   const ref = React.useRef(null);
-  const { list } = useContext(CartContext);
+  const { list, quantity } = useContext(CartContext);
+
   const toggleMenu = () => {
     if (xPosition < 0) {
       setX(0);
@@ -69,6 +70,7 @@ const Sidebar = (): JSX.Element => {
           }}
         >
           <AddShoppingCartIcon />
+          <div className={style.number}>{quantity !== 0 ? quantity : ""}</div>
         </CartButton>
         <div className={style.children}>
           <div className={style.cart}>
