@@ -12,6 +12,7 @@ export default {
     languages: '["Ingles", "Español"]',
     viewCart: "Ver Carrito",
     buy: "Comprar",
+    form: "Formulario de envio",
     fullName: "Nombre completo",
     email: "e-mail",
     address: "Dirección",
@@ -22,6 +23,7 @@ export default {
     street: "Calle",
     number: "Número",
     floor: "Piso",
+    submit: "Enviar",
     save: "Guardado exitosamente",
   },
 };

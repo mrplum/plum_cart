@@ -54,27 +54,35 @@ const ShippingForm = (): JSX.Element => {
   } = state;
   return (
     <div className={style.root}>
-      <h1 className={style.title}> Form</h1>
-      <div className={style.form}>
-        <form onSubmit={onSubmit}>
-          <label>
+      <h1 className={style.title}>
+        <FormattedMessage id="form" />
+      </h1>
+      <div className={style.formContainer}>
+        <form onSubmit={onSubmit} className={style.form}>
+          <label className={style.label}>
             <FormattedMessage id="fullName" />
             <input
+              className={style.input}
               type="text"
               value={fullName}
               name="fullName"
               onChange={onChange}
             />
           </label>
-          <br />
-          <label>
+          <label className={style.label}>
             <FormattedMessage id="email" />
-            <input type="text" value={email} name="email" onChange={onChange} />
+            <input
+              className={style.input}
+              type="text"
+              value={email}
+              name="email"
+              onChange={onChange}
+            />
           </label>
-          <br />
-          <label>
+          <label className={style.label}>
             <FormattedMessage id="address" />
             <input
+              className={style.input}
               type="text"
               value={country}
               placeholder={intl.formatMessage({ id: "country" })}
@@ -82,6 +90,7 @@ const ShippingForm = (): JSX.Element => {
               onChange={onChange}
             />
             <input
+              className={style.input}
               type="text"
               value={s}
               placeholder={intl.formatMessage({ id: "state" })}
@@ -89,6 +98,7 @@ const ShippingForm = (): JSX.Element => {
               onChange={onChange}
             />
             <input
+              className={style.input}
               type="text"
               value={city}
               placeholder={intl.formatMessage({ id: "city" })}
@@ -96,6 +106,7 @@ const ShippingForm = (): JSX.Element => {
               onChange={onChange}
             />
             <input
+              className={style.input}
               type="text"
               value={zipcode}
               placeholder={intl.formatMessage({ id: "zipcode" })}
@@ -103,6 +114,7 @@ const ShippingForm = (): JSX.Element => {
               onChange={onChange}
             />
             <input
+              className={style.input}
               type="text"
               value={street}
               placeholder={intl.formatMessage({ id: "street" })}
@@ -110,6 +122,7 @@ const ShippingForm = (): JSX.Element => {
               onChange={onChange}
             />
             <input
+              className={style.input}
               type="text"
               value={number}
               placeholder={intl.formatMessage({ id: "number" })}
@@ -117,6 +130,7 @@ const ShippingForm = (): JSX.Element => {
               onChange={onChange}
             />
             <input
+              className={style.input}
               type="text"
               value={floor}
               placeholder={intl.formatMessage({ id: "floor" })}
@@ -124,7 +138,9 @@ const ShippingForm = (): JSX.Element => {
               onChange={onChange}
             />
           </label>
-          <input type="submit" />
+          <button type="submit" className={style.button}>
+            <FormattedMessage id="submit" />
+          </button>
         </form>
       </div>
     </div>
