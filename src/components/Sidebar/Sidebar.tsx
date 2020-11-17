@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import style from "./Sidebar.module.css";
@@ -24,7 +24,7 @@ const Sidebar = (): JSX.Element => {
   const width = 250;
   const [xPosition, setX] = useState(-width);
   const ref = React.useRef(null);
-  const { quantity } = useContext(CartContext);
+  const { list, quantity } = useContext(CartContext);
 
   const toggleMenu = () => {
     if (xPosition < 0) {
@@ -39,12 +39,18 @@ const Sidebar = (): JSX.Element => {
       setX(-width);
     }
   };
-  React.useEffect(() => {
+  useEffect(() => {
+    setX(0);
+  }, [list]);
+
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+    setX(-width);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
     <React.Fragment>
       <div
