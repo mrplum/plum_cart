@@ -8,7 +8,8 @@ import style from "./List.module.css";
 import NumberFormat from "react-number-format";
 
 const ShoppingCartList = (): JSX.Element => {
-  const { list, deleteProduct } = useContext(CartContext);
+  const { state } = useContext(CartContext);
+  const list = state.list;
   let empty = !list;
   let total = 0;
   if (!empty) {
@@ -37,7 +38,6 @@ const ShoppingCartList = (): JSX.Element => {
               title={datajson.find((e) => e.id === product.id).title}
               price={product.price}
               quantity={product.qty}
-              deleteP={deleteProduct}
             />
           ))}
         </List>

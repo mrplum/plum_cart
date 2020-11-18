@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Card.module.css";
 import defaultImage from "../../public/images/image-not-found.png";
 import classNames from "classnames";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
+import { CartContext } from "../../context";
 
 const ProductImage = ({ img }: { img: string }): JSX.Element => {
   if (img) {
@@ -23,19 +24,18 @@ const Card = ({
   title,
   price,
   img,
-  addP,
 }: {
   id: string;
   dark: boolean;
   title: string;
   price: number;
   img?: string;
-  addP: (id: string, price: number, qty: number, message: string) => void;
 }): JSX.Element => {
-  const message = useIntl().formatMessage({ id: "prodAdded" });
+  const { dispatch } = useContext(CartContext);
   const addProduct = (e) => {
     e.preventDefault();
-    addP(id, price, 1, message);
+    const p = { id: id, price: price, qty: 1 };
+    dispatch({ type: "addProduct", payload: p });
   };
   return (
     <div
