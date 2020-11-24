@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { FormattedMessage } from "react-intl";
 import Divider from "@material-ui/core/Divider";
 import NumberFormat from "react-number-format";
+import { CartContext } from "../../context/CartContext";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,18 +32,17 @@ const ProductShoppingCart = ({
   title,
   price,
   quantity,
-  deleteP,
 }: {
   id: string;
   img: string;
   title: string;
   price: number;
   quantity: number;
-  deleteP: (id: string) => void;
 }): JSX.Element => {
+  const { dispatch } = useContext(CartContext);
   const classes = useStyles();
   const deleteProduct = () => {
-    deleteP(id);
+    dispatch({ type: "deleteProduct", payload: { id: id } });
   };
   return (
     <div>
