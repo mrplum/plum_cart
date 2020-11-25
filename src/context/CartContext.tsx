@@ -59,8 +59,7 @@ const CartContextProvider = ({
   children: JSX.Element;
 }): JSX.Element => {
   const list = JSON.parse(localStorage.getItem("shoppingcart"));
-  const quantity =
-    list.length !== 0
+  const quantity = list && list.length !== 0
       ? list
           .map((item: IProductShoppingCart) => item.qty)
           .reduce((prev: number, next: number) => prev + next)
