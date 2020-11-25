@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Main from "./components/Main";
 import data from "./data.json";
 import Product from "./components/Product";
-import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, RouteComponentProps, withRouter } from "react-router-dom";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import Header from "./components/Header/Header";
 import { IntlProvider } from "react-intl";
@@ -41,7 +41,7 @@ const App = (): JSX.Element => {
         <Route
           exact
           path="/products/:id"
-          render={withRouter(({ location }) => (
+          render={withRouter(({ location: any }) => (
             <Product data={location.state.data} />
           ))}
         />

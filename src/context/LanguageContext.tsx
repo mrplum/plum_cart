@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { defaultLanguageValue } from "./defaultValues.tsx";
+import { defaultLanguageValue } from "./defaultValues";
 
 const LanguageContext = createContext(defaultLanguageValue);
 
