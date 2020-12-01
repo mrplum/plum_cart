@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import style from "./Sidebar.module.css";
 import { withStyles } from "@material-ui/core/styles";
@@ -10,7 +9,7 @@ import { useIntl } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
 import { CartContext } from "../../context";
 
-const WIDTH = 300;
+const WIDTH = 350;
 
 const CartButton = withStyles({
   root: {

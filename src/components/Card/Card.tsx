@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "./Card.module.css";
 import defaultImage from "../../public/images/image-not-found.png";
 import classNames from "classnames";
-import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
@@ -43,40 +43,35 @@ const Card = ({
         [styles.cardDark]: dark,
       })}
     >
-      <div>
-        <ProductImage img={img} />
-        <h2
-          className={classNames(styles.title, {
-            [styles.titleDark]: dark,
-          })}
-        >
-          {title}
-        </h2>
-        <h1
-          className={classNames(styles.price, {
-            [styles.priceDark]: dark,
-          })}
-        >
-          <NumberFormat
-            value={price}
-            displayType={"text"}
-            thousandSeparator={true}
-            prefix={"$"}
-          />
-        </h1>
-      </div>
-      <div className={classNames(styles.buttons)}>
-        <IconButton
-          aria-label={`star ${title}`}
-          color={"default"}
-          onClick={addProduct}
-        >
-          <AddShoppingCartIcon />
-          <p>
-            <FormattedMessage id="buttonAdd" />
-          </p>
-        </IconButton>
-      </div>
+      <ProductImage img={img} />
+      <h2
+        className={classNames(styles.title, {
+          [styles.titleDark]: dark,
+        })}
+      >
+        {title}
+      </h2>
+      <h1
+        className={classNames(styles.price, {
+          [styles.priceDark]: dark,
+        })}
+      >
+        <NumberFormat
+          value={price}
+          displayType={"text"}
+          thousandSeparator={true}
+          prefix={"$"}
+        />
+      </h1>
+      <Button
+        variant="outlined"
+        className={styles.button}
+        aria-label={`star ${title}`}
+        onClick={addProduct}
+      >
+        <AddShoppingCartIcon />
+        <FormattedMessage id="buttonAdd" />
+      </Button>
     </div>
   );
 };
