@@ -2,20 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  position: fixed;
-  overflow: scroll;
-  padding-left: 50px;
-  max-height: 90%;
-  padding-right: 50px;
-  padding-bottom: 10px;
-  background-color: #a0c1b8;
+  background-color: var(--lighter);
 }
 
 .title {
-  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-
-  font-size: xx-large;
+  width: 100%;
   text-align: center;
-  color: #59405c; /* #776d8a; */
-  padding-left: 250px;
+  font-size: 4rem;
+  color: var(--dark);
 }

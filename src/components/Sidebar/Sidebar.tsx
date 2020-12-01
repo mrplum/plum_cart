@@ -1,90 +1,93 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
+import Fab from "@material-ui/core/Fab";
 import style from "./Sidebar.module.css";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "../Button";
+import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useIntl } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
 import { CartContext } from "../../context";
 
+const WIDTH = 300;
+
 const CartButton = withStyles({
   root: {
-    height: 50,
-    width: 10,
-    position: "absolute",
-    outline: "none",
-    zIndex: 1,
-    borderLeft: 0,
+    position: 'fixed',
+    right: 24,
+    bottom: 24,
+    height: 48,
+    width: 48,
   },
-})(IconButton);
+})(Fab);
 
 const Sidebar = (): JSX.Element => {
-  const width = 250;
-  const [xPosition, setX] = useState(-width);
-  const ref = React.useRef(null);
+  const [xPosition, setX] = useState(-WIDTH);
+
+  const ref = useRef(null);
+
   const { state } = useContext(CartContext);
-  const quantity = state.quantity;
 
   const toggleMenu = () => {
     if (xPosition < 0) {
       setX(0);
     } else {
-      setX(-width);
+      setX(-WIDTH);
     }
   };
 
   const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
-      setX(-width);
+      setX(-WIDTH);
     }
   };
+
+  const handleKeypress = (event) => {
+    if (event.key === 'Escape') {
+      setX(-WIDTH);
+    }
+  }
+
   useEffect(() => {
     setX(0);
   }, [state]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-    setX(-width);
+    document.addEventListener("keydown", handleKeypress);
+
+    setX(-WIDTH);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeypress);
     };
   }, []);
 
   return (
     <React.Fragment>
+      <CartButton onClick={toggleMenu} variant="extended">
+        <AddShoppingCartIcon />
+        <div className={style.number}>{state.quantity !== 0 ? state.quantity : ""}</div>
+      </CartButton>
       <div
         ref={ref}
         className={style.sideBar}
         style={{
-          transform: `translatex(${xPosition}px)`,
-          width: width,
-          minHeight: "0vh",
+          transform: `translatex(${-xPosition}px)`,
+          width: WIDTH,
         }}
       >
-        <CartButton
-          color={"default"}
-          onClick={toggleMenu}
-          style={{
-            transform: `translate(${xPosition === -250 ? 255 : 205}px, -10vh)`,
-          }}
-        >
-          <AddShoppingCartIcon />
-          <div className={style.number}>{quantity !== 0 ? quantity : ""}</div>
-        </CartButton>
-        <div className={style.children}>
-          <div className={style.cart}>
-            <ShoppingCartList />
-          </div>
-          <div className={style.button}>
-            <Link to={{ pathname: "/shoppingcart" }}>
-              <Button
-                label={useIntl().formatMessage({ id: "viewCart" })}
-                primary={true}
-              />
-            </Link>
-          </div>
+        <div className={style.cart}>
+          <ShoppingCartList />
+        </div>
+        <div className={style.button}>
+          <Link to={{ pathname: "/shoppingcart" }}>
+            <Button variant="contained" color="default">
+              {useIntl().formatMessage({ id: "viewCart" })}
+            </Button>
+          </Link>
         </div>
       </div>
     </React.Fragment>
