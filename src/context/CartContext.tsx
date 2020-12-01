@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import { defaultCartValue } from "./defaultValues.tsx";
+import { defaultCartValue } from "./defaultValues";
 import IProductShoppingCart from "../components/IProductShoppingCart";
 
 const CartContext = createContext(defaultCartValue);
@@ -34,7 +34,7 @@ const deleteProduct = (list: Array<IProductShoppingCart>, id: string) => {
   return { newList: newList, qtyDeleted: deleted.qty };
 };
 
-const reducer = (state, action) => {
+const reducer = (state: { list: any[]; quantity: number; }, action: { type: any; payload: any; }) => {
   switch (action.type) {
     case "addProduct": {
       const qtyAdded = action.payload.qty;
