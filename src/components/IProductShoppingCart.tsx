@@ -1,6 +1,7 @@
 interface IProductShoppingCart {
   id: string;
-  price: number;
-  qty: number;
+  title: string;
+  unit_price: number;
+  quantity: number;
 }
 export default IProductShoppingCart;

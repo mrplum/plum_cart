@@ -17,7 +17,7 @@ const ShoppingCartList = (): JSX.Element => {
       empty = true;
     }
     for (let i = 0; i < list.length; i++) {
-      total += list[i].price;
+      total += list[i].unit_price * list[i].quantity;
     }
   }
   if (empty) {
@@ -35,9 +35,9 @@ const ShoppingCartList = (): JSX.Element => {
               key={product.id}
               id={product.id}
               img={datajson.find((e) => e.id === product.id).img}
-              title={datajson.find((e) => e.id === product.id).title}
-              price={product.price}
-              quantity={product.qty}
+              title={product.title}
+              unit_price={product.unit_price}
+              quantity={product.quantity}
             />
           ))}
         </List>

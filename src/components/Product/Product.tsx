@@ -25,7 +25,12 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
     event.preventDefault();
     dispatch({
       type: "addProduct",
-      payload: { id: data.id, price: data.price * state.qty, qty: state.qty },
+      payload: {
+        id: data.id,
+        title: data.title,
+        unit_price: data.price,
+        quantity: state.qty,
+      },
     });
   };
 

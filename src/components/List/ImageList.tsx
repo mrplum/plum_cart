@@ -15,7 +15,12 @@ const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
     const shirt = JSON.parse(e.currentTarget.value);
     dispatch({
       type: "addProduct",
-      payload: { id: shirt.id, price: shirt.price, qty: 1 },
+      payload: {
+        id: shirt.id,
+        title: shirt.title,
+        unit_price: shirt.price,
+        quantity: 1,
+      },
     });
   };
 

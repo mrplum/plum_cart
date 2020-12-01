@@ -30,13 +30,13 @@ const ProductShoppingCart = ({
   id,
   img,
   title,
-  price,
+  unit_price,
   quantity,
 }: {
   id: string;
   img: string;
   title: string;
-  price: number;
+  unit_price: number;
   quantity: number;
 }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
@@ -61,7 +61,7 @@ const ProductShoppingCart = ({
                 color="textPrimary"
               >
                 <NumberFormat
-                  value={price}
+                  value={unit_price * quantity}
                   displayType={"text"}
                   thousandSeparator={true}
                   prefix={"$"}

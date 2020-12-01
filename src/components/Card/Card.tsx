@@ -34,7 +34,7 @@ const Card = ({
   const { dispatch } = useContext(CartContext);
   const addProduct = (e) => {
     e.preventDefault();
-    const p = { id: id, price: price, qty: 1 };
+    const p = { id: id, title: title, unit_price: price, quantity: 1 };
     dispatch({ type: "addProduct", payload: p });
   };
   return (
