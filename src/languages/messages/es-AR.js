@@ -25,7 +25,5 @@ export default {
     street: "Calle",
     number: "Número",
     floor: "Piso",
-    submit: "Enviar",
-    save: "Guardado exitosamente",
   },
 };

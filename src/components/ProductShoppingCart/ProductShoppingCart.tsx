@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
-import { FormattedMessage } from 'react-intl';
-import Divider from '@material-ui/core/Divider';
-import NumberFormat from 'react-number-format';
-import { CartContext } from '../../context/CartContext';
-import styles from './ProductShoppingCart.module.css';
+import React, { useContext } from "react";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
+import { FormattedMessage } from "react-intl";
+import Divider from "@material-ui/core/Divider";
+import NumberFormat from "react-number-format";
+import { CartContext } from "../../context/CartContext";
+import styles from "./ProductShoppingCart.module.css";
 
 const ProductShoppingCart = ({
   id,
@@ -29,7 +28,7 @@ const ProductShoppingCart = ({
 }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
   const deleteProduct = () => {
-    dispatch({ type: 'deleteProduct', payload: { id: id } });
+    dispatch({ type: "deleteProduct", payload: { id: id } });
   };
   return (
     <div>

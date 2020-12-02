@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import style from "./ShippingForm.module.css";
+import Mercadopago from "../Mercadopago";
+import { CartContext } from "../../context";
 
 const ShippingForm = (): JSX.Element => {
-  const [state, setState] = useState<{
+  const [user, setState] = useState<{
     fullName: string;
     email: string;
     country: string;
@@ -25,19 +27,14 @@ const ShippingForm = (): JSX.Element => {
     floor: "",
   });
 
-  //escucho el evento e,
-  const onSubmit = (e) => {
-    e.preventDefault();
-    alert(intl.formatMessage({ id: "save" }));
-  };
+  const { state } = useContext(CartContext);
 
   const onChange = (e) => {
     e.preventDefault();
     setState({
-      ...state,
+      ...user,
       [e.target.name]: e.target.value,
     });
-    console.log("vine", e.target);
   };
 
   const intl = useIntl();
@@ -51,14 +48,14 @@ const ShippingForm = (): JSX.Element => {
     street,
     number,
     floor,
-  } = state;
+  } = user;
   return (
     <div className={style.root}>
       <h1 className={style.title}>
         <FormattedMessage id="form" />
       </h1>
       <div className={style.formContainer}>
-        <form onSubmit={onSubmit} className={style.form}>
+        <form className={style.form}>
           <label className={style.label}>
             <FormattedMessage id="fullName" />
             <input
@@ -138,9 +135,7 @@ const ShippingForm = (): JSX.Element => {
               onChange={onChange}
             />
           </label>
-          <button type="submit" className={style.button}>
-            <FormattedMessage id="submit" />
-          </button>
+          <Mercadopago cart={state} />
         </form>
       </div>
     </div>
