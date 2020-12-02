@@ -46,12 +46,14 @@ const ProductShoppingCart = ({
   };
   return (
     <div>
-      <ListItem alignItems="flex-start">
+      <ListItem alignItems="center">
         <ListItemAvatar>
           <Avatar alt="" src={img} />
         </ListItemAvatar>
         <ListItemText
-          primary={title}
+          primary={
+            <b>{title}</b>
+          }
           secondary={
             <React.Fragment>
               <Typography
