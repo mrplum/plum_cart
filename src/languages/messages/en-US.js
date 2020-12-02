@@ -25,7 +25,5 @@ export default {
     street: "Street",
     number: "Number",
     floor: "Floor",
-    submit: "Send",
-    save: "Saved succesfully",
   },
 };

@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { FormattedMessage } from "react-intl";
+import { Link } from "react-router-dom";
+import { FormattedMessage, useIntl } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
 import style from "./ShoppingCart.module.css";
-import Mercadopago from "../Mercadopago";
+import { Button } from "@material-ui/core";
 import { CartContext } from "../../context/CartContext";
-import { Card } from '@material-ui/core';
+import { Card } from "@material-ui/core";
 
 const ShoppingCart = (): JSX.Element => {
   const { state } = useContext(CartContext);
@@ -16,7 +17,20 @@ const ShoppingCart = (): JSX.Element => {
           <FormattedMessage id="cartTitle" />
         </h1>
         <ShoppingCartList />
-        <Mercadopago cart={state}/>
+        {state.list.length !== 0 ? (
+          <Link to={{ pathname: "/shipping" }}>
+            <Button
+              className={style.button}
+              variant="contained"
+              color="primary"
+              size="large"
+            >
+              {useIntl().formatMessage({ id: "buy" })}
+            </Button>
+          </Link>
+        ) : (
+          <div></div>
+        )}
       </Card>
     </div>
   );
