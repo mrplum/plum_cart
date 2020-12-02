@@ -9,6 +9,7 @@ import { IntlProvider } from "react-intl";
 import messages from "./languages/messages";
 import { LOCALES } from "./languages/locales";
 import { LanguageContext } from "./context";
+import ShippingForm from "./components/ShippingForm";
 
 const App = (): JSX.Element => {
   const [state, setState] = useState<{ card: boolean }>({
@@ -45,8 +46,11 @@ const App = (): JSX.Element => {
             <Product data={location.state.data} />
           ))}
         />
-        <Route exact path="/shoppingcart/">
+        <Route exact path="/shoppingcart">
           <ShoppingCart />
+        </Route>
+        <Route exact path="/shipping">
+          <ShippingForm />
         </Route>
       </Router>
     </IntlProvider>
