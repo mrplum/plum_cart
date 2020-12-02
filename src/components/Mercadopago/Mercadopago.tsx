@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react';
-import mercadopago from 'mercadopago';
-import Button from '../Button';
 import { Link } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import mercadopago from 'mercadopago';
 import { CartContext } from '../../context';
+import Button from '../Button';
 import style from './Mercadopago.module.css';
 
-const sandbox = true;
-const access_token = 'TEST-1807600686871209-112614-729d1dbd3c5e18b0dd6bf00117ad00b6-678201171';
+const SANDBOX = true;
+const ACCESS_TOKEN = 'TEST-1807600686871209-112614-729d1dbd3c5e18b0dd6bf00117ad00b6-678201171';
 
 const Mercadopago = (): JSX.Element => {
-  const { state } = useContext(CartContext);
-  const [s, setState] = useState({ bol: false, dir: '' });
+  const [{ pathname }, setState] = useState({ pathname: null });
+  const { state: cart } = useContext(CartContext);
 
   const set = useCallback(async () => {
     try {
@@ -21,39 +21,38 @@ const Mercadopago = (): JSX.Element => {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
-            Authorization: `Bearer ${access_token}`,
+            Authorization: 'Bearer ' + ACCESS_TOKEN,
           },
           body: JSON.stringify({
-            items: state.list,
+            items: cart.list,
             payer: { email: 'test_user_69999056@testuser.com' },
           }),
         }
       );
-      
+
       const jsonResponse = await response.json();
-      setState({ bol: true, dir: jsonResponse.init_point });
+
+      setState({ pathname: jsonResponse.init_point });
     } catch (error) {
-      console.log(error);
+      console.warn(error);
     }
 
-  }, [state.list]);
+  }, [cart.list]);
 
   useEffect(() => {
     set();
-  }, [state.list]);
 
-  useEffect(() => {
     try {
-      mercadopago.configure({ sandbox, access_token });
+      mercadopago.configure({ sandbox: SANDBOX, access_token: ACCESS_TOKEN });
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [cart.list]);
 
   return (
     <div className={style.containerButton}>
-      {s.bol && (
-        <Link to={{ pathname: s.dir }} target="_blank">
+      {pathname && (
+        <Link to={{ pathname }} target="_blank">
           <Button
             label={useIntl().formatMessage({ id: 'pay' })}
             dark={true}
