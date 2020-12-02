@@ -13,12 +13,10 @@ import Divider from "@material-ui/core/Divider";
 import NumberFormat from "react-number-format";
 import { CartContext } from "../../context/CartContext";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: "100%",
-      maxWidth: "36ch",
-      backgroundColor: theme.palette.background.paper,
     },
     inline: {
       display: "inline",
