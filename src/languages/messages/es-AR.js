@@ -12,5 +12,6 @@ export default {
     languages: '["Ingles", "Español"]',
     viewCart: "Ver Carrito",
     pay: "Pagar",
+    cartTitle: "Carrito de compras",
   },
 };

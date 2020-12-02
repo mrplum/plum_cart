@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import mercadopago from 'mercadopago';
-import Button from '../Button';
+import { Button } from "@material-ui/core";
 import style from './Mercadopago.module.css';
 import IProductShoppingCart from '../IProductShoppingCart';
 
@@ -49,16 +48,24 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
     configureMercadoPago();
   }, [props.cart]);
 
+  const handleCheckout = useCallback(() => {
+    if (pathname) {
+      window.open(pathname);
+    }
+  }, [pathname]);
+
   return (
     <div className={style.containerButton}>
-      <Link to={{ pathname }} target="_blank" disabled>
-        <Button
-          label={useIntl().formatMessage({ id: 'pay' })}
-          dark={true}
-          primary={true}
-          large={true}
-        />
-      </Link>
+      <Button 
+        className={style.button}
+        variant="contained" 
+        color="primary" 
+        size="large" 
+        onClick={handleCheckout} 
+        disabled={pathname === null || props.cart.list.length === 0}
+      >
+        {useIntl().formatMessage({ id: 'pay' })}
+      </Button>
     </div>
   );
 };

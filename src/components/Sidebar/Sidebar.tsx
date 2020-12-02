@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useRef, useCallback } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Fab from "@material-ui/core/Fab";
 import style from "./Sidebar.module.css";
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useIntl } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
 import { CartContext } from "../../context";
@@ -22,6 +22,8 @@ const CartButton = withStyles({
 })(Fab);
 
 const Sidebar = (): JSX.Element => {
+  const history = useHistory();
+
   const [xPosition, setX] = useState(-WIDTH);
 
   const ref = useRef(null);
@@ -36,17 +38,24 @@ const Sidebar = (): JSX.Element => {
     }
   };
 
+  const close = () => setX(-WIDTH);
+
   const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
-      setX(-WIDTH);
+      close();
     }
   };
 
   const handleKeypress = (event) => {
     if (event.key === 'Escape') {
-      setX(-WIDTH);
+      close();
     }
   }
+
+  const handleViewCart = useCallback(() => {
+    history.push('/shoppingcart')
+    close();
+  }, [history]);
 
   useEffect(() => {
     setX(0);
@@ -82,11 +91,9 @@ const Sidebar = (): JSX.Element => {
           <ShoppingCartList />
         </div>
         <div className={style.button}>
-          <Link to={{ pathname: "/shoppingcart" }}>
-            <Button variant="contained" color="default">
-              {useIntl().formatMessage({ id: "viewCart" })}
-            </Button>
-          </Link>
+          <Button variant="contained" color="primary" size="large" onClick={handleViewCart}>
+            {useIntl().formatMessage({ id: "viewCart" })}
+          </Button>
         </div>
       </div>
     </React.Fragment>

@@ -6,7 +6,17 @@
   align-items: center;
 }
 
-.list {
-  width: 100%;
+.cart {
+  width: 80%;
   max-width: 1170px;
+  padding: 24px;
+  padding-top: 0px;
+  margin: 0 auto;
+  margin-top: 32px;
+}
+
+.title {
+  color: var(--dark);
+  text-align: center;
+  padding-top: 16px;
 }

@@ -40,16 +40,16 @@ const ShoppingCartList = (): JSX.Element => {
               quantity={product.quantity}
             />
           ))}
+          <p className={style.cartTotal}>
+            Total &nbsp;
+            <NumberFormat
+              value={total}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix={"$"}
+            />
+          </p>
         </List>
-        <p className={style.cartTotal}>
-          TOTAL =&nbsp;
-          <NumberFormat
-            value={total}
-            displayType={"text"}
-            thousandSeparator={true}
-            prefix={"$"}
-          />
-        </p>
       </div>
     );
   }

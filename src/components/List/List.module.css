@@ -46,8 +46,9 @@
 }
 
 .cartTotal {
-  font-weight: bold;
-  text-align: center;
+  font-size: x-large;
+  text-align: right;
+  margin: 16px;
 }
 
 .cardContainer {
