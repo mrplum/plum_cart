@@ -15,12 +15,10 @@ interface IMainProps {
 const Main = (props: IMainProps): JSX.Element => {
   return (
     <div className={style.root}>
-      <div className={style.title}>
-        <h1>
-          <FormattedMessage id="title" />
-        </h1>
-      </div>
       <SwitchView status={props.status} handler={props.toggleViewHandler} />
+      <h1 className={style.title}>
+        <FormattedMessage id="title" />
+      </h1>
 
       {props.status ? (
         <CardList data={props.data} />

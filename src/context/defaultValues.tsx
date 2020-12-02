@@ -7,8 +7,13 @@ const defaultLanguageValue = {
 };
 
 const defaultCartValue = {
-  list: [],
-  quantity: 0,
+  state: {
+    list: [],
+    quantity: 0,
+  },
+  dispatch: (args: unknown): void => {
+    args;
+  },
 };
 
 export { defaultLanguageValue, defaultCartValue };

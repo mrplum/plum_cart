@@ -1,24 +1,23 @@
-import React from "react";
-import { useIntl } from "react-intl";
+import React, { useContext } from "react";
+import { FormattedMessage } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
-import { Link } from "react-router-dom";
-import Button from "../Button";
 import style from "./ShoppingCart.module.css";
+import Mercadopago from "../Mercadopago";
+import { CartContext } from "../../context/CartContext";
+import { Card } from '@material-ui/core';
 
 const ShoppingCart = (): JSX.Element => {
-  const intl = useIntl();
+  const { state } = useContext(CartContext);
+
   return (
     <div className={style.root}>
-      <div className={style.list}>
+      <Card className={style.cart}>
+        <h1 className={style.title}>
+          <FormattedMessage id="cartTitle" />
+        </h1>
         <ShoppingCartList />
-        <Link
-          to={{
-            pathname: "/shipping",
-          }}
-        >
-          <Button label={intl.formatMessage({ id: "buy" })} primary={true} />
-        </Link>
-      </div>
+        <Mercadopago cart={state}/>
+      </Card>
     </div>
   );
 };

@@ -1,15 +1,28 @@
-import React, { useContext, useState } from "react";
-import Main from "./components/Main";
-import data from "./data.json";
-import Product from "./components/Product";
-import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
-import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
-import Header from "./components/Header/Header";
-import { IntlProvider } from "react-intl";
-import messages from "./languages/messages";
-import { LOCALES } from "./languages/locales";
-import { LanguageContext } from "./context";
-import ShippingForm from "./components/ShippingForm";
+import React, { useContext, useState } from 'react';
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+import { IntlProvider } from 'react-intl';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
+import data from './data.json';
+import Main from './components/Main';
+import Product from './components/Product';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
+import Header from './components/Header/Header';
+import ShippingForm from './components/ShippingForm';
+import messages from './languages/messages';
+import { LOCALES } from './languages/locales';
+import { LanguageContext } from './context';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#2286c3',
+    },
+    secondary: {
+      main: green[500],
+    },
+  },
+});
 
 const App = (): JSX.Element => {
   const [state, setState] = useState<{ card: boolean }>({
@@ -24,36 +37,38 @@ const App = (): JSX.Element => {
   };
   const { locale } = useContext(LanguageContext);
   return (
-    <IntlProvider
-      locale={locale}
-      messages={messages[locale]}
-      defaultLocale={LOCALES.ENGLISH}
-    >
-      <Router>
-        <Header />
+    <MuiThemeProvider theme={theme}>
+      <IntlProvider
+        locale={locale}
+        messages={messages[locale]}
+        defaultLocale={LOCALES.ENGLISH}
+      >
+        <Router>
+          <Header />
 
-        <Route exact path="/">
-          <Main
-            status={state.card}
-            toggleViewHandler={toggleViewHandler}
-            data={data}
+          <Route exact path="/">
+            <Main
+              status={state.card}
+              toggleViewHandler={toggleViewHandler}
+              data={data}
+            />
+          </Route>
+          <Route
+            exact
+            path="/products/:id"
+            render={withRouter(({ location }) => (
+              <Product data={location.state.data} />
+            ))}
           />
-        </Route>
-        <Route
-          exact
-          path="/products/:id"
-          render={withRouter(({ location }) => (
-            <Product data={location.state.data} />
-          ))}
-        />
-        <Route exact path="/shoppingcart">
-          <ShoppingCart />
-        </Route>
-        <Route exact path="/shipping">
-          <ShippingForm />
-        </Route>
-      </Router>
-    </IntlProvider>
+          <Route exact path="/shoppingcart/">
+            <ShoppingCart />
+          </Route>
+          <Route exact path="/shipping">
+            <ShippingForm />
+          </Route>
+        </Router>
+      </IntlProvider>
+    </MuiThemeProvider>
   );
 };
 

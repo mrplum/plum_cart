@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import { defaultCartValue } from "./defaultValues.tsx";
+import { defaultCartValue } from "./defaultValues";
 import IProductShoppingCart from "../components/IProductShoppingCart";
 
 const CartContext = createContext(defaultCartValue);
@@ -15,8 +15,7 @@ const addProduct = (
     const element = list.find((p) => p.id === newP.id);
     if (element) {
       newList = list.filter((p) => p.id !== newP.id);
-      newP.qty = newP.qty + element.qty;
-      newP.price = newP.price + element.price;
+      newP.quantity = newP.quantity + element.quantity;
       newList.push(newP);
     } else {
       newList = list;
@@ -31,13 +30,13 @@ const deleteProduct = (list: Array<IProductShoppingCart>, id: string) => {
   const newList = list.filter((p) => p.id !== id);
   const deleted = list.find((p) => p.id === id);
   localStorage.setItem("shoppingcart", JSON.stringify(newList));
-  return { newList: newList, qtyDeleted: deleted.qty };
+  return { newList: newList, qtyDeleted: deleted.quantity };
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "addProduct": {
-      const qtyAdded = action.payload.qty;
+      const qtyAdded = action.payload.quantity;
       const newList = addProduct(state.list, action.payload);
       return { list: newList, quantity: state.quantity + qtyAdded };
     }
@@ -59,9 +58,10 @@ const CartContextProvider = ({
   children: JSX.Element;
 }): JSX.Element => {
   const list = JSON.parse(localStorage.getItem("shoppingcart"));
-  const quantity = list && list.length !== 0
+  const quantity =
+    list && list.length !== 0
       ? list
-          .map((item: IProductShoppingCart) => item.qty)
+          .map((item: IProductShoppingCart) => item.quantity)
           .reduce((prev: number, next: number) => prev + next)
       : 0;
 

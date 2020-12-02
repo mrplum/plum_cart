@@ -36,10 +36,6 @@
   opacity: 0.5;
 }
 
-.cardContainer:hover {
-  transform: scale(1.1);
-}
-
 .message {
   text-align: center;
   padding-top: 10px;
@@ -47,4 +43,17 @@
 
 .total {
   text-align: center;
+}
+
+.cartTotal {
+  font-size: x-large;
+  text-align: right;
+  margin: 16px;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
 }

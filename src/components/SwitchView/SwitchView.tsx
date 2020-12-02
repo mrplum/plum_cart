@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { indigo } from "@material-ui/core/colors";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import styles from './SwitchView.module.css';
 
 const BlueSwitch = withStyles({
   switchBase: {
@@ -25,7 +26,7 @@ interface ISwitchView {
 }
 
 const SwitchView = (switchProps: ISwitchView): JSX.Element => (
-  <FormGroup>
+  <FormGroup className={styles.root}>
     <FormControlLabel
       control={
         <BlueSwitch

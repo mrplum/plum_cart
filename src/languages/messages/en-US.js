@@ -11,6 +11,8 @@ export default {
     language: "Language",
     languages: '["English", "Spanish"]',
     viewCart: "View Cart",
+    pay: "Pay",
+    cartTitle: "Shopping Cart",
     buy: "Buy",
     form: "Shipping Form",
     fullName: "Full name",
