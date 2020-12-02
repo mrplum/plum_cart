@@ -16,4 +16,20 @@ const defaultCartValue = {
   },
 };
 
-export { defaultLanguageValue, defaultCartValue };
+const defaultUserValue = {
+  user: {
+    fullName: "",
+    email: "",
+    country: "",
+    state: "",
+    city: "",
+    zipcode: "",
+    street: "",
+    number: "",
+    floor: "",
+  },
+  dispatch: (args: unknown): void => {
+    args;
+  },
+};
+export { defaultLanguageValue, defaultCartValue, defaultUserValue };
