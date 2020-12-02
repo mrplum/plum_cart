@@ -41,8 +41,8 @@ const ShoppingCartList = (): JSX.Element => {
             />
           ))}
         </List>
-        <p>
-          TOTAL=
+        <p className={style.cartTotal}>
+          TOTAL =&nbsp;
           <NumberFormat
             value={total}
             displayType={"text"}

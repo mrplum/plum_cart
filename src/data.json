@@ -70,5 +70,32 @@
     "price": 6450.0,
     "stock": 5,
     "featured": false
+  },
+  {
+    "id": "9",
+    "img": "/src/public/images/rayas.jpg",
+    "title": "Shirt Rayas Alt",
+    "description": "Material: 60% Polyester: +40% cotton. MACHINE WASH",
+    "price": 6450.0,
+    "stock": 5,
+    "featured": false
+  },
+  {
+    "id": "10",
+    "img": "/src/public/images/camBoca.png",
+    "title": "Shirt Boca Alt",
+    "description": "Material: 60% Polyester: +40% cotton. MACHINE WASH",
+    "price": 6450.0,
+    "stock": 5,
+    "featured": false
+  },
+  {
+    "id": "11",
+    "img": "/src/public/images/camBoca.png",
+    "title": "Shirt Boca Alt 2",
+    "description": "Material: 60% Polyester: +40% cotton. MACHINE WASH",
+    "price": 6450.0,
+    "stock": 5,
+    "featured": false
   }
 ]
