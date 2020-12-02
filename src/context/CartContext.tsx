@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import { defaultCartValue } from "./defaultValues.tsx";
+import { defaultCartValue } from "./defaultValues";
 import IProductShoppingCart from "../components/IProductShoppingCart";
 
 const CartContext = createContext(defaultCartValue);
