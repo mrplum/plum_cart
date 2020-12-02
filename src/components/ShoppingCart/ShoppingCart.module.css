@@ -6,7 +6,7 @@
 
 .list {
   height: 60%;
-  width: 60%;
+  max-width: 1170px;
   margin-right: 20%;
   margin-left: 20%;
 }
