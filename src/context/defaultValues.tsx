@@ -11,7 +11,7 @@ const defaultCartValue = {
     list: [],
     quantity: 0,
   },
-  dispatch: (args: never): void => {
+  dispatch: (args: unknown): void => {
     args;
   },
 };
