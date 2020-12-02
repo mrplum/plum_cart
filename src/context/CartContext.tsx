@@ -1,68 +1,80 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer } from "react";
 import { defaultCartValue } from "./defaultValues.tsx";
+import IProductShoppingCart from "../components/IProductShoppingCart";
 
 const CartContext = createContext(defaultCartValue);
+
+const addProduct = (
+  list: Array<IProductShoppingCart>,
+  newP: IProductShoppingCart
+): Array<IProductShoppingCart> => {
+  let newList = [];
+  if (list === null) {
+    newList.push(newP);
+  } else {
+    const element = list.find((p) => p.id === newP.id);
+    if (element) {
+      newList = list.filter((p) => p.id !== newP.id);
+      newP.qty = newP.qty + element.qty;
+      newP.price = newP.price + element.price;
+      newList.push(newP);
+    } else {
+      newList = list;
+      newList.push(newP);
+    }
+  }
+  localStorage.setItem("shoppingcart", JSON.stringify(newList));
+  return newList;
+};
+
+const deleteProduct = (list: Array<IProductShoppingCart>, id: string) => {
+  const newList = list.filter((p) => p.id !== id);
+  const deleted = list.find((p) => p.id === id);
+  localStorage.setItem("shoppingcart", JSON.stringify(newList));
+  return { newList: newList, qtyDeleted: deleted.qty };
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "addProduct": {
+      const qtyAdded = action.payload.qty;
+      const newList = addProduct(state.list, action.payload);
+      return { list: newList, quantity: state.quantity + qtyAdded };
+    }
+    case "deleteProduct": {
+      const { newList, qtyDeleted } = deleteProduct(
+        state.list,
+        action.payload.id
+      );
+      return { list: newList, quantity: state.quantity - qtyDeleted };
+    }
+    default:
+      throw new Error();
+  }
+};
 
 const CartContextProvider = ({
   children,
 }: {
   children: JSX.Element;
 }): JSX.Element => {
-  const deleteProduct = (id: string): void => {
-    const list = JSON.parse(localStorage.getItem("shoppingcart"));
-    const newList = list.filter((p) => p.id !== id);
-    const deleted = list.find((p) => p.id === id);
-    setState((prevState) => ({
-      ...state,
-      quantity: prevState.quantity - deleted.qty,
-      list: newList,
-    }));
-    localStorage.setItem("shoppingcart", JSON.stringify(newList));
-  };
-
-  const addProduct = (id: string, price: number, qty: number): void => {
-    const old = JSON.parse(localStorage.getItem("shoppingcart"));
-    const newP = {
-      id: id,
-      price: price * qty,
-      qty: qty,
-    };
-    let newList = [];
-    if (old === null) {
-      newList.push(newP);
-    } else {
-      const element = old.find((p) => p.id === newP.id);
-      if (element) {
-        newList = old.filter((p) => p.id !== newP.id);
-        newP.qty = newP.qty + parseInt(element.qty, 10);
-        newP.price = newP.price + parseInt(element.price, 10);
-        newList.push(newP);
-      } else {
-        newList = old;
-        newList.push(newP);
-      }
-    }
-    setState((prevState) => ({
-      ...state,
-      quantity: prevState.quantity + qty,
-      list: newList,
-    }));
-    localStorage.setItem("shoppingcart", JSON.stringify(newList));
-  };
-
   const list = JSON.parse(localStorage.getItem("shoppingcart"));
-  const quantity =
-    list.length !== 0
-      ? list.map((item) => item.qty).reduce((prev, next) => prev + next)
+  const quantity = list && list.length !== 0
+      ? list
+          .map((item: IProductShoppingCart) => item.qty)
+          .reduce((prev: number, next: number) => prev + next)
       : 0;
-  const [state, setState] = useState({
+
+  const [state, dispatch] = useReducer(reducer, {
     list: list,
     quantity: quantity,
-    deleteProduct: deleteProduct,
-    addProduct: addProduct,
   });
 
-  return <CartContext.Provider value={state}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={{ state, dispatch }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
 
 export { CartContext, CartContextProvider };

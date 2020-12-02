@@ -24,7 +24,8 @@ const Sidebar = (): JSX.Element => {
   const width = 250;
   const [xPosition, setX] = useState(-width);
   const ref = React.useRef(null);
-  const { list, quantity } = useContext(CartContext);
+  const { state } = useContext(CartContext);
+  const quantity = state.quantity;
 
   const toggleMenu = () => {
     if (xPosition < 0) {
@@ -41,7 +42,7 @@ const Sidebar = (): JSX.Element => {
   };
   useEffect(() => {
     setX(0);
-  }, [list]);
+  }, [state]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);

@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Card from "../Card";
 import style from "./List.module.css";
 import IDataJson from "../DataJson";
 import { Link } from "react-router-dom";
-import { CartContext } from "../../context";
 
 const CardList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
-  const { addProduct } = useContext(CartContext);
   return (
     <GridList
       cols={4}
@@ -31,7 +29,6 @@ const CardList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
                 img={shirt.img}
                 title={shirt.title}
                 price={shirt.price}
-                addP={addProduct}
               />
             </Link>
           </div>

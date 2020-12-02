@@ -12,9 +12,8 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
   const [state, setState] = useState<{ qty: number }>({
     qty: 1,
   });
-  const { addProduct } = useContext(CartContext);
+  const { dispatch } = useContext(CartContext);
   const intl = useIntl();
-  const message = intl.formatMessage({ id: "prodAdded" });
   const handleChange = (value: string) => {
     setState({
       ...state,
@@ -24,7 +23,10 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
 
   const addProductAux = (event: React.ChangeEvent) => {
     event.preventDefault();
-    addProduct(data.id, data.price * state.qty, state.qty, message);
+    dispatch({
+      type: "addProduct",
+      payload: { id: data.id, price: data.price * state.qty, qty: state.qty },
+    });
   };
 
   const values = [];
