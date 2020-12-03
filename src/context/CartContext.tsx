@@ -47,6 +47,9 @@ const reducer = (cart, action) => {
       );
       return { list: newList, quantity: cart.quantity - qtyDeleted };
     }
+    case "cleanCart": {
+      return { list: [], quantity: 0 };
+    }
     default:
       throw new Error();
   }
