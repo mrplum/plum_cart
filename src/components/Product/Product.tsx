@@ -1,12 +1,13 @@
-import React, { useState, useContext } from "react";
-import IDataJson from "../DataJson";
-import SelectButton from "../SelectButton";
-import IconButton from "@material-ui/core/IconButton";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import style from "./Product.module.css";
-import { FormattedMessage, useIntl } from "react-intl";
-import { CartContext } from "../../context";
-import NumberFormat from "react-number-format";
+import React, { useState, useContext } from 'react';
+import IDataJson from '../DataJson';
+import SelectButton from '../SelectButton';
+import IconButton from '@material-ui/core/IconButton';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { CartContext } from '../../context';
+import NumberFormat from 'react-number-format';
+import styles from './Product.module.css';
+import { Box, Button, Card, Paper } from '@material-ui/core';
 
 const Product = ({ data }: { data: IDataJson }): JSX.Element => {
   const [state, setState] = useState<{ qty: number }>({
@@ -21,10 +22,10 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
     });
   };
 
-  const addProductAux = (event: React.ChangeEvent) => {
+  const addProductAux = (event: React.MouseEvent) => {
     event.preventDefault();
     dispatch({
-      type: "addProduct",
+      type: 'addProduct',
       payload: {
         id: data.id,
         title: data.title,
@@ -39,45 +40,45 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
     values.push(i);
   }
   return (
-    <div className={style.root}>
-      <div className={style.left}>
-        <div className={style.centeredLeft}>
-          <h1 className={style.title}>{data.title} </h1>
-          <img src={data.img} alt={""} className={style.img}></img>
+    <div className={styles.root}>
+      <Card className={styles.wrapper}>
+        <div className={styles.product}>
+          <img src={data.img} className={styles.img}></img>
         </div>
-      </div>
-      <div className={style.right}>
-        <div className={style.centeredRight}>
-          <h2 className={style.description}>{data.description}</h2>
-          <div className={style.containerButton}>
-            <IconButton
-              aria-label={`star ${data.title}`}
-              color={"default"}
-              onClick={addProductAux}
-            >
-              <AddShoppingCartIcon />
-              <p>
-                <FormattedMessage id="buttonAdd" />
-              </p>
-            </IconButton>
-            <SelectButton
-              name={intl.formatMessage({ id: "quantity" }, { qty: "" })}
-              values={values}
-              valuesName={values}
-              handle={handleChange}
-              defaultValue="1"
-            />
-          </div>
-          <p className={style.price}>
+        <Paper variant="outlined" className={styles.details}>
+          <Box color="text.primary" className={styles.title}>
+            {data.title}
+          </Box>
+          <Box color="text.secondary" className={styles.description}>
+            {data.description}
+          </Box>
+          <Box color="text.primary" className={styles.price}>
             <NumberFormat
               value={data.price * state.qty}
-              displayType={"text"}
+              displayType={'text'}
               thousandSeparator={true}
-              prefix={"$"}
+              prefix={'$'}
             />
-          </p>
-        </div>
-      </div>
+          </Box>
+          <SelectButton
+            name={intl.formatMessage({ id: 'quantity' }, { qty: '' })}
+            values={values}
+            valuesName={values}
+            handle={handleChange}
+            defaultValue="1"
+            spacing={0}
+          />
+          <Button
+            aria-label={`star ${data.title}`}
+            variant="contained"
+            color="primary"
+            onClick={addProductAux}
+            startIcon={<AddShoppingCartIcon />}
+          >
+            <FormattedMessage id="buttonAdd" />
+          </Button>
+        </Paper>
+      </Card>
     </div>
   );
 };

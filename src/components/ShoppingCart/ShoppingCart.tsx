@@ -17,7 +17,7 @@ const ShoppingCart = (): JSX.Element => {
           <FormattedMessage id="cartTitle" />
         </h1>
         <ShoppingCartList />
-        {cart.list.length !== 0 ? (
+        {cart.list && cart.list.length !== 0 ? (
           <Link to={{ pathname: "/shipping" }}>
             <Button
               className={style.button}
