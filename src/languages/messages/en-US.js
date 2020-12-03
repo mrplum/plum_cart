@@ -25,5 +25,6 @@ export default {
     street: "Street",
     number: "Number",
     floor: "Floor",
+    successfulPurchase: "Your purchase was successful!",
   },
 };

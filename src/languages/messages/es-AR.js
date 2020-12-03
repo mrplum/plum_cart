@@ -25,5 +25,6 @@ export default {
     street: "Calle",
     number: "Número",
     floor: "Piso",
+    successfulPurchase: "Tu compra fue exitosa!",
   },
 };

@@ -33,6 +33,10 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
             body: JSON.stringify({
               items: props.cart.list,
               payer: { email: "test_user_69999056@testuser.com" },
+              back_urls: {
+                success: "http://localhost:8080/success",
+              },
+              auto_return: "approved",
             }),
           }
         );
