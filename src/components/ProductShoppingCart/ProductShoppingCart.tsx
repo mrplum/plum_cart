@@ -7,11 +7,13 @@ import Typography from "@material-ui/core/Typography";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import Divider from "@material-ui/core/Divider";
 import NumberFormat from "react-number-format";
 import { CartContext } from "../../context/CartContext";
 import styles from "./ProductShoppingCart.module.css";
+import SelectButton from "../SelectButton";
+import { QueryBuilder } from "@material-ui/icons";
 
 const ProductShoppingCart = ({
   id,
@@ -19,17 +21,34 @@ const ProductShoppingCart = ({
   title,
   unit_price,
   quantity,
+  stock,
+  modifyQty,
 }: {
   id: string;
   img: string;
   title: string;
   unit_price: number;
   quantity: number;
+  stock: number;
+  modifyQty: boolean;
 }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
   const deleteProduct = () => {
     dispatch({ type: "deleteProduct", payload: { id: id } });
   };
+
+  const values = [];
+  for (let i = 1; i <= stock; i++) {
+    values.push(i);
+  }
+
+  const handleChange = (value) => {
+    dispatch({
+      type: "changeQuantity",
+      payload: { id: id, quantity: parseInt(value) },
+    });
+  };
+
   return (
     <div>
       <ListItem alignItems="center">
@@ -40,7 +59,21 @@ const ProductShoppingCart = ({
           primary={<b>{title}</b>}
           secondary={
             <React.Fragment>
-              <FormattedMessage id="quantity" values={{ qty: quantity }} />
+              {modifyQty ? (
+                <SelectButton
+                  name={useIntl().formatMessage(
+                    { id: "quantity" },
+                    { qty: "" }
+                  )}
+                  values={values}
+                  valuesName={values}
+                  handle={handleChange}
+                  defaultValue={quantity}
+                  spacing={0}
+                />
+              ) : (
+                <FormattedMessage id="quantity" values={{ qty: quantity }} />
+              )}
             </React.Fragment>
           }
         />

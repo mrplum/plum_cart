@@ -7,7 +7,11 @@ import { CartContext } from "../../context";
 import style from "./List.module.css";
 import NumberFormat from "react-number-format";
 
-const ShoppingCartList = (): JSX.Element => {
+const ShoppingCartList = ({
+  modifyQty,
+}: {
+  modifyQty: boolean;
+}): JSX.Element => {
   const { cart } = useContext(CartContext);
   const list = cart.list;
   let empty = !list;
@@ -38,6 +42,8 @@ const ShoppingCartList = (): JSX.Element => {
               title={product.title}
               unit_price={product.unit_price}
               quantity={product.quantity}
+              stock={datajson.find((e) => e.id === product.id).stock}
+              modifyQty={modifyQty}
             />
           ))}
           <p className={style.cartTotal}>
