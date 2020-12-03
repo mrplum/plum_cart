@@ -19,9 +19,8 @@ const ShoppingCart = (): JSX.Element => {
         </h1>
         <ShoppingCartList />
         {cart.list && cart.list.length !== 0 ? (
-          <Link to={{ pathname: "/shipping" }}>
+          <Link to={{ pathname: "/shipping" }} className={style.button}>
             <Button
-              className={style.button}
               variant="contained"
               color="primary"
               size="large"
