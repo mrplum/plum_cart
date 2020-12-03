@@ -44,7 +44,9 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
         console.warn(error);
       }
     };
-    configureMercadoPago();
+    if (props.cart.list.length !== 0) {
+      configureMercadoPago();
+    }
   }, [props.cart]);
 
   const handleCheckout = useCallback(() => {
