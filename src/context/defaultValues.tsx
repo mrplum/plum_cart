@@ -7,7 +7,7 @@ const defaultLanguageValue = {
 };
 
 const defaultCartValue = {
-  state: {
+  cart: {
     list: [],
     quantity: 0,
   },

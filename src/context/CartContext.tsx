@@ -33,19 +33,19 @@ const deleteProduct = (list: Array<IProductShoppingCart>, id: string) => {
   return { newList: newList, qtyDeleted: deleted.quantity };
 };
 
-const reducer = (state, action) => {
+const reducer = (cart, action) => {
   switch (action.type) {
     case "addProduct": {
       const qtyAdded = action.payload.quantity;
-      const newList = addProduct(state.list, action.payload);
-      return { list: newList, quantity: state.quantity + qtyAdded };
+      const newList = addProduct(cart.list, action.payload);
+      return { list: newList, quantity: cart.quantity + qtyAdded };
     }
     case "deleteProduct": {
       const { newList, qtyDeleted } = deleteProduct(
-        state.list,
+        cart.list,
         action.payload.id
       );
-      return { list: newList, quantity: state.quantity - qtyDeleted };
+      return { list: newList, quantity: cart.quantity - qtyDeleted };
     }
     default:
       throw new Error();
@@ -65,13 +65,13 @@ const CartContextProvider = ({
           .reduce((prev: number, next: number) => prev + next)
       : 0;
 
-  const [state, dispatch] = useReducer(reducer, {
+  const [cart, dispatch] = useReducer(reducer, {
     list: list,
     quantity: quantity,
   });
 
   return (
-    <CartContext.Provider value={{ state, dispatch }}>
+    <CartContext.Provider value={{ cart, dispatch }}>
       {children}
     </CartContext.Provider>
   );

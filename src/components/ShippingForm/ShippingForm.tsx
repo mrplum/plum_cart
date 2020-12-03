@@ -2,14 +2,14 @@ import React, { useState, useContext } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import style from "./ShippingForm.module.css";
 import Mercadopago from "../Mercadopago";
-import { CartContext } from "../../context";
+import { CartContext, UserContext } from "../../context";
 
 const ShippingForm = (): JSX.Element => {
   const [user, setState] = useState<{
     fullName: string;
     email: string;
     country: string;
-    s: string;
+    state: string;
     city: string;
     zipcode: string;
     street: string;
@@ -19,7 +19,7 @@ const ShippingForm = (): JSX.Element => {
     fullName: "",
     email: "",
     country: "",
-    s: "",
+    state: "",
     city: "",
     zipcode: "",
     street: "",
@@ -27,8 +27,8 @@ const ShippingForm = (): JSX.Element => {
     floor: "",
   });
 
-  const { state } = useContext(CartContext);
-
+  const { dispatch } = useContext(UserContext);
+  const { cart } = useContext(CartContext);
   const onChange = (e) => {
     e.preventDefault();
     setState({
@@ -37,12 +37,20 @@ const ShippingForm = (): JSX.Element => {
     });
   };
 
+  const submit = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: "setUser",
+      payload: user,
+    });
+  };
+
   const intl = useIntl();
   const {
     fullName,
     email,
     country,
-    s,
+    state,
     city,
     zipcode,
     street,
@@ -55,7 +63,7 @@ const ShippingForm = (): JSX.Element => {
         <FormattedMessage id="form" />
       </h1>
       <div className={style.formContainer}>
-        <form className={style.form}>
+        <form id="shipping" onSubmit={submit} className={style.form}>
           <label className={style.label}>
             <FormattedMessage id="fullName" />
             <input
@@ -89,9 +97,9 @@ const ShippingForm = (): JSX.Element => {
             <input
               className={style.input}
               type="text"
-              value={s}
+              value={state}
               placeholder={intl.formatMessage({ id: "state" })}
-              name="s"
+              name="state"
               onChange={onChange}
             />
             <input
@@ -135,7 +143,7 @@ const ShippingForm = (): JSX.Element => {
               onChange={onChange}
             />
           </label>
-          <Mercadopago cart={state} />
+          <Mercadopago cart={cart} />
         </form>
       </div>
     </div>

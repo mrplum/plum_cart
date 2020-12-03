@@ -3,15 +3,21 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { LanguageContextProvider, CartContextProvider } from "./context";
+import {
+  LanguageContextProvider,
+  CartContextProvider,
+  UserContextProvider,
+} from "./context";
 
 ReactDOM.render(
   <LanguageContextProvider>
-    <CartContextProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </CartContextProvider>
+    <UserContextProvider>
+      <CartContextProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </CartContextProvider>
+    </UserContextProvider>
   </LanguageContextProvider>,
   document.getElementById("root")
 );
