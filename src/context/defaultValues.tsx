@@ -2,7 +2,7 @@ const defaultLanguageValue = {
   languages: [],
   locale: "en-US",
   toggleLocale: (locale: string): void => {
-    locale;
+    locale = locale;
   },
 };
 
@@ -12,7 +12,7 @@ const defaultCartValue = {
     quantity: 0,
   },
   dispatch: (args: unknown): void => {
-    args;
+    args = args;
   },
 };
 
@@ -29,7 +29,7 @@ const defaultUserValue = {
     floor: "",
   },
   dispatch: (args: unknown): void => {
-    args;
+    args = args;
   },
 };
 export { defaultLanguageValue, defaultCartValue, defaultUserValue };
