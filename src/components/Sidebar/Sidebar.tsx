@@ -4,6 +4,8 @@ import React, {
   useEffect,
   useRef,
   useCallback,
+  useImperativeHandle,
+  forwardRef,
 } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Fab from "@material-ui/core/Fab";
@@ -27,90 +29,96 @@ const CartButton = withStyles({
   },
 })(Fab);
 
-const Sidebar = (): JSX.Element => {
-  const history = useHistory();
+const Sidebar = forwardRef(
+  (_props, ref): JSX.Element => {
+    useImperativeHandle(ref, () => {
+      return { toggleMenu };
+    });
 
-  const [xPosition, setX] = useState(-WIDTH);
+    const history = useHistory();
 
-  const ref = useRef(null);
+    const [xPosition, setX] = useState(-WIDTH);
 
-  const { cart } = useContext(CartContext);
+    const internalRef = useRef<HTMLDivElement>(null);
 
-  const toggleMenu = () => {
-    if (xPosition < 0) {
-      setX(0);
-    } else {
-      setX(-WIDTH);
-    }
-  };
+    const { cart } = useContext(CartContext);
 
-  const close = () => setX(-WIDTH);
-
-  const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      close();
-    }
-  };
-
-  const handleKeypress = (event) => {
-    if (event.key === "Escape") {
-      close();
-    }
-  };
-
-  const handleViewCart = useCallback(() => {
-    history.push("/shoppingcart");
-    close();
-  }, [history]);
-
-  useEffect(() => {
-    setX(0);
-  }, [cart]);
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeypress);
-
-    setX(-WIDTH);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeypress);
+    const toggleMenu = () => {
+      if (xPosition < 0) {
+        setX(0);
+      } else {
+        setX(-WIDTH);
+      }
     };
-  }, []);
 
-  return (
-    <React.Fragment>
-      <CartButton onClick={toggleMenu} variant="extended">
-        <AddShoppingCartIcon />
-        <div className={style.number}>
-          {cart.quantity !== 0 ? cart.quantity : ""}
+    const close = () => setX(-WIDTH);
+
+    const handleClickOutside = (event: { target: any }) => {
+      if (internalRef.current && !internalRef.current.contains(event.target)) {
+        close();
+      }
+    };
+
+    const handleKeypress = (event: { key: string }) => {
+      if (event.key === "Escape") {
+        close();
+      }
+    };
+
+    const handleViewCart = useCallback(() => {
+      history.push("/shoppingcart");
+      close();
+    }, [history]);
+
+    useEffect(() => {
+      setX(0);
+    }, [cart]);
+
+    useEffect(() => {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeypress);
+
+      setX(-WIDTH);
+
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener("keydown", handleKeypress);
+      };
+    }, []);
+
+    return (
+      <React.Fragment>
+        <CartButton onClick={toggleMenu} variant="extended">
+          <AddShoppingCartIcon />
+          <div className={style.number}>
+            {cart.quantity !== 0 ? cart.quantity : ""}
+          </div>
+        </CartButton>
+        <div
+          ref={internalRef}
+          className={style.sideBar}
+          style={{
+            transform: `translatex(${-xPosition}px)`,
+            width: WIDTH,
+          }}
+        >
+          <div className={style.cart}>
+            <ShoppingCartList />
+          </div>
+          <div className={style.button}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              onClick={handleViewCart}
+            >
+              {useIntl().formatMessage({ id: "viewCart" })}
+            </Button>
+          </div>
         </div>
-      </CartButton>
-      <div
-        ref={ref}
-        className={style.sideBar}
-        style={{
-          transform: `translatex(${-xPosition}px)`,
-          width: WIDTH,
-        }}
-      >
-        <div className={style.cart}>
-          <ShoppingCartList />
-        </div>
-        <div className={style.button}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={handleViewCart}
-          >
-            {useIntl().formatMessage({ id: "viewCart" })}
-          </Button>
-        </div>
-      </div>
-    </React.Fragment>
-  );
-};
+      </React.Fragment>
+    );
+  }
+);
 
 export default Sidebar;
