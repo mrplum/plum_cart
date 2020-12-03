@@ -9,6 +9,7 @@ import { Card } from "@material-ui/core";
 
 const ShoppingCart = (): JSX.Element => {
   const { cart } = useContext(CartContext);
+  const intl = useIntl();
 
   return (
     <div className={style.root}>
@@ -25,7 +26,7 @@ const ShoppingCart = (): JSX.Element => {
               color="primary"
               size="large"
             >
-              {useIntl().formatMessage({ id: "buy" })}
+              {intl.formatMessage({ id: "buy" })}
             </Button>
           </Link>
         ) : (
