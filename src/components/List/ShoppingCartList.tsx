@@ -8,8 +8,8 @@ import style from "./List.module.css";
 import NumberFormat from "react-number-format";
 
 const ShoppingCartList = (): JSX.Element => {
-  const { state } = useContext(CartContext);
-  const list = state.list;
+  const { cart } = useContext(CartContext);
+  const list = cart.list;
   let empty = !list;
   let total = 0;
   if (!empty) {

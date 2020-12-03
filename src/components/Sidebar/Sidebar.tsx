@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Fab from "@material-ui/core/Fab";
 import style from "./Sidebar.module.css";
@@ -13,7 +19,7 @@ const WIDTH = 350;
 
 const CartButton = withStyles({
   root: {
-    position: 'fixed',
+    position: "fixed",
     right: 24,
     bottom: 24,
     height: 48,
@@ -28,7 +34,7 @@ const Sidebar = (): JSX.Element => {
 
   const ref = useRef(null);
 
-  const { state } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   const toggleMenu = () => {
     if (xPosition < 0) {
@@ -47,19 +53,19 @@ const Sidebar = (): JSX.Element => {
   };
 
   const handleKeypress = (event) => {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       close();
     }
-  }
+  };
 
   const handleViewCart = useCallback(() => {
-    history.push('/shoppingcart')
+    history.push("/shoppingcart");
     close();
   }, [history]);
 
   useEffect(() => {
     setX(0);
-  }, [state]);
+  }, [cart]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -77,7 +83,9 @@ const Sidebar = (): JSX.Element => {
     <React.Fragment>
       <CartButton onClick={toggleMenu} variant="extended">
         <AddShoppingCartIcon />
-        <div className={style.number}>{state.quantity !== 0 ? state.quantity : ""}</div>
+        <div className={style.number}>
+          {cart.quantity !== 0 ? cart.quantity : ""}
+        </div>
       </CartButton>
       <div
         ref={ref}
@@ -91,7 +99,12 @@ const Sidebar = (): JSX.Element => {
           <ShoppingCartList />
         </div>
         <div className={style.button}>
-          <Button variant="contained" color="primary" size="large" onClick={handleViewCart}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={handleViewCart}
+          >
             {useIntl().formatMessage({ id: "viewCart" })}
           </Button>
         </div>

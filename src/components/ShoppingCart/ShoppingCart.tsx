@@ -8,7 +8,7 @@ import { CartContext } from "../../context/CartContext";
 import { Card } from "@material-ui/core";
 
 const ShoppingCart = (): JSX.Element => {
-  const { state } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   return (
     <div className={style.root}>
@@ -17,7 +17,7 @@ const ShoppingCart = (): JSX.Element => {
           <FormattedMessage id="cartTitle" />
         </h1>
         <ShoppingCartList />
-        {state.list && state.list.length !== 0 ? (
+        {cart.list && cart.list.length !== 0 ? (
           <Link to={{ pathname: "/shipping" }}>
             <Button
               className={style.button}

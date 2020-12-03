@@ -58,6 +58,8 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
   return (
     <div className={style.containerButton}>
       <Button
+        form="shipping"
+        type="submit"
         className={style.button}
         variant="contained"
         color="primary"
