@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import { IntlProvider } from "react-intl";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import { blue, green } from "@material-ui/core/colors";
+import { blue } from "@material-ui/core/colors";
 import data from "./data.json";
 import Main from "./components/Main";
 import Product from "./components/Product";

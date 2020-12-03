@@ -1,13 +1,12 @@
-import React, { useState, useContext } from 'react';
-import IDataJson from '../DataJson';
-import SelectButton from '../SelectButton';
-import IconButton from '@material-ui/core/IconButton';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { CartContext } from '../../context';
-import NumberFormat from 'react-number-format';
-import styles from './Product.module.css';
-import { Box, Button, Card, Paper } from '@material-ui/core';
+import React, { useState, useContext } from "react";
+import IDataJson from "../DataJson";
+import SelectButton from "../SelectButton";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { FormattedMessage, useIntl } from "react-intl";
+import { CartContext } from "../../context";
+import NumberFormat from "react-number-format";
+import styles from "./Product.module.css";
+import { Box, Button, Card, Paper } from "@material-ui/core";
 
 const Product = ({ data }: { data: IDataJson }): JSX.Element => {
   const [state, setState] = useState<{ qty: number }>({
@@ -25,7 +24,7 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
   const addProductAux = (event: React.MouseEvent) => {
     event.preventDefault();
     dispatch({
-      type: 'addProduct',
+      type: "addProduct",
       payload: {
         id: data.id,
         title: data.title,
@@ -55,13 +54,13 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
           <Box color="text.primary" className={styles.price}>
             <NumberFormat
               value={data.price * state.qty}
-              displayType={'text'}
+              displayType={"text"}
               thousandSeparator={true}
-              prefix={'$'}
+              prefix={"$"}
             />
           </Box>
           <SelectButton
-            name={intl.formatMessage({ id: 'quantity' }, { qty: '' })}
+            name={intl.formatMessage({ id: "quantity" }, { qty: "" })}
             values={values}
             valuesName={values}
             handle={handleChange}

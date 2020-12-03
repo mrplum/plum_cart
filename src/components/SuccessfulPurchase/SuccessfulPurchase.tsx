@@ -5,10 +5,10 @@ import { withStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
 import { green } from "@material-ui/core/colors";
 import { CartContext } from "../../context";
-//import style from "./Mercadopago.module.css";
+import style from "./SuccessfulPurchase.module.css";
 
 const SuccessfulCheck = withStyles({
-  root: { color: green[500] },
+  root: { color: green[500], width: "40%", height: "40%" },
 })(CheckCircleIcon);
 
 const SuccessfulPurchase = (): JSX.Element => {
@@ -19,7 +19,7 @@ const SuccessfulPurchase = (): JSX.Element => {
   }, []);
 
   return (
-    <div>
+    <div className={style.root}>
       <IconButton>
         <SuccessfulCheck />
       </IconButton>

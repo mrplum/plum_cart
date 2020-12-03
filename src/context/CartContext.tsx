@@ -48,6 +48,7 @@ const reducer = (cart, action) => {
       return { list: newList, quantity: cart.quantity - qtyDeleted };
     }
     case "cleanCart": {
+      localStorage.setItem("shoppingcart", "[]");
       return { list: [], quantity: 0 };
     }
     default:
