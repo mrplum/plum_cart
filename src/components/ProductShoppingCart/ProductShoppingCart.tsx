@@ -13,7 +13,6 @@ import NumberFormat from "react-number-format";
 import { CartContext } from "../../context/CartContext";
 import styles from "./ProductShoppingCart.module.css";
 import SelectButton from "../SelectButton";
-import { QueryBuilder } from "@material-ui/icons";
 
 const ProductShoppingCart = ({
   id,
@@ -58,26 +57,29 @@ const ProductShoppingCart = ({
         <ListItemText
           primary={<b>{title}</b>}
           secondary={
-            <React.Fragment>
-              {modifyQty ? (
-                <SelectButton
-                  name={useIntl().formatMessage(
-                    { id: "quantity" },
-                    { qty: "" }
-                  )}
-                  values={values}
-                  valuesName={values}
-                  handle={handleChange}
-                  defaultValue={quantity}
-                  spacing={0}
-                />
-              ) : (
-                <FormattedMessage id="quantity" values={{ qty: quantity }} />
-              )}
-            </React.Fragment>
+            modifyQty ? (
+              ""
+            ) : (
+              <FormattedMessage id="quantity" values={{ qty: quantity }} />
+            )
           }
         />
+
         <div className={styles.remove}>
+          <React.Fragment>
+            {modifyQty ? (
+              <SelectButton
+                name={useIntl().formatMessage({ id: "quantity" }, { qty: "" })}
+                values={values}
+                valuesName={values}
+                handle={handleChange}
+                defaultValue={quantity}
+                spacing={0}
+              />
+            ) : (
+              <div />
+            )}
+          </React.Fragment>
           <IconButton aria-label="delete" id={id} onClick={deleteProduct}>
             <DeleteIcon />
           </IconButton>
