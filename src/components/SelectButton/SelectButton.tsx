@@ -45,14 +45,18 @@ const SelectButton = ({
     name: name,
   });
 
-  const handleChange = (event: React.ChangeEvent<{ value: string }>) => {
-    event.preventDefault();
-    setState({
-      ...state,
-      value: event.target.value,
-    });
-    handle(event.target.value);
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    if (typeof event.target.value === 'string') {
+      const actualValue = event.target.value.toString();
+      event.preventDefault();
+      setState({
+        ...state,
+        value: actualValue,
+      });
+      handle(actualValue);
+    }
   };
+
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <InputLabel htmlFor="outlined-select">{name}</InputLabel>
