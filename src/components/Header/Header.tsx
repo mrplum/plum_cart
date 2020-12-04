@@ -10,7 +10,7 @@ import { CartContext, LanguageContext } from "../../context";
 import Sidebar from "../Sidebar";
 import styles from "./Header.module.css";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
-import { useTheme, withStyles } from "@material-ui/core";
+import { Box, useTheme, withStyles } from "@material-ui/core";
 
 const Header = (): JSX.Element => {
   const theme = useTheme();
@@ -33,7 +33,7 @@ const Header = (): JSX.Element => {
       marignRight: 12,
       width: 50,
       height: 50,
-      
+      fontSize: 20,
     }
   })(IconButton);
 
@@ -66,6 +66,9 @@ const Header = (): JSX.Element => {
         </div>
         <CartIconButton onClick={handleClick}>
           <ShoppingCart htmlColor="var(--light)" />
+          <Box color="text.hint">
+            {cart.quantity !== 0 ? cart.quantity : ""}
+          </Box>
         </CartIconButton>
       </div>
     </div>
