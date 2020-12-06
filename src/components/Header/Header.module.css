@@ -9,9 +9,21 @@
   align-items: center;
 }
 
+.homeWrapper {
+  flex: 1;
+  display: flex;
+}
+
+.right {
+  flex: 0;
+  display: flex;
+  margin-right: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
 .home {
   color: var(--lighter) !important;
-  height: 50px;
 }
 
 .icon {
