@@ -33,6 +33,21 @@ const deleteProduct = (list: Array<IProductShoppingCart>, id: string) => {
   return { newList: newList, qtyDeleted: deleted.quantity };
 };
 
+const changeQuantity = (
+  id: string,
+  quantity: number,
+  list: Array<IProductShoppingCart>
+) => {
+  let oldQty;
+  list.forEach((element) => {
+    if (element.id === id) {
+      oldQty = element.quantity;
+      element.quantity = quantity;
+    }
+  });
+  localStorage.setItem("shoppingcart", JSON.stringify(list));
+  return { newList: list, oldQty: oldQty };
+};
 const reducer = (cart, action) => {
   switch (action.type) {
     case "addProduct": {
@@ -50,6 +65,17 @@ const reducer = (cart, action) => {
     case "cleanCart": {
       localStorage.setItem("shoppingcart", "[]");
       return { list: [], quantity: 0 };
+    }
+    case "changeQuantity": {
+      const { newList, oldQty } = changeQuantity(
+        action.payload.id,
+        action.payload.quantity,
+        cart.list
+      );
+      return {
+        list: newList,
+        quantity: cart.quantity - oldQty + action.payload.quantity,
+      };
     }
     default:
       throw new Error();
