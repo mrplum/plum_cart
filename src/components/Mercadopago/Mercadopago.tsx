@@ -16,7 +16,7 @@ interface MercadopagoProps {
 }
 
 const Mercadopago = (props: MercadopagoProps): JSX.Element => {
-  const [{ pathname }, setState] = useState({ pathname: null });
+  const [{ pathname }, setState] = useState({ pathname: '' });
 
   useEffect(() => {
     const configureMercadoPago = async () => {
@@ -54,7 +54,7 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
   }, [props.cart]);
 
   const handleCheckout = useCallback(() => {
-    if (pathname) {
+    if (pathname.length) {
       window.open(pathname);
     }
   }, [pathname]);

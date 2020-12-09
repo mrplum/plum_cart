@@ -9,6 +9,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/mercadopago": "^1.5.2",
+    "@types/react-router-dom": "^5.1.6",
     "classnames": "^2.2.6",
     "less-loader": "^7.0.1",
     "mercadopago": "^1.5.1",
