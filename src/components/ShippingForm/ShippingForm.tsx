@@ -154,7 +154,10 @@ const ShippingForm = (): JSX.Element => {
                 onChange={handleChange}
               />
             </label>
-            <Mercadopago cart={cart} />
+            <Mercadopago
+              cart={cart}
+              disabled={user.fullName === "" || user.email === ""}
+            />
           </form>
         </div>
       </Card>
