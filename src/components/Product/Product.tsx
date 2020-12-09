@@ -68,6 +68,7 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
             spacing={0}
           />
           <Button
+            id="addProduct"
             aria-label={`star ${data.title}`}
             variant="contained"
             color="primary"
