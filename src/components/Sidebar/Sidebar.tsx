@@ -103,7 +103,11 @@ const Sidebar = forwardRef(
           }}
         >
           <div className={style.cart}>
-            <ShoppingCartList modifyQty={false} />
+            <ShoppingCartList
+              modifyQty={false}
+              modifyDelete={true}
+              list={cart.list}
+            />
           </div>
           <div className={style.button}>
             <Button

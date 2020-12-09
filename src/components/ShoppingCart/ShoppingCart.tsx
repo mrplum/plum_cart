@@ -17,14 +17,14 @@ const ShoppingCart = (): JSX.Element => {
         <h1 className={style.title}>
           <FormattedMessage id="cartTitle" />
         </h1>
-        <ShoppingCartList modifyQty={true} />
+        <ShoppingCartList
+          modifyQty={true}
+          modifyDelete={true}
+          list={cart.list}
+        />
         {cart.list && cart.list.length !== 0 ? (
           <Link to={{ pathname: "/shipping" }} className={style.button}>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-            >
+            <Button variant="contained" color="primary" size="large">
               {intl.formatMessage({ id: "buy" })}
             </Button>
           </Link>

@@ -1,19 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import List from "@material-ui/core/List";
 import ProductShoppingCart from "../ProductShoppingCart";
 import datajson from "../../data.json";
 import { FormattedMessage } from "react-intl";
-import { CartContext } from "../../context";
 import style from "./List.module.css";
 import NumberFormat from "react-number-format";
+import IProductShoppingCart from "../IProductShoppingCart";
 
 const ShoppingCartList = ({
   modifyQty,
+  modifyDelete,
+  list,
 }: {
   modifyQty: boolean;
+  modifyDelete: boolean;
+  list: Array<IProductShoppingCart>;
 }): JSX.Element => {
-  const { cart } = useContext(CartContext);
-  const list = cart.list;
   let empty = !list;
   let total = 0;
   if (!empty) {
@@ -44,6 +46,7 @@ const ShoppingCartList = ({
               quantity={product.quantity}
               stock={datajson.find((e) => e.id === product.id).stock}
               modifyQty={modifyQty}
+              modifyDelete={modifyDelete}
             />
           ))}
           <p className={style.cartTotal}>
