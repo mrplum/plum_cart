@@ -26,6 +26,6 @@ export default {
     number: "Number",
     floor: "Floor",
     successfulPurchase: "Your purchase was successful!",
-    productsBought: "You buy:",
+    productsBought: "You bought:",
   },
 };
