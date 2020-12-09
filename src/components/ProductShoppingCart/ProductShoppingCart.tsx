@@ -22,6 +22,7 @@ const ProductShoppingCart = ({
   quantity,
   stock,
   modifyQty,
+  modifyDelete,
 }: {
   id: string;
   img: string;
@@ -30,6 +31,7 @@ const ProductShoppingCart = ({
   quantity: number;
   stock: number;
   modifyQty: boolean;
+  modifyDelete: boolean;
 }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
   const deleteProduct = () => {
@@ -80,9 +82,13 @@ const ProductShoppingCart = ({
               <div />
             )}
           </React.Fragment>
-          <IconButton aria-label="delete" id={id} onClick={deleteProduct}>
-            <DeleteIcon />
-          </IconButton>
+          {modifyDelete ? (
+            <IconButton aria-label="delete" id={id} onClick={deleteProduct}>
+              <DeleteIcon />
+            </IconButton>
+          ) : (
+            <div />
+          )}
         </div>
         <ListItemSecondaryAction>
           <Typography color="primary">
