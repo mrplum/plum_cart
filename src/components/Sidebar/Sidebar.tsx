@@ -83,7 +83,7 @@ const Sidebar = forwardRef(
     }, [history]);
 
     useEffect(() => {
-      document.addEventListener("click", handleClickAddProduct);
+      document.addEventListener("mousedown", handleClickAddProduct);
 
       return () => {
         document.removeEventListener("mousedown", handleClickAddProduct);
