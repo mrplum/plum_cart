@@ -8,12 +8,9 @@ import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
 import { CartContext } from "../../context";
 
-const ProductImage = ({ img }: { img: string }): JSX.Element => {
-  if (img) {
-    return <img className={classNames(styles.img)} src={img} alt={""} />;
-  }
-  return <img className={classNames(styles.img)} src={defaultImage} alt="" />;
-};
+const ProductImage = ({ img }: { img: string }): JSX.Element => (
+  <img className={classNames(styles.img)} src={img} alt={""} />
+);
 
 /**
  * Primary UI component for user interaction
@@ -43,7 +40,7 @@ const Card = ({
         [styles.cardDark]: dark,
       })}
     >
-      <ProductImage img={img} />
+      <ProductImage img={img || defaultImage} />
       <h2
         className={classNames(styles.title, {
           [styles.titleDark]: dark,
