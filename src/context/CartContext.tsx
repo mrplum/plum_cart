@@ -2,6 +2,11 @@ import React, { createContext, useReducer } from "react";
 import { defaultCartValue } from "./defaultValues";
 import IProductShoppingCart from "../components/IProductShoppingCart";
 
+interface ICart {
+  list: Array<IProductShoppingCart>;
+  quantity: number;
+}
+
 const CartContext = createContext(defaultCartValue);
 
 const addProduct = (
@@ -48,7 +53,7 @@ const changeQuantity = (
   localStorage.setItem("shoppingcart", JSON.stringify(list));
   return { newList: list, oldQty: oldQty };
 };
-const reducer = (cart, action) => {
+const reducer = (cart: ICart, action) => {
   switch (action.type) {
     case "addProduct": {
       const qtyAdded = action.payload.quantity;

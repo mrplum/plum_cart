@@ -43,7 +43,7 @@ const ProductShoppingCart = ({
     values.push(i);
   }
 
-  const handleChange = (value) => {
+  const handleChange = (value: string) => {
     dispatch({
       type: "changeQuantity",
       payload: { id: id, quantity: parseInt(value) },

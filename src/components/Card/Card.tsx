@@ -32,7 +32,7 @@ const Card = ({
   img?: string;
 }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
-  const addProduct = (e) => {
+  const addProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const p = { id: id, title: title, unit_price: price, quantity: 1 };
     dispatch({ type: "addProduct", payload: p });
