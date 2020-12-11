@@ -1,8 +1,10 @@
+import { UserAction } from './UserContext.types';
+
 const defaultLanguageValue = {
   languages: [],
   locale: "en-US",
   toggleLocale: (locale: string): void => {
-    locale = locale;
+    console.log(locale);
   },
 };
 
@@ -12,7 +14,7 @@ const defaultCartValue = {
     quantity: 0,
   },
   dispatch: (args: unknown): void => {
-    args = args;
+    console.log(args);
   },
 };
 
@@ -28,8 +30,8 @@ const defaultUserValue = {
     number: "",
     floor: "",
   },
-  dispatch: (args: unknown): void => {
-    args = args;
+  dispatch: ({ type, payload }: UserAction): void => {
+    console.log(type, payload);
   },
 };
 export { defaultLanguageValue, defaultCartValue, defaultUserValue };
