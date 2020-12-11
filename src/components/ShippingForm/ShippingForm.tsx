@@ -66,7 +66,15 @@ const ShippingForm = (): JSX.Element => {
     },
     [user]
   );
-
+  const disabled =
+    user.fullName === "" ||
+    user.email === "" ||
+    country === "" ||
+    state === "" ||
+    city === "" ||
+    zipcode === "" ||
+    street === "" ||
+    number === "";
   return (
     <div className={style.root}>
       <Card className={style.card}>
@@ -154,7 +162,7 @@ const ShippingForm = (): JSX.Element => {
                 onChange={handleChange}
               />
             </label>
-            <Mercadopago cart={cart} />
+            <Mercadopago cart={cart} disabled={disabled} />
           </form>
         </div>
       </Card>

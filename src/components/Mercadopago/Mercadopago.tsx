@@ -13,6 +13,7 @@ interface MercadopagoProps {
   cart: {
     list: IProductShoppingCart[];
   };
+  disabled: boolean;
 }
 
 const Mercadopago = (props: MercadopagoProps): JSX.Element => {
@@ -69,7 +70,9 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
         color="primary"
         size="large"
         onClick={handleCheckout}
-        disabled={pathname === null || props.cart.list.length === 0}
+        disabled={
+          props.disabled || pathname === null || props.cart.list.length === 0
+        }
       >
         {useIntl().formatMessage({ id: "pay" })}
       </Button>
