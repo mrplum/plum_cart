@@ -1,9 +1,20 @@
 import React, { createContext, useReducer } from "react";
 import { defaultUserValue } from "./defaultValues";
 
+interface IUser {
+  fullName: string;
+  email: string;
+  country: string;
+  state: string;
+  city: string;
+  zipcode: string;
+  street: string;
+  number: string;
+  floor: string;
+}
 const UserContext = createContext(defaultUserValue);
 
-const reducer = (user, action) => {
+const reducer = (user: IUser, action) => {
   switch (action.type) {
     case "setUser": {
       return action.payload;

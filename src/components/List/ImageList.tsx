@@ -11,7 +11,7 @@ import { CartContext } from "../../context";
 
 const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
-  const addProductAux = (e) => {
+  const addProductAux = (e: React.MouseEvent<HTMLButtonElement>) => {
     const shirt = JSON.parse(e.currentTarget.value);
     dispatch({
       type: "addProduct",

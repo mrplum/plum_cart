@@ -2,6 +2,16 @@ import React, { createContext, useReducer } from "react";
 import { defaultCartValue } from "./defaultValues";
 import IProductShoppingCart from "../components/IProductShoppingCart";
 
+interface ICart {
+  list: Array<IProductShoppingCart>;
+  quantity: number;
+}
+
+interface IAction {
+  type: "addProduct" | "deleteProduct" | "cleanCart" | "changeQuantity";
+  payload: IProductShoppingCart;
+}
+
 const CartContext = createContext(defaultCartValue);
 
 const addProduct = (
@@ -26,19 +36,23 @@ const addProduct = (
   return newList;
 };
 
-const deleteProduct = (list: Array<IProductShoppingCart>, id: string) => {
+const deleteProduct = (
+  list: Array<IProductShoppingCart>,
+  id: string
+): { newList: Array<IProductShoppingCart>; qtyDeleted: number } => {
   const newList = list.filter((p) => p.id !== id);
   const deleted = list.find((p) => p.id === id);
   localStorage.setItem("shoppingcart", JSON.stringify(newList));
-  return { newList: newList, qtyDeleted: deleted.quantity };
+  return { newList: newList, qtyDeleted: deleted?.quantity || 0 };
 };
 
 const changeQuantity = (
   id: string,
   quantity: number,
   list: Array<IProductShoppingCart>
-) => {
-  let oldQty;
+): { newList: Array<IProductShoppingCart>; oldQty: number } => {
+  let oldQty: number;
+  oldQty = quantity;
   list.forEach((element) => {
     if (element.id === id) {
       oldQty = element.quantity;
@@ -48,7 +62,7 @@ const changeQuantity = (
   localStorage.setItem("shoppingcart", JSON.stringify(list));
   return { newList: list, oldQty: oldQty };
 };
-const reducer = (cart, action) => {
+const reducer = (cart: ICart, action: IAction) => {
   switch (action.type) {
     case "addProduct": {
       const qtyAdded = action.payload.quantity;
@@ -87,7 +101,7 @@ const CartContextProvider = ({
 }: {
   children: JSX.Element;
 }): JSX.Element => {
-  const list = JSON.parse(localStorage.getItem("shoppingcart"));
+  const list = JSON.parse(localStorage.getItem("shoppingcart") || "{}");
   const quantity =
     list && list.length !== 0
       ? list

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { RouteComponentProps } from "react-router";
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import { IntlProvider } from "react-intl";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
@@ -13,6 +14,18 @@ import messages from "./languages/messages";
 import { LOCALES } from "./languages/locales";
 import { LanguageContext } from "./context";
 import SuccessfulPurchase from "./components/SuccessfulPurchase/SuccessfulPurchase";
+import IDataJson from "./components/DataJson";
+
+interface IRouterProps extends RouteComponentProps {
+  location: {
+    pathname: string;
+    search: string;
+    hash: string;
+    state: {
+      data: IDataJson;
+    };
+  };
+}
 
 const theme = createMuiTheme({
   palette: {
@@ -60,7 +73,7 @@ const App = (): JSX.Element => {
           <Route
             exact
             path="/products/:id"
-            render={withRouter(({ location }) => (
+            render={withRouter(({ location }: IRouterProps) => (
               <Product data={location.state.data} />
             ))}
           />
