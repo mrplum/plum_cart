@@ -1,20 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import { defaultUserValue } from "./defaultValues";
+import { IUser, UserAction } from './UserContext.types';
 
-interface IUser {
-  fullName: string;
-  email: string;
-  country: string;
-  state: string;
-  city: string;
-  zipcode: string;
-  street: string;
-  number: string;
-  floor: string;
-}
 const UserContext = createContext(defaultUserValue);
 
-const reducer = (user: IUser, action) => {
+const reducer = (user: IUser, action: UserAction): IUser => {
   switch (action.type) {
     case "setUser": {
       return action.payload;
@@ -29,7 +19,7 @@ const UserContextProvider = ({
 }: {
   children: JSX.Element;
 }): JSX.Element => {
-  const [user, dispatch] = useReducer(reducer, {
+  const initialState: IUser = {
     fullName: "",
     email: "",
     country: "",
@@ -39,7 +29,9 @@ const UserContextProvider = ({
     street: "",
     number: "",
     floor: "",
-  });
+  };
+
+  const [user, dispatch] = useReducer(reducer, initialState);
 
   return (
     <UserContext.Provider value={{ user, dispatch }}>
