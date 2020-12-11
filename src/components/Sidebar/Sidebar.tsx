@@ -65,13 +65,29 @@ const Sidebar = forwardRef(
       }
     };
 
+    const handleClickAddProduct = (event: { target: any }) => {
+      if (event.target) {
+        if (
+          event.target.getAttribute("id") === "addProduct" ||
+          (event.target.offsetParent &&
+            event.target.offsetParent.id === "addProduct")
+        ) {
+          setX(0);
+        }
+      }
+    };
+
     const handleViewCart = useCallback(() => {
       history.push("/shoppingcart");
       close();
     }, [history]);
 
     useEffect(() => {
-      setX(0);
+      document.addEventListener("mousedown", handleClickAddProduct);
+
+      return () => {
+        document.removeEventListener("mousedown", handleClickAddProduct);
+      };
     }, [cart]);
 
     useEffect(() => {

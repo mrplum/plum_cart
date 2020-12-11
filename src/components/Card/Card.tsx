@@ -64,6 +64,7 @@ const Card = ({
         />
       </h1>
       <Button
+        id="addProduct"
         variant="outlined"
         className={styles.button}
         aria-label={`star ${title}`}

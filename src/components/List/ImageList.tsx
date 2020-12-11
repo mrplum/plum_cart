@@ -48,13 +48,14 @@ const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
             titlePosition="top"
             actionIcon={
               <IconButton
+                id="addProduct"
                 aria-label={`shop ${shirt.title}`}
                 color={"primary"}
                 className={style.icon}
                 value={JSON.stringify(shirt)}
                 onClick={addProductAux}
               >
-                <AddShoppingCartIcon />
+                <AddShoppingCartIcon id="addProduct" />
               </IconButton>
             }
             actionPosition="left"
