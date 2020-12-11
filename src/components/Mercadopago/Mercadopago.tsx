@@ -17,7 +17,7 @@ interface MercadopagoProps {
 }
 
 const Mercadopago = (props: MercadopagoProps): JSX.Element => {
-  const [{ pathname }, setState] = useState({ pathname: '' });
+  const [{ pathname }, setState] = useState({ pathname: "" });
 
   useEffect(() => {
     const configureMercadoPago = async () => {
@@ -36,6 +36,7 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
               payer: { email: "test_user_69999056@testuser.com" },
               back_urls: {
                 success: "http://localhost:8080/success",
+                failure: "http://localhost:8080/",
               },
               auto_return: "approved",
             }),
@@ -56,7 +57,7 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
 
   const handleCheckout = useCallback(() => {
     if (pathname.length) {
-      window.open(pathname);
+      window.location.replace(pathname);
     }
   }, [pathname]);
 
