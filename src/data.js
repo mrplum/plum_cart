@@ -1,6 +1,6 @@
 import dog from "./public/images/dog.png";
 import dog2 from "./public/images/dog2.jpeg";
-import rayas from "./public/images/dorayasg2.jpg";
+import rayas from "./public/images/rayas.jpg";
 import camBoca from "./public/images/camBoca.png";
 import yoda from "./public/images/yoda.jpg";
 
