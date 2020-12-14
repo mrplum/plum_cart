@@ -110,7 +110,7 @@ const CartContextProvider = ({
 }: {
   children: JSX.Element;
 }): JSX.Element => {
-  const list = JSON.parse(localStorage.getItem("shoppingcart") || "{}");
+  const list = JSON.parse(localStorage.getItem("shoppingcart") || JSON.stringify([]));
   const quantity =
     list && list.length !== 0
       ? list

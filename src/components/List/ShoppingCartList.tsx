@@ -1,7 +1,7 @@
 import React from "react";
 import List from "@material-ui/core/List";
 import ProductShoppingCart from "../ProductShoppingCart";
-import datajson from "../../data.json";
+import datajson from "../../data";
 import { FormattedMessage } from "react-intl";
 import style from "./List.module.css";
 import NumberFormat from "react-number-format";

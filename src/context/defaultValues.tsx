@@ -11,7 +11,7 @@ const defaultLanguageValue = {
 
 const defaultCartValue = {
   cart: {
-    list: [] ,
+    list: [],
     quantity: 0,
   },
   dispatch: ({ type, payload }: CartAction): void => {

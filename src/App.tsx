@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { IntlProvider } from "react-intl";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { blue } from "@material-ui/core/colors";
-import data from "./data.json";
+import data from "./data";
 import Main from "./components/Main";
 import { ProductSceneWithRouter } from "./components/Product";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
