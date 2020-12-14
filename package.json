@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "run": "webpack-dev-server --open --mode development",
-    "production": "webpack-dev-server --open --mode production",
+    "production": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -63,6 +63,7 @@
     "@storybook/react": "^6.0.26",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
+    "@webpack-cli/serve": "^1.1.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
     "eslint-plugin-react": "^7.21.3",
