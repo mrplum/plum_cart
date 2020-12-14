@@ -33,22 +33,27 @@ const ShoppingCartList = ({
       </p>
     );
   } else {
+    let data;
+
     return (
       <div>
         <List>
-          {list.map((product) => (
-            <ProductShoppingCart
-              key={product.id}
-              id={product.id}
-              img={datajson.find((e) => e.id === product.id).img}
-              title={product.title}
-              unit_price={product.unit_price}
-              quantity={product.quantity}
-              stock={datajson.find((e) => e.id === product.id).stock}
-              modifyQty={modifyQty}
-              modifyDelete={modifyDelete}
-            />
-          ))}
+          {list.map((product) => {
+            data = datajson.find((e) => e.id === product.id);
+            return (
+                <ProductShoppingCart
+                key={product.id}
+                id={product.id}
+                img={data?.img}
+                title={product.title}
+                unit_price={product.unit_price}
+                quantity={product.quantity}
+                stock={data?.stock}
+                modifyQty={modifyQty}
+                modifyDelete={modifyDelete}
+              />
+            )
+          })}
           <p className={style.cartTotal}>
             Total &nbsp;
             <NumberFormat

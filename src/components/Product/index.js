@@ -1,1 +1,2 @@
-export { default } from "./Product.tsx";
+export { default, ProductSceneWithRouter } from "./Product.tsx";
+

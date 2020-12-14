@@ -7,6 +7,7 @@ import { green } from "@material-ui/core/colors";
 import { CartContext } from "../../context";
 import style from "./SuccessfulPurchase.module.css";
 import ShoppingCartList from "../List/ShoppingCartList";
+import IProductShoppingCart from "../IProductShoppingCart";
 
 const SuccessfulCheck = withStyles({
   root: { color: green[500], width: "40%", height: "40%" },
@@ -15,11 +16,11 @@ const SuccessfulCheck = withStyles({
 const SuccessfulPurchase = (): JSX.Element => {
   const { dispatch, cart } = useContext(CartContext);
   const [state, setState] = useState({
-    list: [],
+    list: [] as IProductShoppingCart[],
   });
   useEffect(() => {
     if (cart.list.length !== 0) {
-      state.list = cart.list;
+      setState({list: cart.list});
     }
     dispatch({ type: "cleanCart" });
   }, []);

@@ -1,4 +1,5 @@
 import { UserAction } from './UserContext.types';
+import { CartAction } from './CartContext.types';
 
 const defaultLanguageValue = {
   languages: [],
@@ -10,11 +11,11 @@ const defaultLanguageValue = {
 
 const defaultCartValue = {
   cart: {
-    list: [],
+    list: [] ,
     quantity: 0,
   },
-  dispatch: (args: unknown): void => {
-    console.log(args);
+  dispatch: ({ type, payload }: CartAction): void => {
+    console.log(type, payload);
   },
 };
 
