@@ -35,8 +35,8 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
               items: props.cart.list,
               payer: { email: "test_user_69999056@testuser.com" },
               back_urls: {
-                success: "http://localhost:8080/success",
-                failure: "http://localhost:8080/",
+                success: window.location.origin + "/success",
+                failure: window.location.origin,
               },
               auto_return: "approved",
             }),
