@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, ComponentType, FunctionComponent } from "react";
+import { RouteComponentProps } from "react-router";
 import IDataJson from "../DataJson";
 import SelectButton from "../SelectButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
@@ -7,8 +8,13 @@ import { CartContext } from "../../context";
 import NumberFormat from "react-number-format";
 import styles from "./Product.module.css";
 import { Box, Button, Card, Paper } from "@material-ui/core";
+import { withRouter } from "react-router-dom";
 
-const Product = ({ data }: { data: IDataJson }): JSX.Element => {
+interface ProductProps {
+  data: IDataJson;
+}
+
+const Product = ({data}: ProductProps): JSX.Element => {
   const [state, setState] = useState<{ qty: number }>({
     qty: 1,
   });
@@ -84,3 +90,22 @@ const Product = ({ data }: { data: IDataJson }): JSX.Element => {
 };
 
 export default Product;
+
+interface IRouterProps extends RouteComponentProps {
+  location: {
+    pathname: string;
+    search: string;
+    hash: string;
+    state: {
+      data: IDataJson;
+    };
+  };
+}
+
+const ProductScene = (props: IRouterProps): React.ComponentElement<IRouterProps, never> => (
+  <Product data={props.location.state.data} />
+);
+
+const ProductSceneWithRouter = withRouter(ProductScene);
+
+export { ProductSceneWithRouter };

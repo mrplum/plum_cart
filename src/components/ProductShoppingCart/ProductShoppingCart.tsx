@@ -34,6 +34,7 @@ const ProductShoppingCart = ({
   modifyDelete: boolean;
 }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
+  const intl = useIntl();
   const deleteProduct = () => {
     dispatch({ type: "deleteProduct", payload: { id: id } });
   };
@@ -71,7 +72,7 @@ const ProductShoppingCart = ({
           <React.Fragment>
             {modifyQty ? (
               <SelectButton
-                name={useIntl().formatMessage({ id: "quantity" }, { qty: "" })}
+                name={intl.formatMessage({ id: "quantity" }, { qty: "" })}
                 values={values}
                 valuesName={values}
                 handle={handleChange}

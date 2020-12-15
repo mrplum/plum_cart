@@ -1,7 +1,7 @@
 import React from "react";
 import List from "@material-ui/core/List";
 import ProductShoppingCart from "../ProductShoppingCart";
-import datajson from "../../data.json";
+import datajson from "../../data";
 import { FormattedMessage } from "react-intl";
 import style from "./List.module.css";
 import NumberFormat from "react-number-format";
@@ -33,22 +33,27 @@ const ShoppingCartList = ({
       </p>
     );
   } else {
+    let data;
+
     return (
       <div>
         <List>
-          {list.map((product) => (
-            <ProductShoppingCart
-              key={product.id}
-              id={product.id}
-              img={datajson.find((e) => e.id === product.id).img}
-              title={product.title}
-              unit_price={product.unit_price}
-              quantity={product.quantity}
-              stock={datajson.find((e) => e.id === product.id).stock}
-              modifyQty={modifyQty}
-              modifyDelete={modifyDelete}
-            />
-          ))}
+          {list.map((product) => {
+            data = datajson.find((e) => e.id === product.id);
+            return (
+                <ProductShoppingCart
+                key={product.id}
+                id={product.id}
+                img={data?.img}
+                title={product.title}
+                unit_price={product.unit_price}
+                quantity={product.quantity}
+                stock={data?.stock}
+                modifyQty={modifyQty}
+                modifyDelete={modifyDelete}
+              />
+            )
+          })}
           <p className={style.cartTotal}>
             Total &nbsp;
             <NumberFormat

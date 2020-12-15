@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
-import { RouteComponentProps } from "react-router";
-import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { IntlProvider } from "react-intl";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { blue } from "@material-ui/core/colors";
-import data from "./data.json";
+import data from "./data";
 import Main from "./components/Main";
-import Product from "./components/Product";
+import { ProductSceneWithRouter } from "./components/Product";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import Header from "./components/Header/Header";
 import ShippingForm from "./components/ShippingForm";
@@ -14,18 +13,6 @@ import messages from "./languages/messages";
 import { LOCALES } from "./languages/locales";
 import { LanguageContext } from "./context";
 import SuccessfulPurchase from "./components/SuccessfulPurchase/SuccessfulPurchase";
-import IDataJson from "./components/DataJson";
-
-interface IRouterProps extends RouteComponentProps {
-  location: {
-    pathname: string;
-    search: string;
-    hash: string;
-    state: {
-      data: IDataJson;
-    };
-  };
-}
 
 const theme = createMuiTheme({
   palette: {
@@ -52,7 +39,9 @@ const App = (): JSX.Element => {
       card: !state.card,
     });
   };
+
   const { locale } = useContext(LanguageContext);
+
   return (
     <MuiThemeProvider theme={theme}>
       <IntlProvider
@@ -73,9 +62,7 @@ const App = (): JSX.Element => {
           <Route
             exact
             path="/products/:id"
-            render={withRouter(({ location }: IRouterProps) => (
-              <Product data={location.state.data} />
-            ))}
+            render={ProductSceneWithRouter}
           />
           <Route path="/success">
             <SuccessfulPurchase />

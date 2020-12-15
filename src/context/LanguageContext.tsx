@@ -12,7 +12,7 @@ const LanguageContextProvider = ({
     navigator.language.startsWith("es", 0) ? "es-AR" : "en-US";
   const languages = ["en-US", "es-AR"];
   const [state, setState] = useState({
-    languages: languages,
+    languages: languages as never[],
     locale: getLanguages(),
     toggleLocale: (locale: string) => {
       setState({
