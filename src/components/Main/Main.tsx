@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SwitchView from "../SwitchView";
-import IDataJson from "../DataJson";
+import IProduct from "../IProduct";
 import ImageList from "../List/ImageList";
 import CardList from "../List/CardList";
 import style from "./Main.module.css";
@@ -12,7 +12,7 @@ interface IMainProps {
 }
 
 const Main = (props: IMainProps): JSX.Element => {
-  const [products, setProducts] = useState<Array<IDataJson>>([]);
+  const [products, setProducts] = useState<Array<IProduct>>([]);
 
   React.useEffect(() => {
     const getProducts = async () => {

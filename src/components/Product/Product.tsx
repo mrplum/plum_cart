@@ -5,7 +5,7 @@ import React, {
   FunctionComponent,
 } from "react";
 import { RouteComponentProps } from "react-router";
-import IDataJson from "../DataJson";
+import IProduct from "../IProduct";
 import SelectButton from "../SelectButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -16,7 +16,7 @@ import { Box, Button, Card, Paper } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
 interface ProductProps {
-  data: IDataJson;
+  data: IProduct;
 }
 
 const Product = ({ data }: ProductProps): JSX.Element => {
@@ -103,7 +103,7 @@ interface IRouterProps extends RouteComponentProps {
     search: string;
     hash: string;
     state: {
-      data: IDataJson;
+      data: IProduct;
     };
   };
 }

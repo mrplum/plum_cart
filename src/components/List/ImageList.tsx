@@ -4,12 +4,12 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
-import IDataJson from "../DataJson";
+import IProduct from "../IProduct";
 import style from "./List.module.css";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context";
 
-const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
+const ImageList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
   const addProductAux = (e: React.MouseEvent<HTMLButtonElement>) => {
     const shirt = JSON.parse(e.currentTarget.value);

@@ -7,9 +7,9 @@ interface IAttribute {
   order: number;
 }
 
-interface IDataJson {
+interface IProduct {
   id: string;
   type: string;
   attributes: IAttribute;
 }
-export default IDataJson;
+export default IProduct;
