@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { IntlProvider } from "react-intl";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { blue } from "@material-ui/core/colors";
-import data from "./data";
 import Main from "./components/Main";
 import { ProductSceneWithRouter } from "./components/Product";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
@@ -53,17 +52,9 @@ const App = (): JSX.Element => {
           <Header />
 
           <Route exact path="/">
-            <Main
-              status={state.card}
-              toggleViewHandler={toggleViewHandler}
-              data={data}
-            />
+            <Main status={state.card} toggleViewHandler={toggleViewHandler} />
           </Route>
-          <Route
-            exact
-            path="/products/:id"
-            render={ProductSceneWithRouter}
-          />
+          <Route exact path="/products/:id" render={ProductSceneWithRouter} />
           <Route path="/success">
             <SuccessfulPurchase />
           </Route>

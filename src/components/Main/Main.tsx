@@ -9,10 +9,21 @@ import { FormattedMessage } from "react-intl";
 interface IMainProps {
   status: boolean;
   toggleViewHandler: () => void;
-  data: IDataJson[];
 }
 
 const Main = (props: IMainProps): JSX.Element => {
+  const [products, setProducts] = React.useState<Array<IDataJson>>([]);
+  React.useEffect(() => {
+    const getProducts = async () => {
+      const response = await fetch(
+        "https://miguia.herokuapp.com/api/v1/products"
+      );
+      const jsonResponse = await response.json();
+      setProducts(jsonResponse.data);
+    };
+    if (products && products.length === 0) getProducts();
+  }, []);
+
   return (
     <div className={style.root}>
       <SwitchView status={props.status} handler={props.toggleViewHandler} />
@@ -21,9 +32,9 @@ const Main = (props: IMainProps): JSX.Element => {
       </h1>
 
       {props.status ? (
-        <CardList data={props.data} />
+        <CardList data={products} />
       ) : (
-        <ImageList data={props.data} />
+        <ImageList data={products} />
       )}
     </div>
   );
