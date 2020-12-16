@@ -17,8 +17,9 @@ const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
       type: "addProduct",
       payload: {
         id: shirt.id,
-        title: shirt.title,
-        unit_price: shirt.price,
+        image: shirt.attributes.image,
+        title: shirt.attributes.name,
+        unit_price: shirt.attributes.price,
         quantity: 1,
       },
     });

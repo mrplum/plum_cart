@@ -1,4 +1,9 @@
-import React, { useState, useContext, ComponentType, FunctionComponent } from "react";
+import React, {
+  useState,
+  useContext,
+  ComponentType,
+  FunctionComponent,
+} from "react";
 import { RouteComponentProps } from "react-router";
 import IDataJson from "../DataJson";
 import SelectButton from "../SelectButton";
@@ -14,7 +19,7 @@ interface ProductProps {
   data: IDataJson;
 }
 
-const Product = ({data}: ProductProps): JSX.Element => {
+const Product = ({ data }: ProductProps): JSX.Element => {
   const [state, setState] = useState<{ qty: number }>({
     qty: 1,
   });
@@ -33,33 +38,34 @@ const Product = ({data}: ProductProps): JSX.Element => {
       type: "addProduct",
       payload: {
         id: data.id,
-        title: data.title,
-        unit_price: data.price,
+        image: data.attributes.image,
+        title: data.attributes.name,
+        unit_price: data.attributes.price,
         quantity: state.qty,
       },
     });
   };
 
   const values = [];
-  for (let i = 1; i <= data.stock; i++) {
+  for (let i = 1; i <= 20; i++) {
     values.push(i);
   }
   return (
     <div className={styles.root}>
       <Card className={styles.wrapper}>
         <div className={styles.product}>
-          <img src={data.img} className={styles.img}></img>
+          <img src={data.attributes.image} className={styles.img}></img>
         </div>
         <Paper variant="outlined" className={styles.details}>
           <Box color="text.primary" className={styles.title}>
-            {data.title}
+            {data.attributes.name}
           </Box>
           <Box color="text.secondary" className={styles.description}>
-            {data.description}
+            {data.attributes.description}
           </Box>
           <Box color="text.primary" className={styles.price}>
             <NumberFormat
-              value={data.price * state.qty}
+              value={data.attributes.price * state.qty}
               displayType={"text"}
               thousandSeparator={true}
               prefix={"$"}
@@ -75,7 +81,7 @@ const Product = ({data}: ProductProps): JSX.Element => {
           />
           <Button
             id="addProduct"
-            aria-label={`star ${data.title}`}
+            aria-label={`star ${data.attributes.name}`}
             variant="contained"
             color="primary"
             onClick={addProductAux}
@@ -102,7 +108,9 @@ interface IRouterProps extends RouteComponentProps {
   };
 }
 
-const ProductScene = (props: IRouterProps): React.ComponentElement<IRouterProps, never> => (
+const ProductScene = (
+  props: IRouterProps
+): React.ComponentElement<IRouterProps, never> => (
   <Product data={props.location.state.data} />
 );
 

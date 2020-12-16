@@ -1,5 +1,6 @@
 interface IProductShoppingCart {
   id: string;
+  image: string;
   title: string;
   unit_price: number;
   quantity: number;
@@ -7,6 +8,7 @@ interface IProductShoppingCart {
 
 interface IProductActionPayload {
   id: string;
+  image?: string;
   title?: string;
   unit_price?: number;
   quantity?: number;
