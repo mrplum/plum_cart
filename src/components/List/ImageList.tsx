@@ -40,16 +40,16 @@ const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
                 state: { data: shirt },
               }}
             >
-              <img src={shirt.img} className={style.img} />
+              <img src={shirt.attributes.image} className={style.img} />
             </Link>
           </div>
           <GridListTileBar
-            title={shirt.title}
+            title={shirt.attributes.name}
             titlePosition="top"
             actionIcon={
               <IconButton
                 id="addProduct"
-                aria-label={`shop ${shirt.title}`}
+                aria-label={`shop ${shirt.attributes.name}`}
                 color={"primary"}
                 className={style.icon}
                 value={JSON.stringify(shirt)}

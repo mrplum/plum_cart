@@ -1,10 +1,15 @@
+interface IAttribute {
+  //company-id: number;
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+  order: number;
+}
+
 interface IDataJson {
   id: string;
-  img: string;
-  title: string;
-  price: number;
-  description: string;
-  stock: number;
-  featured: boolean;
+  type: string;
+  attributes: IAttribute;
 }
 export default IDataJson;

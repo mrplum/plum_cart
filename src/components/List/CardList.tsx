@@ -27,7 +27,6 @@ const CardList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
     }
     return 1;
   };
-
   return (
     <GridList
       className={style.gridList}
@@ -47,9 +46,9 @@ const CardList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
               <Card
                 id={shirt.id}
                 dark={true}
-                img={shirt.img}
-                title={shirt.title}
-                price={shirt.price}
+                img={shirt.attributes.image}
+                title={shirt.attributes.name}
+                price={shirt.attributes.price}
               />
             </Link>
           </div>
