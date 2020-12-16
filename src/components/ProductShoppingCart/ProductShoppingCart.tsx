@@ -16,7 +16,7 @@ import SelectButton from "../SelectButton";
 
 const ProductShoppingCart = ({
   id,
-  img,
+  image,
   title,
   unit_price,
   quantity,
@@ -25,7 +25,7 @@ const ProductShoppingCart = ({
   modifyDelete,
 }: {
   id: string;
-  img: string;
+  image: string;
   title: string;
   unit_price: number;
   quantity: number;
@@ -55,7 +55,7 @@ const ProductShoppingCart = ({
     <div>
       <ListItem alignItems="center">
         <ListItemAvatar>
-          <Avatar alt="" src={img} />
+          <Avatar alt="" src={image} />
         </ListItemAvatar>
         <ListItemText
           primary={<b>{title}</b>}

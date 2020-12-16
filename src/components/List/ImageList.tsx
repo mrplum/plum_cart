@@ -4,12 +4,12 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
-import IDataJson from "../DataJson";
+import IProduct from "../IProduct";
 import style from "./List.module.css";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context";
 
-const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
+const ImageList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
   const addProductAux = (e: React.MouseEvent<HTMLButtonElement>) => {
     const shirt = JSON.parse(e.currentTarget.value);
@@ -17,8 +17,9 @@ const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
       type: "addProduct",
       payload: {
         id: shirt.id,
-        title: shirt.title,
-        unit_price: shirt.price,
+        image: shirt.attributes.image,
+        title: shirt.attributes.name,
+        unit_price: shirt.attributes.price,
         quantity: 1,
       },
     });
@@ -40,16 +41,16 @@ const ImageList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
                 state: { data: shirt },
               }}
             >
-              <img src={shirt.img} className={style.img} />
+              <img src={shirt.attributes.image} className={style.img} />
             </Link>
           </div>
           <GridListTileBar
-            title={shirt.title}
+            title={shirt.attributes.name}
             titlePosition="top"
             actionIcon={
               <IconButton
                 id="addProduct"
-                aria-label={`shop ${shirt.title}`}
+                aria-label={`shop ${shirt.attributes.name}`}
                 color={"primary"}
                 className={style.icon}
                 value={JSON.stringify(shirt)}

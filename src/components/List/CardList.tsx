@@ -3,12 +3,12 @@ import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Card from "../Card";
 import style from "./List.module.css";
-import IDataJson from "../DataJson";
+import IProduct from "../IProduct";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "react-router-dom";
 
-const CardList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
+const CardList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
   const theme = useTheme();
 
   const xl = useMediaQuery(theme.breakpoints.up("xl"));
@@ -27,7 +27,6 @@ const CardList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
     }
     return 1;
   };
-
   return (
     <GridList
       className={style.gridList}
@@ -47,9 +46,9 @@ const CardList = ({ data }: { data: Array<IDataJson> }): JSX.Element => {
               <Card
                 id={shirt.id}
                 dark={true}
-                img={shirt.img}
-                title={shirt.title}
-                price={shirt.price}
+                img={shirt.attributes.image}
+                title={shirt.attributes.name}
+                price={shirt.attributes.price}
               />
             </Link>
           </div>
