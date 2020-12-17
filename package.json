@@ -28,6 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "run": "webpack-dev-server --open --mode development",
+    "dev": "webpack-dev-server --open --mode development",
     "production": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
