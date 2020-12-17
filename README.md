@@ -1,10 +1,9 @@
 ## Available Scripts
 
-In the project directory, you can run:
+You can start the development server with the following command:
 
-### `yarn run run`
+### `yarn run dev`
 
-Runs the app in the development mode.<br />
 Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 The page will reload if you make edits.<br />
@@ -17,3 +16,9 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
+
+### `yarn run production`
+
+This command will serve the static files previously built.
+
+
