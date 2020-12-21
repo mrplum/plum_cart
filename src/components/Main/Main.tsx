@@ -32,7 +32,7 @@ const Main = (props: IMainProps): JSX.Element => {
       {props.status ? (
         <CardList data={state.products} page={state.page} setPagination={setPagination} />
       ) : (
-        <ImageList data={state.products} />
+        <ImageList data={state.products} page={state.page} setPagination={setPagination} />
       )}
     </div>
   );

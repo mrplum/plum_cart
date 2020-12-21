@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -8,9 +8,35 @@ import IProduct from "../IProduct";
 import style from "./List.module.css";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context";
+import { useOnScreen } from "../../hooks";
 
-const ImageList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
+const ImageList = ({
+  data,
+  page,
+  setPagination,
+}: {
+  data: Array<IProduct>;
+  page: number;
+  setPagination: (products: Array<IProduct>) => void;
+}): JSX.Element => {
   const { dispatch } = useContext(CartContext);
+
+  const visibleRef = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(visibleRef);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const response = await fetch(`https://miguia.herokuapp.com/api/v1/products?page=${page}`);
+        const jsonResponse = await response.json();
+        setPagination(jsonResponse.data);
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+    if (isVisible) getProducts();
+  }, [isVisible]);
+
   const addProductAux = (e: React.MouseEvent<HTMLButtonElement>) => {
     const shirt = JSON.parse(e.currentTarget.value);
     dispatch({
@@ -25,13 +51,12 @@ const ImageList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
     });
   };
 
+  if (isVisible) {
+    console.log("Loading...");
+  }
+
   return (
-    <GridList
-      cols={3}
-      cellHeight={"auto"}
-      spacing={4}
-      className={style.gridList}
-    >
+    <GridList cols={3} cellHeight={"auto"} spacing={4} className={style.gridList}>
       {data.map((shirt) => (
         <GridListTile key={shirt.id}>
           <div className={style.container}>
@@ -63,6 +88,7 @@ const ImageList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
           />
         </GridListTile>
       ))}
+      <div ref={visibleRef}>I'm a spinner ;)</div>
     </GridList>
   );
 };
