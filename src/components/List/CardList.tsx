@@ -52,6 +52,11 @@ const CardList = ({
     }
     return 1;
   };
+
+  if (isVisible) {
+    console.log("Loading...");
+  }
+
   return (
     <GridList className={style.gridList} cellHeight={"auto"} spacing={1} cols={getGridListCols()}>
       {data.map((shirt) => (
@@ -74,7 +79,7 @@ const CardList = ({
           </div>
         </GridListTile>
       ))}
-      <div ref={visibleRef}>{isVisible ? `Yep, I'm on screen` : `I'm not`}</div>
+      <div ref={visibleRef}>I'm a spinner ;)</div>
     </GridList>
   );
 };
