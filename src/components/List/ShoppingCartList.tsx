@@ -17,6 +17,7 @@ const ShoppingCartList = ({
 }): JSX.Element => {
   let empty = !list;
   let total = 0;
+
   if (!empty) {
     if (list.length === 0) {
       empty = true;
@@ -25,6 +26,7 @@ const ShoppingCartList = ({
       total += list[i].unit_price * list[i].quantity;
     }
   }
+
   if (empty) {
     return (
       <p className={style.message}>

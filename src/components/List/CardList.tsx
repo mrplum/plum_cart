@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Card from "../Card";
@@ -7,9 +7,13 @@ import IProduct from "../IProduct";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "react-router-dom";
+import { useOnScreen } from "../../hooks";
 
 const CardList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
   const theme = useTheme();
+
+  const visibleRef = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(visibleRef);
 
   const xl = useMediaQuery(theme.breakpoints.up("xl"));
   const md = useMediaQuery(theme.breakpoints.up("md"));
@@ -54,6 +58,7 @@ const CardList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
           </div>
         </GridListTile>
       ))}
+      <div ref={visibleRef}>{isVisible ? `Yep, I'm on screen` : `I'm not`}</div>
     </GridList>
   );
 };
