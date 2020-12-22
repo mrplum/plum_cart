@@ -73,7 +73,7 @@ const Card = ({
         aria-label={`star ${title}`}
         onClick={addProduct}
       >
-        <AddShoppingCartIcon />
+        <AddShoppingCartIcon id="addProduct" />
         <FormattedMessage id="buttonAdd" />
       </Button>
     </div>

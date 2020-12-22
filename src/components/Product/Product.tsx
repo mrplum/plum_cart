@@ -85,7 +85,7 @@ const Product = ({ data }: ProductProps): JSX.Element => {
             variant="contained"
             color="primary"
             onClick={addProductAux}
-            startIcon={<AddShoppingCartIcon />}
+            startIcon={<AddShoppingCartIcon id="addProduct" />}
           >
             <FormattedMessage id="buttonAdd" />
           </Button>
