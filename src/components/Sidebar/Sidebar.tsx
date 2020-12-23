@@ -69,8 +69,8 @@ const Sidebar = forwardRef(
       if (event.target) {
         if (
           event.target.getAttribute("id") === "addProduct" ||
-          (event.target.offsetParent &&
-            event.target.offsetParent.id === "addProduct")
+          (event.target.parentElement &&
+            event.target.parentElement.id === "addProduct")
         ) {
           setX(0);
         }
@@ -88,7 +88,7 @@ const Sidebar = forwardRef(
       return () => {
         document.removeEventListener("click", handleClickAddProduct);
       };
-    }, [cart]);
+    }, []);
 
     useEffect(() => {
       document.addEventListener("mousedown", handleClickOutside);
