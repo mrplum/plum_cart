@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context";
 import { useOnScreen } from "../../hooks";
 
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 const ImageList = ({
   data,
   page,
@@ -88,7 +90,9 @@ const ImageList = ({
           />
         </GridListTile>
       ))}
-      <div ref={visibleRef}>I'm a spinner ;)</div>
+      <div ref={visibleRef}>
+        <CircularProgress />
+      </div>
     </GridList>
   );
 };
