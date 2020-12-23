@@ -27,5 +27,6 @@ export default {
     floor: "Floor",
     successfulPurchase: "Your purchase was successful!",
     productsBought: "You bought:",
+    search: "Search",
   },
 };
