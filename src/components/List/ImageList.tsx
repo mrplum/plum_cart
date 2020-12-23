@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context";
 import { useOnScreen } from "../../hooks";
 
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 const ImageList = ({
   data,
   page,
@@ -56,40 +58,44 @@ const ImageList = ({
   }
 
   return (
-    <GridList cols={3} cellHeight={"auto"} spacing={4} className={style.gridList}>
-      {data.map((shirt) => (
-        <GridListTile key={shirt.id}>
-          <div className={style.container}>
-            <Link
-              to={{
-                pathname: `/products/${shirt.id}`,
-                state: { data: shirt },
-              }}
-            >
-              <img src={shirt.attributes.image} className={style.img} />
-            </Link>
-          </div>
-          <GridListTileBar
-            title={shirt.attributes.name}
-            titlePosition="top"
-            actionIcon={
-              <IconButton
-                id="addProduct"
-                aria-label={`shop ${shirt.attributes.name}`}
-                color={"primary"}
-                className={style.icon}
-                value={JSON.stringify(shirt)}
-                onClick={addProductAux}
+    <div className={style.root}>
+      <GridList cols={3} cellHeight={"auto"} spacing={4} className={style.gridList}>
+        {data.map((shirt) => (
+          <GridListTile key={shirt.id}>
+            <div className={style.container}>
+              <Link
+                to={{
+                  pathname: `/products/${shirt.id}`,
+                  state: { data: shirt },
+                }}
               >
-                <AddShoppingCartIcon id="addProduct" />
-              </IconButton>
-            }
-            actionPosition="left"
-          />
-        </GridListTile>
-      ))}
-      <div ref={visibleRef}>I'm a spinner ;)</div>
-    </GridList>
+                <img src={shirt.attributes.image} className={style.img} />
+              </Link>
+            </div>
+            <GridListTileBar
+              title={shirt.attributes.name}
+              titlePosition="top"
+              actionIcon={
+                <IconButton
+                  id="addProduct"
+                  aria-label={`shop ${shirt.attributes.name}`}
+                  color={"primary"}
+                  className={style.icon}
+                  value={JSON.stringify(shirt)}
+                  onClick={addProductAux}
+                >
+                  <AddShoppingCartIcon id="addProduct" />
+                </IconButton>
+              }
+              actionPosition="left"
+            />
+          </GridListTile>
+        ))}
+      </GridList>
+      <div ref={visibleRef}>
+        <CircularProgress />
+      </div>
+    </div>
   );
 };
 

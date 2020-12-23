@@ -8,6 +8,7 @@ import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "react-router-dom";
 import { useOnScreen } from "../../hooks";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const CardList = ({
   data,
@@ -58,29 +59,33 @@ const CardList = ({
   }
 
   return (
-    <GridList className={style.gridList} cellHeight={"auto"} spacing={1} cols={getGridListCols()}>
-      {data.map((shirt) => (
-        <GridListTile key={shirt.id}>
-          <div className={style.cardContainer}>
-            <Link
-              to={{
-                pathname: `/products/${shirt.id}`,
-                state: { data: shirt },
-              }}
-            >
-              <Card
-                id={shirt.id}
-                dark={true}
-                img={shirt.attributes.image}
-                title={shirt.attributes.name}
-                price={shirt.attributes.price}
-              />
-            </Link>
-          </div>
-        </GridListTile>
-      ))}
-      <div ref={visibleRef}>I'm a spinner ;)</div>
-    </GridList>
+    <div className={style.root}>
+      <GridList className={style.gridList} cellHeight={"auto"} spacing={1} cols={getGridListCols()}>
+        {data.map((shirt) => (
+          <GridListTile key={shirt.id}>
+            <div className={style.cardContainer}>
+              <Link
+                to={{
+                  pathname: `/products/${shirt.id}`,
+                  state: { data: shirt },
+                }}
+              >
+                <Card
+                  id={shirt.id}
+                  dark={true}
+                  img={shirt.attributes.image}
+                  title={shirt.attributes.name}
+                  price={shirt.attributes.price}
+                />
+              </Link>
+            </div>
+          </GridListTile>
+        ))}
+      </GridList>
+      <div ref={visibleRef}>
+        <CircularProgress />
+      </div>
+    </div>
   );
 };
 
