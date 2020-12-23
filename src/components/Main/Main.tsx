@@ -5,6 +5,7 @@ import ImageList from "../List/ImageList";
 import CardList from "../List/CardList";
 import style from "./Main.module.css";
 import { FormattedMessage } from "react-intl";
+import IPagination from "../IPagination";
 
 interface IMainProps {
   status: boolean;
@@ -12,22 +13,15 @@ interface IMainProps {
 }
 
 const Main = (props: IMainProps): JSX.Element => {
-  const [products, setProducts] = useState<Array<IProduct>>([]);
+  const [state, setState] = useState<IPagination>({
+    products: [],
+    page: 1,
+  });
 
-  React.useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const response = await fetch(
-          "https://miguia.herokuapp.com/api/v1/products"
-        );
-        const jsonResponse = await response.json();
-        setProducts(jsonResponse.data);
-      } catch (error) {
-        console.warn(error);
-      }
-    };
-    getProducts();
-  }, []);
+  const setPagination = (products: Array<IProduct>): void => {
+    const newProducts = state.products.concat(products);
+    setState({ products: newProducts, page: state.page + 1 });
+  };
 
   return (
     <div className={style.root}>
@@ -36,9 +30,9 @@ const Main = (props: IMainProps): JSX.Element => {
         <FormattedMessage id="title" />
       </h1>
       {props.status ? (
-        <CardList data={products} />
+        <CardList data={state.products} page={state.page} setPagination={setPagination} />
       ) : (
-        <ImageList data={products} />
+        <ImageList data={state.products} page={state.page} setPagination={setPagination} />
       )}
     </div>
   );

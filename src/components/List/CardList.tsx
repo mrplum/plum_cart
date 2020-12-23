@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Card from "../Card";
@@ -7,13 +7,38 @@ import IProduct from "../IProduct";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "react-router-dom";
+import { useOnScreen } from "../../hooks";
 
-const CardList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
+const CardList = ({
+  data,
+  page,
+  setPagination,
+}: {
+  data: Array<IProduct>;
+  page: number;
+  setPagination: (products: Array<IProduct>) => void;
+}): JSX.Element => {
   const theme = useTheme();
+
+  const visibleRef = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(visibleRef);
 
   const xl = useMediaQuery(theme.breakpoints.up("xl"));
   const md = useMediaQuery(theme.breakpoints.up("md"));
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const response = await fetch(`https://miguia.herokuapp.com/api/v1/products?page=${page}`);
+        const jsonResponse = await response.json();
+        setPagination(jsonResponse.data);
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+    if (isVisible) getProducts();
+  }, [isVisible]);
 
   const getGridListCols = () => {
     if (xl) {
@@ -27,13 +52,13 @@ const CardList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
     }
     return 1;
   };
+
+  if (isVisible) {
+    console.log("Loading...");
+  }
+
   return (
-    <GridList
-      className={style.gridList}
-      cellHeight={"auto"}
-      spacing={1}
-      cols={getGridListCols()}
-    >
+    <GridList className={style.gridList} cellHeight={"auto"} spacing={1} cols={getGridListCols()}>
       {data.map((shirt) => (
         <GridListTile key={shirt.id}>
           <div className={style.cardContainer}>
@@ -54,6 +79,7 @@ const CardList = ({ data }: { data: Array<IProduct> }): JSX.Element => {
           </div>
         </GridListTile>
       ))}
+      <div ref={visibleRef}>I'm a spinner ;)</div>
     </GridList>
   );
 };
