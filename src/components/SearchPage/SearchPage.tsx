@@ -2,13 +2,14 @@ import React from "react";
 import Main from "../Main";
 import { useLocation } from "react-router-dom";
 import { useIntl } from "react-intl";
+import Button from "@material-ui/core/Button";
 
 const SearchPage = ({
   status,
-  toggleViewHandle,
+  toggleViewHandler,
 }: {
   status: boolean;
-  toggleViewHandle: () => void;
+  toggleViewHandler: () => void;
 }) => {
   const search = useLocation().search.slice(6);
   const intl = useIntl();
@@ -17,7 +18,7 @@ const SearchPage = ({
       <Main
         title={intl.formatMessage({ id: "results" }, { search: search })}
         status={status}
-        toggleViewHandle={toggleViewHandle}
+        toggleViewHandler={toggleViewHandler}
         search={search}
       />
     </div>

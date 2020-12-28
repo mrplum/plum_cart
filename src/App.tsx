@@ -41,7 +41,6 @@ const App = (): JSX.Element => {
   };
 
   const { locale } = useContext(LanguageContext);
-  // const intl = useIntl();
 
   return (
     <MuiThemeProvider theme={theme}>
