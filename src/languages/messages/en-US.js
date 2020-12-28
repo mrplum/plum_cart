@@ -28,5 +28,6 @@ export default {
     successfulPurchase: "Your purchase was successful!",
     productsBought: "You bought:",
     search: "Search",
+    results: "Results for {search}:",
   },
 };

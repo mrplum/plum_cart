@@ -16,10 +16,12 @@ const ImageList = ({
   data,
   page,
   setPagination,
+  search,
 }: {
   data: Array<IProduct>;
   page: number;
   setPagination: (products: Array<IProduct>) => void;
+  search: string;
 }): JSX.Element => {
   const { dispatch } = useContext(CartContext);
 
@@ -29,7 +31,9 @@ const ImageList = ({
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const response = await fetch(`https://miguia.herokuapp.com/api/v1/products?page=${page}`);
+        const response = await fetch(
+          `https://miguia.herokuapp.com/api/v1/products?${search}page=${page}`,
+        );
         const jsonResponse = await response.json();
         setPagination(jsonResponse.data);
       } catch (error) {

@@ -1,4 +1,5 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import HomeIcon from "@material-ui/icons/Home";
@@ -68,13 +69,27 @@ const Header = (): JSX.Element => {
   const classes = useStyles();
   const intl = useIntl();
 
+  const [search, setSearch] = useState<string>("");
+
   const { toggleLocale, locale, languages } = useContext(LanguageContext);
   const { cart } = useContext(CartContext);
+  const history = useHistory();
 
   const sidebar = useRef<any>();
   const handleClick = () => {
     if (sidebar.current) {
       sidebar.current.toggleMenu();
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
+
+  const handleSearch = (event: { key: string }) => {
+    if (event.key === "Enter") {
+      history.push(`/search?prod=${search}`);
     }
   };
 
@@ -105,7 +120,6 @@ const Header = (): JSX.Element => {
           </IconButton>
         </Link>
       </div>
-      {/* */}
       <div className={classes.search}>
         <div className={classes.searchIcon}>
           <SearchIcon className={styles.home} />
@@ -116,11 +130,13 @@ const Header = (): JSX.Element => {
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
+          value={search}
+          onChange={handleChange}
+          onKeyDown={handleSearch}
           className={styles.home}
           inputProps={{ "aria-label": "search" }}
         />
       </div>
-      {/* */}
       <div className={style.right}>
         <div className={style.language}>
           <SelectButton
