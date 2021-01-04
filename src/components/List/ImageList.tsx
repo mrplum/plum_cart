@@ -42,8 +42,12 @@ const ImageList = ({
         console.warn(error);
       }
     };
-    if (isVisible) getProducts();
+    if (isVisible && moreProducts) getProducts();
   }, [isVisible]);
+
+  useEffect(() => {
+    setMoreProducts(true);
+  }, [search]);
 
   const addProductAux = (e: React.MouseEvent<HTMLButtonElement>) => {
     const shirt = JSON.parse(e.currentTarget.value);
@@ -98,6 +102,7 @@ const ImageList = ({
           </GridListTile>
         ))}
       </GridList>
+
       {moreProducts ? (
         <div ref={visibleRef}>
           <CircularProgress />

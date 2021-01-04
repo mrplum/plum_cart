@@ -44,8 +44,12 @@ const CardList = ({
         console.warn(error);
       }
     };
-    if (isVisible) getProducts();
+    if (isVisible && moreProducts) getProducts();
   }, [isVisible]);
+
+  useEffect(() => {
+    setMoreProducts(true);
+  }, [search]);
 
   const getGridListCols = () => {
     if (xl) {
