@@ -1,4 +1,3 @@
-
 .img {
   width: 150px;
   height: 180px;
@@ -13,13 +12,14 @@
   border: 10%;
   margin: 5%;
   width: calc(150px + 64px);
+  height: 450px;
   text-align: center;
   background-color: white;
   border-radius: 8px;
   transition: box-shadow 200ms;
 }
 
-.cardDark{
+.cardDark {
   box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.3);
   background-color: var(--dark);
 }
@@ -36,14 +36,21 @@
   color: var(--lighter) !important;
   border-color: var(--lighter) !important;
   margin: 16px !important;
-  margin-bottom: 32px !important;
+  margin-bottom: 20px !important;
   font-weight: bold !important;
   font-size: x-large !important;
+  height: 55px;
 }
-
 
 .title {
   font-size: x-large;
+  height: 60px;
+  width: 210px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .titleDark {
@@ -53,12 +60,14 @@
 .price {
   text-align: center;
   font-size: xx-large;
+  margin: 0px;
+  height: 40px;
 }
 
 .priceDark {
   color: white;
 }
 
-.icon{
+.icon {
   color: white;
 }
