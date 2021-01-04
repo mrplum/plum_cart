@@ -27,5 +27,7 @@ export default {
     floor: "Piso",
     successfulPurchase: "Tu compra fue exitosa!",
     productsBought: "Compraste:",
+    search: "Buscar",
+    results: "Resultados para {search}:",
   },
 };

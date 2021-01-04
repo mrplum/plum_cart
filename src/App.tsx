@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { IntlProvider } from "react-intl";
+import { IntlProvider, useIntl } from "react-intl";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { blue } from "@material-ui/core/colors";
 import Main from "./components/Main";
 import { ProductSceneWithRouter } from "./components/Product";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import Header from "./components/Header/Header";
+import SearchPage from "./components/SearchPage";
 import ShippingForm from "./components/ShippingForm";
 import messages from "./languages/messages";
 import { LOCALES } from "./languages/locales";
@@ -43,11 +44,7 @@ const App = (): JSX.Element => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <IntlProvider
-        locale={locale}
-        messages={messages[locale]}
-        defaultLocale={LOCALES.ENGLISH}
-      >
+      <IntlProvider locale={locale} messages={messages[locale]} defaultLocale={LOCALES.ENGLISH}>
         <Router>
           <Header />
 
@@ -63,6 +60,9 @@ const App = (): JSX.Element => {
           </Route>
           <Route exact path="/shipping">
             <ShippingForm />
+          </Route>
+          <Route exact path="/search">
+            <SearchPage status={state.card} toggleViewHandler={toggleViewHandler} />
           </Route>
         </Router>
       </IntlProvider>
