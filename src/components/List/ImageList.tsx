@@ -36,14 +36,17 @@ const ImageList = ({
           `https://miguia.herokuapp.com/api/v1/products?${search}page=${page}`,
         );
         const jsonResponse = await response.json();
-        setPagination(jsonResponse.data);
-        if (jsonResponse.data && jsonResponse.data.length === 0) setMoreProducts(false);
+        if (jsonResponse.data && jsonResponse.data.length === 0) {
+          setMoreProducts(false);
+        } else {
+          setPagination(jsonResponse.data);
+        }
       } catch (error) {
         console.warn(error);
       }
     };
     if (isVisible && moreProducts) getProducts();
-  }, [isVisible]);
+  }, [isVisible, data]);
 
   useEffect(() => {
     setMoreProducts(true);
