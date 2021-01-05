@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -23,6 +23,7 @@ const ImageList = ({
   setPagination: (products: Array<IProduct>) => void;
   search: string;
 }): JSX.Element => {
+  const [moreProducts, setMoreProducts] = useState<boolean>(true);
   const { dispatch } = useContext(CartContext);
 
   const visibleRef = useRef<HTMLDivElement>(null);
@@ -35,13 +36,21 @@ const ImageList = ({
           `https://miguia.herokuapp.com/api/v1/products?${search}page=${page}`,
         );
         const jsonResponse = await response.json();
-        setPagination(jsonResponse.data);
+        if (jsonResponse.data && jsonResponse.data.length === 0) {
+          setMoreProducts(false);
+        } else {
+          setPagination(jsonResponse.data);
+        }
       } catch (error) {
         console.warn(error);
       }
     };
-    if (isVisible) getProducts();
-  }, [isVisible]);
+    if (isVisible && moreProducts) getProducts();
+  }, [isVisible, data]);
+
+  useEffect(() => {
+    setMoreProducts(true);
+  }, [search]);
 
   const addProductAux = (e: React.MouseEvent<HTMLButtonElement>) => {
     const shirt = JSON.parse(e.currentTarget.value);
@@ -96,9 +105,14 @@ const ImageList = ({
           </GridListTile>
         ))}
       </GridList>
-      <div ref={visibleRef}>
-        <CircularProgress />
-      </div>
+
+      {moreProducts ? (
+        <div ref={visibleRef}>
+          <CircularProgress />
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 };

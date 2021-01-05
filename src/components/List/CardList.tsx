@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Card from "../Card";
@@ -21,6 +21,7 @@ const CardList = ({
   setPagination: (products: Array<IProduct>) => void;
   search: string;
 }): JSX.Element => {
+  const [moreProducts, setMoreProducts] = useState<boolean>(true);
   const theme = useTheme();
 
   const visibleRef = useRef<HTMLDivElement>(null);
@@ -38,12 +39,17 @@ const CardList = ({
         );
         const jsonResponse = await response.json();
         setPagination(jsonResponse.data);
+        if (jsonResponse.data && jsonResponse.data.length === 0) setMoreProducts(false);
       } catch (error) {
         console.warn(error);
       }
     };
-    if (isVisible) getProducts();
+    if (isVisible && moreProducts) getProducts();
   }, [isVisible]);
+
+  useEffect(() => {
+    setMoreProducts(true);
+  }, [search]);
 
   const getGridListCols = () => {
     if (xl) {
@@ -86,9 +92,13 @@ const CardList = ({
           </GridListTile>
         ))}
       </GridList>
-      <div ref={visibleRef}>
-        <CircularProgress />
-      </div>
+      {moreProducts ? (
+        <div ref={visibleRef}>
+          <CircularProgress />
+        </div>
+      ) : (
+        <div />
+      )}
     </div>
   );
 };
