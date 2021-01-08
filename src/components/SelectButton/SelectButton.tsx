@@ -30,18 +30,17 @@ const SelectButton = ({
     formControl: {
       borderWidth: 12,
       margin: spacing !== null ? spacing : theme.spacing(1),
-      marginBottom:
-        spacing === null || spacing === 0 ? theme.spacing(1) : spacing,
+      marginBottom: spacing === null || spacing === 0 ? theme.spacing(1) : spacing,
       minWidth: 120,
     },
     select: {
-      color: theme.palette.text.hint,
+      color: "gray",
     },
     label: {
-      color: theme.palette.text.hint,
+      color: "gray",
     },
     option: {
-      color: theme.palette.text.primary,
+      color: "black",
     },
     input: {
       borderWidth: 16,
@@ -70,11 +69,7 @@ const SelectButton = ({
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel
-        htmlFor="outlined-select"
-        className={classes.label}
-        focused={false}
-      >
+      <InputLabel htmlFor="outlined-select" className={classes.label} focused={false}>
         {name}
       </InputLabel>
       <Select

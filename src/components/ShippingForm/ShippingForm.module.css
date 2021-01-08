@@ -1,5 +1,5 @@
 .root {
-  background-color: var(--lighter);
+  background-color: var(--light);
   display: flex;
   justify-content: center;
 }

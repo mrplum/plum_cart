@@ -2,7 +2,7 @@ import { LOCALES } from "../locales";
 
 export default {
   [LOCALES.SPANISH]: {
-    title: "Tienda de remeras",
+    title: "Tienda",
     homeButton: "Inicio",
     buttonAdd: "Añadir",
     quantity: "Cantidad: {qty}",

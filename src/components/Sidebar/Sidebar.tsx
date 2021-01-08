@@ -69,8 +69,7 @@ const Sidebar = forwardRef(
       if (event.target) {
         if (
           event.target.getAttribute("id") === "addProduct" ||
-          (event.target.parentElement &&
-            event.target.parentElement.id === "addProduct")
+          (event.target.parentElement && event.target.parentElement.id === "addProduct")
         ) {
           setX(0);
         }
@@ -106,9 +105,7 @@ const Sidebar = forwardRef(
       <React.Fragment>
         <CartButton onClick={toggleMenu} variant="extended">
           <AddShoppingCartIcon />
-          <div className={style.number}>
-            {cart.quantity !== 0 ? cart.quantity : ""}
-          </div>
+          <div className={style.number}>{cart.quantity !== 0 ? cart.quantity : ""}</div>
         </CartButton>
         <div
           ref={internalRef}
@@ -119,17 +116,14 @@ const Sidebar = forwardRef(
           }}
         >
           <div className={style.cart}>
-            <ShoppingCartList
-              modifyQty={false}
-              modifyDelete={true}
-              list={cart.list}
-            />
+            <ShoppingCartList modifyQty={false} modifyDelete={true} list={cart.list} />
           </div>
-          <div className={style.button}>
+          <div className={style.buttonContainer}>
             <Button
               variant="contained"
               color="primary"
               size="large"
+              className={style.button}
               onClick={handleViewCart}
             >
               {useIntl().formatMessage({ id: "viewCart" })}
@@ -138,7 +132,7 @@ const Sidebar = forwardRef(
         </div>
       </React.Fragment>
     );
-  }
+  },
 );
 
 export default Sidebar;

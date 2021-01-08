@@ -59,13 +59,7 @@ const ProductShoppingCart = ({
         </ListItemAvatar>
         <ListItemText
           primary={<b>{title}</b>}
-          secondary={
-            modifyQty ? (
-              ""
-            ) : (
-              <FormattedMessage id="quantity" values={{ qty: quantity }} />
-            )
-          }
+          secondary={modifyQty ? "" : <FormattedMessage id="quantity" values={{ qty: quantity }} />}
         />
 
         <div className={styles.remove}>
@@ -92,7 +86,7 @@ const ProductShoppingCart = ({
           )}
         </div>
         <ListItemSecondaryAction>
-          <Typography color="primary">
+          <Typography>
             <b>
               <NumberFormat
                 value={unit_price * quantity}

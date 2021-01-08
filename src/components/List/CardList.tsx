@@ -82,7 +82,7 @@ const CardList = ({
               >
                 <Card
                   id={shirt.id}
-                  dark={true}
+                  dark={false}
                   img={shirt.attributes.image}
                   title={shirt.attributes.name}
                   price={shirt.attributes.price}

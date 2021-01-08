@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  ComponentType,
-  FunctionComponent,
-} from "react";
+import React, { useState, useContext, ComponentType, FunctionComponent } from "react";
 import { RouteComponentProps } from "react-router";
 import IProduct from "../IProduct";
 import SelectButton from "../SelectButton";
@@ -57,13 +52,13 @@ const Product = ({ data }: ProductProps): JSX.Element => {
           <img src={data.attributes.image} className={styles.img}></img>
         </div>
         <Paper variant="outlined" className={styles.details}>
-          <Box color="text.primary" className={styles.title}>
+          <Box color="black" className={styles.title}>
             {data.attributes.name}
           </Box>
-          <Box color="text.secondary" className={styles.description}>
+          <Box color="rgba(0, 0, 0, 0.72)" className={styles.description}>
             {data.attributes.description}
           </Box>
-          <Box color="text.primary" className={styles.price}>
+          <Box color="black" className={styles.price}>
             <NumberFormat
               value={data.attributes.price * state.qty}
               displayType={"text"}
@@ -84,6 +79,7 @@ const Product = ({ data }: ProductProps): JSX.Element => {
             aria-label={`star ${data.attributes.name}`}
             variant="contained"
             color="primary"
+            className={styles.button}
             onClick={addProductAux}
             startIcon={<AddShoppingCartIcon id="addProduct" />}
           >
@@ -108,9 +104,7 @@ interface IRouterProps extends RouteComponentProps {
   };
 }
 
-const ProductScene = (
-  props: IRouterProps
-): React.ComponentElement<IRouterProps, never> => (
+const ProductScene = (props: IRouterProps): React.ComponentElement<IRouterProps, never> => (
   <Product data={props.location.state.data} />
 );
 

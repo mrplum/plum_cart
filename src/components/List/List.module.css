@@ -23,7 +23,7 @@
   color: red;
 }
 .icon {
-  color: white;
+  color: black !important;
 }
 
 .img {
@@ -46,6 +46,7 @@
 .message {
   text-align: center;
   padding-top: 10px;
+  color: black;
 }
 
 .total {
