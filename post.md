@@ -2,7 +2,7 @@
 
 ###### A quick view about how we build this shopping cart
 
-_here introduction_
+In this post, we explain briefly how we created a shopping cart using React.
 
 **Requirements**
 
@@ -45,10 +45,13 @@ For the effect which opens and closes the sidebar, we created a state to save th
 Here, we realized that we were having problems showing changes in the cart, e.g. when a product was added in the cart. So we created a new context for saving the cart's information. That fixed the problem because now this information is just in one place and if it's modify, this will change there.
 
 **UseReducer**
-Since our CartContext has methods that make each transition between states a complex, we decided change useState for useReducer
+Since our CartContext has methods that make each transition between states complex, we decided change useState for useReducer.
 
 **Checkout**
+Once our app lets adding products to the cart, it should be possible to buy them, so we incorporated Mercado Pago and a shipping form. We added a button in ShoppingCart which appears when your cart it is not empty. This button redirects to "/shipping" where is the shipping form and a button for paying. This button is disable until the form is completed and once you click on it, generates a payment link and redirects you to that one. If the payment was successful, it redirects to "/success" where are shown the products purchased and the cart is cleaned, in another case, it redirects to the home page.
 
 **Pagination**
+Given that the endpoint we used returns products by page, we needed to implement pagination. First, we created a hook called useOnScreen to know if a div element, is visible or not. If it is visible, we make a request of the next page, and this happens until there are not more products to show.
 
 **Search**
+And finally, we added a search bar. We used one provided for Material-ui and we added it to the Header. We created the component SearchPage which uses the Main component and the first one gives to the second the product which is looking for.
