@@ -11,7 +11,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Fab from "@material-ui/core/Fab";
 import style from "./Sidebar.module.css";
 import { withStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { BlackButton } from "../Button";
 import { useHistory } from "react-router-dom";
 import { useIntl } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
@@ -69,8 +69,7 @@ const Sidebar = forwardRef(
       if (event.target) {
         if (
           event.target.getAttribute("id") === "addProduct" ||
-          (event.target.parentElement &&
-            event.target.parentElement.id === "addProduct")
+          (event.target.parentElement && event.target.parentElement.id === "addProduct")
         ) {
           setX(0);
         }
@@ -106,9 +105,7 @@ const Sidebar = forwardRef(
       <React.Fragment>
         <CartButton onClick={toggleMenu} variant="extended">
           <AddShoppingCartIcon />
-          <div className={style.number}>
-            {cart.quantity !== 0 ? cart.quantity : ""}
-          </div>
+          <div className={style.number}>{cart.quantity !== 0 ? cart.quantity : ""}</div>
         </CartButton>
         <div
           ref={internalRef}
@@ -119,26 +116,23 @@ const Sidebar = forwardRef(
           }}
         >
           <div className={style.cart}>
-            <ShoppingCartList
-              modifyQty={false}
-              modifyDelete={true}
-              list={cart.list}
-            />
+            <ShoppingCartList modifyQty={false} modifyDelete={true} list={cart.list} />
           </div>
-          <div className={style.button}>
-            <Button
+          <div className={style.buttonContainer}>
+            <BlackButton
               variant="contained"
               color="primary"
               size="large"
+              className={style.button}
               onClick={handleViewCart}
             >
               {useIntl().formatMessage({ id: "viewCart" })}
-            </Button>
+            </BlackButton>
           </div>
         </div>
       </React.Fragment>
     );
-  }
+  },
 );
 
 export default Sidebar;

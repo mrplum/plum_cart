@@ -53,6 +53,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "inherit",
     },
     inputInput: {
+      fontFamily: "Arial, sans-serif",
+      letterSpacing: "0.6px",
       padding: theme.spacing(1, 1, 1, 0),
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
       transition: theme.transitions.create("width"),
@@ -149,7 +151,7 @@ const Header = (): JSX.Element => {
         </div>
         <CartIconButton onClick={handleClick}>
           <ShoppingCart htmlColor="var(--light)" />
-          <Box color="text.hint">{cart.quantity !== 0 ? cart.quantity : ""}</Box>
+          <Box color="white">{cart.quantity !== 0 ? cart.quantity : ""}</Box>
         </CartIconButton>
       </div>
     </div>

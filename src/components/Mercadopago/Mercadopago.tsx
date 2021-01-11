@@ -4,6 +4,7 @@ import mercadopago from "mercadopago";
 import { Button } from "@material-ui/core";
 import style from "./Mercadopago.module.css";
 import IProductShoppingCart from "../IProductShoppingCart";
+import { BlackButton } from "../Button";
 
 const SANDBOX = true;
 const ACCESS_TOKEN = "TEST-1807600686871209-112614-729d1dbd3c5e18b0dd6bf00117ad00b6-678201171";
@@ -59,10 +60,9 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
 
   return (
     <div className={style.containerButton}>
-      <Button
+      <BlackButton
         form="shipping"
         type="submit"
-        className={style.button}
         variant="contained"
         color="primary"
         size="large"
@@ -70,7 +70,7 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
         disabled={props.disabled || pathname === null || props.cart.list.length === 0}
       >
         {useIntl().formatMessage({ id: "pay" })}
-      </Button>
+      </BlackButton>
     </div>
   );
 };

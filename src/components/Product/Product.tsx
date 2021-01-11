@@ -7,8 +7,9 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { CartContext } from "../../context";
 import NumberFormat from "react-number-format";
 import styles from "./Product.module.css";
-import { Box, Button, Card, Paper } from "@material-ui/core";
+import { Box, Card, Paper } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
+import { BlackButton } from "../Button";
 
 interface ProductProps {
   data: IProduct;
@@ -52,13 +53,13 @@ const Product = ({ data }: ProductProps): JSX.Element => {
           <img src={data.attributes.image} className={styles.img}></img>
         </div>
         <Paper variant="outlined" className={styles.details}>
-          <Box color="text.primary" className={styles.title}>
+          <Box color="black" className={styles.title}>
             {data.attributes.name}
           </Box>
-          <Box color="text.secondary" className={styles.description}>
+          <Box color="rgba(0, 0, 0, 0.72)" className={styles.description}>
             {data.attributes.description}
           </Box>
-          <Box color="text.primary" className={styles.price}>
+          <Box color="black" className={styles.price}>
             <NumberFormat
               value={data.attributes.price * state.qty}
               displayType={"text"}
@@ -74,16 +75,17 @@ const Product = ({ data }: ProductProps): JSX.Element => {
             defaultValue="1"
             spacing={0}
           />
-          <Button
+          <BlackButton
             id="addProduct"
             aria-label={`star ${data.attributes.name}`}
             variant="contained"
             color="primary"
+            className={styles.button}
             onClick={addProductAux}
             startIcon={<AddShoppingCartIcon id="addProduct" />}
           >
             <FormattedMessage id="buttonAdd" />
-          </Button>
+          </BlackButton>
         </Paper>
       </Card>
     </div>

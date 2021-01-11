@@ -17,8 +17,8 @@ import SuccessfulPurchase from "./components/SuccessfulPurchase/SuccessfulPurcha
 const theme = createMuiTheme({
   palette: {
     text: {
-      primary: blue[600],
-      secondary: blue[400],
+      primary: "#000000",
+      secondary: "grey",
       disabled: blue["A100"],
       hint: blue[100],
     },

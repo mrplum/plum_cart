@@ -1,19 +1,18 @@
 import React from "react";
 import Switch from "@material-ui/core/Switch";
 import { withStyles } from "@material-ui/core/styles";
-import { indigo } from "@material-ui/core/colors";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import styles from './SwitchView.module.css';
+import styles from "./SwitchView.module.css";
 
 const BlueSwitch = withStyles({
   switchBase: {
-    color: indigo[300],
+    color: "gray",
     "&$checked": {
-      color: indigo[500],
+      color: "black",
     },
     "&$checked + $track": {
-      backgroundColor: indigo[500],
+      backgroundColor: "black",
     },
   },
   checked: {},
@@ -28,12 +27,7 @@ interface ISwitchView {
 const SwitchView = (switchProps: ISwitchView): JSX.Element => (
   <FormGroup className={styles.root}>
     <FormControlLabel
-      control={
-        <BlueSwitch
-          checked={switchProps.status}
-          onChange={switchProps.handler}
-        />
-      }
+      control={<BlueSwitch checked={switchProps.status} onChange={switchProps.handler} />}
       label="Card"
     />
   </FormGroup>

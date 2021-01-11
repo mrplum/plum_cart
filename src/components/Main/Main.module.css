@@ -2,12 +2,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: var(--lighter);
+  background-color: var(--light);
 }
 
 .title {
   width: 100%;
   text-align: center;
-  font-size: 4rem;
+  font-size: 3.5rem;
+  font-weight: 300;
+  font-family: Andale Mono, monospace;
   color: var(--dark);
+  margin-bottom: 100px;
+  margin-top: 50px;
 }
