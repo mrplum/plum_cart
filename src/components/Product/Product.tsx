@@ -7,8 +7,9 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { CartContext } from "../../context";
 import NumberFormat from "react-number-format";
 import styles from "./Product.module.css";
-import { Box, Button, Card, Paper } from "@material-ui/core";
+import { Box, Card, Paper } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
+import { BlackButton } from "../Button";
 
 interface ProductProps {
   data: IProduct;
@@ -74,7 +75,7 @@ const Product = ({ data }: ProductProps): JSX.Element => {
             defaultValue="1"
             spacing={0}
           />
-          <Button
+          <BlackButton
             id="addProduct"
             aria-label={`star ${data.attributes.name}`}
             variant="contained"
@@ -84,7 +85,7 @@ const Product = ({ data }: ProductProps): JSX.Element => {
             startIcon={<AddShoppingCartIcon id="addProduct" />}
           >
             <FormattedMessage id="buttonAdd" />
-          </Button>
+          </BlackButton>
         </Paper>
       </Card>
     </div>

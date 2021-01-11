@@ -151,7 +151,7 @@ const Header = (): JSX.Element => {
         </div>
         <CartIconButton onClick={handleClick}>
           <ShoppingCart htmlColor="var(--light)" />
-          <Box color="text.hint">{cart.quantity !== 0 ? cart.quantity : ""}</Box>
+          <Box color="white">{cart.quantity !== 0 ? cart.quantity : ""}</Box>
         </CartIconButton>
       </div>
     </div>

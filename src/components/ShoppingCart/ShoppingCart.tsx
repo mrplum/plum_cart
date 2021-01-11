@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FormattedMessage, useIntl } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
 import style from "./ShoppingCart.module.css";
-import { Button } from "@material-ui/core";
+import { BlackButton } from "../Button";
 import { CartContext } from "../../context/CartContext";
 import { Card } from "@material-ui/core";
 
@@ -20,9 +20,9 @@ const ShoppingCart = (): JSX.Element => {
         <ShoppingCartList modifyQty={true} modifyDelete={true} list={cart.list} />
         {cart.list && cart.list.length !== 0 ? (
           <Link to={{ pathname: "/shipping" }} className={style.buttonContainer}>
-            <Button variant="contained" color="primary" size="large" className={style.button}>
+            <BlackButton variant="contained" color="primary" size="large" className={style.button}>
               {intl.formatMessage({ id: "buy" })}
-            </Button>
+            </BlackButton>
           </Link>
         ) : (
           <div></div>

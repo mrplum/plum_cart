@@ -33,9 +33,6 @@
 }
 
 .button {
-  color: var(--light) !important;
-  background-color: black !important;
-  border-color: var(--dark) !important;
   margin: 16px !important;
   margin-bottom: 20px !important;
   font-size: medium !important;

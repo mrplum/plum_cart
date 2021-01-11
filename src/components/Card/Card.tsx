@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "./Card.module.css";
 import defaultImage from "../../public/images/image-not-found.png";
 import classNames from "classnames";
-import Button from "@material-ui/core/Button";
+import { BlackButton } from "../Button";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
@@ -59,14 +59,9 @@ const Card = ({
           [styles.priceDark]: dark,
         })}
       >
-        <NumberFormat
-          value={price}
-          displayType={"text"}
-          thousandSeparator={true}
-          prefix={"$"}
-        />
+        <NumberFormat value={price} displayType={"text"} thousandSeparator={true} prefix={"$"} />
       </h1>
-      <Button
+      <BlackButton
         id="addProduct"
         variant="outlined"
         className={styles.button}
@@ -75,7 +70,7 @@ const Card = ({
       >
         <AddShoppingCartIcon id="addProduct" />
         <FormattedMessage id="buttonAdd" />
-      </Button>
+      </BlackButton>
     </div>
   );
 };

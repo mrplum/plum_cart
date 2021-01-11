@@ -11,7 +11,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import Fab from "@material-ui/core/Fab";
 import style from "./Sidebar.module.css";
 import { withStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { BlackButton } from "../Button";
 import { useHistory } from "react-router-dom";
 import { useIntl } from "react-intl";
 import ShoppingCartList from "../List/ShoppingCartList";
@@ -119,7 +119,7 @@ const Sidebar = forwardRef(
             <ShoppingCartList modifyQty={false} modifyDelete={true} list={cart.list} />
           </div>
           <div className={style.buttonContainer}>
-            <Button
+            <BlackButton
               variant="contained"
               color="primary"
               size="large"
@@ -127,7 +127,7 @@ const Sidebar = forwardRef(
               onClick={handleViewCart}
             >
               {useIntl().formatMessage({ id: "viewCart" })}
-            </Button>
+            </BlackButton>
           </div>
         </div>
       </React.Fragment>
