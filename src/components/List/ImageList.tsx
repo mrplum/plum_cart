@@ -60,7 +60,7 @@ const ImageList = ({
         id: shirt.id,
         image: shirt.attributes.image,
         title: shirt.attributes.name,
-        unit_price: shirt.attributes.price,
+        unit_price: parseInt(shirt.attributes.price),
         quantity: 1,
       },
     });
