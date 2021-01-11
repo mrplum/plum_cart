@@ -6,8 +6,7 @@ import style from "./Mercadopago.module.css";
 import IProductShoppingCart from "../IProductShoppingCart";
 
 const SANDBOX = true;
-const ACCESS_TOKEN =
-  "TEST-1807600686871209-112614-729d1dbd3c5e18b0dd6bf00117ad00b6-678201171";
+const ACCESS_TOKEN = "TEST-1807600686871209-112614-729d1dbd3c5e18b0dd6bf00117ad00b6-678201171";
 
 interface MercadopagoProps {
   cart: {
@@ -23,25 +22,22 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
     const configureMercadoPago = async () => {
       try {
         mercadopago.configure({ sandbox: SANDBOX, access_token: ACCESS_TOKEN });
-        const response = await fetch(
-          "https://api.mercadopago.com/checkout/preferences",
-          {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-              Authorization: "Bearer " + ACCESS_TOKEN,
+        const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            Authorization: "Bearer " + ACCESS_TOKEN,
+          },
+          body: JSON.stringify({
+            items: props.cart.list,
+            payer: { email: "test_user_69999056@testuser.com" },
+            back_urls: {
+              success: window.location.origin + "/success",
+              failure: window.location.origin,
             },
-            body: JSON.stringify({
-              items: props.cart.list,
-              payer: { email: "test_user_69999056@testuser.com" },
-              back_urls: {
-                success: window.location.origin + "/success",
-                failure: window.location.origin,
-              },
-              auto_return: "approved",
-            }),
-          }
-        );
+            auto_return: "approved",
+          }),
+        });
 
         const jsonResponse = await response.json();
 
@@ -56,7 +52,7 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
   }, [props.cart]);
 
   const handleCheckout = useCallback(() => {
-    if (pathname.length) {
+    if (pathname && pathname.length) {
       window.location.replace(pathname);
     }
   }, [pathname]);
@@ -71,9 +67,7 @@ const Mercadopago = (props: MercadopagoProps): JSX.Element => {
         color="primary"
         size="large"
         onClick={handleCheckout}
-        disabled={
-          props.disabled || pathname === null || props.cart.list.length === 0
-        }
+        disabled={props.disabled || pathname === null || props.cart.list.length === 0}
       >
         {useIntl().formatMessage({ id: "pay" })}
       </Button>

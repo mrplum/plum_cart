@@ -35,7 +35,7 @@ const Card = ({
       id: id,
       title: title,
       image: img,
-      unit_price: price,
+      unit_price: parseInt(price),
       quantity: 1,
     };
     dispatch({ type: "addProduct", payload: p });
@@ -59,12 +59,7 @@ const Card = ({
           [styles.priceDark]: dark,
         })}
       >
-        <NumberFormat
-          value={price}
-          displayType={"text"}
-          thousandSeparator={true}
-          prefix={"$"}
-        />
+        <NumberFormat value={price} displayType={"text"} thousandSeparator={true} prefix={"$"} />
       </h1>
       <Button
         id="addProduct"

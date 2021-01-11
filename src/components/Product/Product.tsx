@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  ComponentType,
-  FunctionComponent,
-} from "react";
+import React, { useState, useContext, ComponentType, FunctionComponent } from "react";
 import { RouteComponentProps } from "react-router";
 import IProduct from "../IProduct";
 import SelectButton from "../SelectButton";
@@ -40,7 +35,7 @@ const Product = ({ data }: ProductProps): JSX.Element => {
         id: data.id,
         image: data.attributes.image,
         title: data.attributes.name,
-        unit_price: data.attributes.price,
+        unit_price: parseInt(data.attributes.price),
         quantity: state.qty,
       },
     });
@@ -108,9 +103,7 @@ interface IRouterProps extends RouteComponentProps {
   };
 }
 
-const ProductScene = (
-  props: IRouterProps
-): React.ComponentElement<IRouterProps, never> => (
+const ProductScene = (props: IRouterProps): React.ComponentElement<IRouterProps, never> => (
   <Product data={props.location.state.data} />
 );
 
