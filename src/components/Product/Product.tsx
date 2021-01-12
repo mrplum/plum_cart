@@ -1,4 +1,4 @@
-import React, { useState, useContext, ComponentType, FunctionComponent } from "react";
+import React, { useState, useContext } from "react";
 import { RouteComponentProps } from "react-router";
 import IProduct from "../IProduct";
 import SelectButton from "../SelectButton";
@@ -50,7 +50,7 @@ const Product = ({ data }: ProductProps): JSX.Element => {
     <div className={styles.root}>
       <Card className={styles.wrapper}>
         <div className={styles.product}>
-          <img src={data.attributes.image} className={styles.img}></img>
+          <img src={data.attributes.image} alt="" className={styles.img}></img>
         </div>
         <Paper variant="outlined" className={styles.details}>
           <Box color="black" className={styles.title}>
@@ -61,7 +61,7 @@ const Product = ({ data }: ProductProps): JSX.Element => {
           </Box>
           <Box color="black" className={styles.price}>
             <NumberFormat
-              value={data.attributes.price * state.qty}
+              value={parseInt(data.attributes.price) * state.qty}
               displayType={"text"}
               thousandSeparator={true}
               prefix={"$"}

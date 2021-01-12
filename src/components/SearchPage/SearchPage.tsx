@@ -2,7 +2,6 @@ import React from "react";
 import Main from "../Main";
 import { useLocation } from "react-router-dom";
 import { useIntl } from "react-intl";
-import Button from "@material-ui/core/Button";
 
 const SearchPage = ({
   status,

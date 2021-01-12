@@ -3,7 +3,7 @@ interface IAttribute {
   name: string;
   description: string;
   image: string;
-  price: number;
+  price: string;
   order: number;
 }
 

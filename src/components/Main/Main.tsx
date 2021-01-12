@@ -28,15 +28,11 @@ const Main = (props: IMainProps): JSX.Element => {
     const newProducts = state.products.concat(products);
     setState({ products: newProducts, page: state.page + 1 });
   };
-
   const title = useIntl().formatMessage({ id: "title" });
-
   return (
     <div className={style.root}>
       <SwitchView status={props.status} handler={props.toggleViewHandler} />
-      <h1 className={style.title}>
-        {props.title ? props.title : title}
-      </h1>
+      <h1 className={style.title}>{props.title ? props.title : title}</h1>
       {props.status ? (
         <CardList
           data={state.products}

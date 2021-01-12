@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import style from "./Header.module.css";
@@ -11,15 +10,7 @@ import { CartContext, LanguageContext } from "../../context";
 import Sidebar from "../Sidebar";
 import styles from "./Header.module.css";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
-import {
-  Box,
-  useTheme,
-  withStyles,
-  makeStyles,
-  createStyles,
-  Theme,
-  fade,
-} from "@material-ui/core";
+import { Box, withStyles, makeStyles, createStyles, Theme, fade } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 
@@ -67,7 +58,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Header = (): JSX.Element => {
-  const theme = useTheme();
   const classes = useStyles();
   const intl = useIntl();
 

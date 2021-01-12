@@ -25,7 +25,7 @@ const Card = ({
   id: string;
   dark: boolean;
   title: string;
-  price: number;
+  price: string;
   img?: string;
 }): JSX.Element => {
   const { dispatch } = useContext(CartContext);

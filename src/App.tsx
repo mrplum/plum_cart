@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { IntlProvider, useIntl } from "react-intl";
+import { IntlProvider } from "react-intl";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { blue } from "@material-ui/core/colors";
 import Main from "./components/Main";

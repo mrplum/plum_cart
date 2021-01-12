@@ -7,7 +7,7 @@ const CartContext = createContext<ICartContext>(defaultCartValue);
 
 const addProduct = (
   list: Array<IProductShoppingCart>,
-  payload: IProductActionPayload
+  payload: IProductActionPayload,
 ): Array<IProductShoppingCart> => {
   if (payload.quantity) {
     let newList = [] as IProductActionPayload[];
@@ -26,16 +26,15 @@ const addProduct = (
     }
     localStorage.setItem("shoppingcart", JSON.stringify(newList));
 
-
     return newList as IProductShoppingCart[];
   } else {
-    throw new Error('Missing payload quantity');
+    throw new Error("Missing payload quantity");
   }
 };
 
 const deleteProduct = (
   list: Array<IProductShoppingCart>,
-  id: string
+  id: string,
 ): { newList: Array<IProductShoppingCart>; qtyDeleted: number } => {
   const newList = list.filter((p) => p.id !== id);
   const deleted = list.find((p) => p.id === id);
@@ -46,7 +45,7 @@ const deleteProduct = (
 const changeQuantity = (
   id: string,
   quantity: number,
-  list: Array<IProductShoppingCart>
+  list: Array<IProductShoppingCart>,
 ): { newList: Array<IProductShoppingCart>; oldQty: number } => {
   let oldQty: number;
   oldQty = quantity;
@@ -62,23 +61,20 @@ const changeQuantity = (
 const reducer = (cart: Cart, action: CartAction) => {
   switch (action.type) {
     case "addProduct": {
-      if (action != undefined && action.payload != undefined && action.payload.quantity) {
+      if (action !== undefined && action.payload !== undefined && action.payload.quantity) {
         const qtyAdded = action.payload.quantity;
         const newList = addProduct(cart.list, action.payload);
         return { list: newList, quantity: cart.quantity + qtyAdded };
       } else {
-        throw new Error('Missing action payload')
+        throw new Error("Missing action payload");
       }
     }
     case "deleteProduct": {
-      if (action != undefined && action.payload != undefined) {
-        const { newList, qtyDeleted } = deleteProduct(
-          cart.list,
-          action.payload.id
-        );
+      if (action !== undefined && action.payload !== undefined) {
+        const { newList, qtyDeleted } = deleteProduct(cart.list, action.payload.id);
         return { list: newList, quantity: cart.quantity - qtyDeleted };
       } else {
-        throw new Error('Missing action payload')
+        throw new Error("Missing action payload");
       }
     }
     case "cleanCart": {
@@ -86,18 +82,18 @@ const reducer = (cart: Cart, action: CartAction) => {
       return { list: [], quantity: 0 };
     }
     case "changeQuantity": {
-      if (action != undefined && action.payload != undefined && action.payload.quantity) {
+      if (action !== undefined && action.payload !== undefined && action.payload.quantity) {
         const { newList, oldQty } = changeQuantity(
           action.payload.id,
           action.payload.quantity,
-          cart.list
+          cart.list,
         );
         return {
           list: newList,
           quantity: cart.quantity - oldQty + action.payload.quantity,
         };
       } else {
-        throw new Error('Missing action payload')
+        throw new Error("Missing action payload");
       }
     }
     default:
@@ -105,11 +101,7 @@ const reducer = (cart: Cart, action: CartAction) => {
   }
 };
 
-const CartContextProvider = ({
-  children,
-}: {
-  children: JSX.Element;
-}): JSX.Element => {
+const CartContextProvider = ({ children }: { children: JSX.Element }): JSX.Element => {
   const list = JSON.parse(localStorage.getItem("shoppingcart") || JSON.stringify([]));
   const quantity =
     list && list.length !== 0
@@ -123,11 +115,7 @@ const CartContextProvider = ({
     quantity: quantity,
   });
 
-  return (
-    <CartContext.Provider value={{ cart, dispatch }}>
-      {children}
-    </CartContext.Provider>
-  );
+  return <CartContext.Provider value={{ cart, dispatch }}>{children}</CartContext.Provider>;
 };
 
 export { CartContext, CartContextProvider };
