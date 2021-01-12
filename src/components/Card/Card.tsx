@@ -35,7 +35,7 @@ const Card = ({
       id: id,
       title: title,
       image: img,
-      unit_price: parseInt(price),
+      unit_price: price,
       quantity: 1,
     };
     dispatch({ type: "addProduct", payload: p });

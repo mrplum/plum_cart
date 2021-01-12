@@ -36,7 +36,7 @@ const Product = ({ data }: ProductProps): JSX.Element => {
         id: data.id,
         image: data.attributes.image,
         title: data.attributes.name,
-        unit_price: parseInt(data.attributes.price),
+        unit_price: data.attributes.price,
         quantity: state.qty,
       },
     });
